@@ -266,9 +266,9 @@ function Audience() {
             0to1 is built for students who want more than a resume line.
           </p>
         </div>
-        <div className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-[28px] border border-white/[0.1] bg-white/[0.1] md:grid-cols-2 lg:grid-cols-3">
+        <div className="audience-grid reveal mt-16">
           {audience.map(([title, text]) => (
-            <article key={title} className="reveal audience-card">
+            <article key={title} className="audience-card">
               <Check className="mb-8 h-5 w-5 text-accent" aria-hidden="true" />
               <h3 className="font-syne text-2xl font-black text-white">{title}</h3>
               <p className="mt-4 text-base font-semibold leading-7 text-zinc-500">{text}</p>
@@ -398,7 +398,7 @@ function Journey() {
 
 function Waitlist() {
   return (
-    <section id="waitlist" className="section-dark relative py-24 md:py-36" aria-label="Join waitlist">
+    <section id="waitlist" className="waitlist-galaxy section-dark relative py-24 md:py-36" aria-label="Join waitlist">
       <div className="container-page">
         <div className="reveal cta-panel secure-panel">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">

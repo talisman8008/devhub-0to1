@@ -120,6 +120,10 @@
 - `npm.cmd run build -w frontend`: passed after tuning.
 - `..\node_modules\.bin\eslint.cmd components/animation-boot.tsx --max-warnings=0`: passed after tuning.
 - Second follow-up tuning moved the progress start lower in the viewport and slightly extended the travel distance for a slower Journey line fill.
+- Audience section updated from separate rounded cards to the original-style bordered grid with aqua check marks; waitlist section updated with an animated galaxy/star field behind the glass form panel.
+- `npm.cmd run type-check -w frontend`: passed after audience/galaxy update.
+- `..\node_modules\.bin\eslint.cmd components/landing-page.tsx --max-warnings=0`: passed after audience/galaxy update.
+- `npm.cmd run build -w frontend`: passed after audience/galaxy update.
 
 ## Previous Snapshot
 
