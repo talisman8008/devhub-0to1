@@ -48,3 +48,12 @@ Date: 2026-05-10
 - Frontend uses only `NEXT_PUBLIC_API_URL` and does not write directly to Supabase.
 - `DOCUMENTATION/`, `SCREENSHOTS/`, and `codes/backend/.env.local` are confirmed ignored by git.
 - No verification backend process was left running on port `4000`.
+
+## Deployment Prep
+- `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint`: passed.
+- `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check`: passed.
+- `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run build`: passed.
+- `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" audit --audit-level=low`: `found 0 vulnerabilities`.
+- Secret scan over git-included files: no Supabase JWTs, Supabase publishable keys, direct Postgres URLs, Context7 keys, Perplexity keys, TestSprite keys, or Google API keys found.
+- `codes` repository remote: `https://github.com/WisdomKingAR/DevHub_0to1.git`.
+- Added deployment artifacts at repo root: `README.md`, `DEPLOYMENT.md`, and `render.yaml`.

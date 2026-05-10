@@ -4,20 +4,20 @@
 
 ## Project Structure
 
+This GitHub repository root is the `codes` folder.
+
 ```text
 .
-├── codes/
-│   ├── frontend/              # Next.js App Router frontend
-│   ├── backend/               # Express + TypeScript API
-│   ├── .gsd/                  # Project-local GSD state and verification notes
-│   ├── security-reports/      # Project-local security review notes
-│   └── verification-screenshots/
-├── DOCUMENTATION/             # Ignored reference docs
-├── SCREENSHOTS/               # Ignored visual references
+├── frontend/                 # Next.js App Router frontend
+├── backend/                  # Express + TypeScript API
+├── .gsd/                     # Project-local GSD state and verification notes
+├── DEPLOYMENT.md             # Production deployment runbook
+├── render.yaml               # Render backend blueprint
+├── package.json              # npm workspaces root
 └── README.md
 ```
 
-Shared toolkit folders are reference-only and must not be edited.
+Shared toolkit folders outside this repo are reference-only and must not be edited.
 
 ## Stack
 
@@ -50,10 +50,9 @@ Shared toolkit folders are reference-only and must not be edited.
 - npm
 - A Supabase project
 
-Install dependencies from the workspace package:
+Install dependencies from this repo root:
 
-```powershell
-cd codes
+```bash
 npm install
 ```
 
@@ -63,8 +62,8 @@ Create local env files from the examples. Do not commit real secrets.
 
 Frontend:
 
-```powershell
-copy frontend\.env.example frontend\.env.local
+```bash
+cp frontend/.env.example frontend/.env.local
 ```
 
 Expected frontend values:
@@ -76,8 +75,8 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 
 Backend:
 
-```powershell
-copy backend\.env.example backend\.env.local
+```bash
+cp backend/.env.example backend/.env.local
 ```
 
 Expected backend values:
@@ -102,7 +101,7 @@ Security notes:
 Open your Supabase project, go to SQL Editor, and run the schema from:
 
 ```text
-codes/backend/supabase/schema.sql
+backend/supabase/schema.sql
 ```
 
 The current schema creates and updates the `public.waitlist` table, enables Row Level Security, blocks anon select/insert access, and reloads the PostgREST schema cache.
@@ -128,15 +127,13 @@ The frontend does not write directly to Supabase. All waitlist writes go through
 
 Run both apps:
 
-```powershell
-cd codes
+```bash
 npm run dev
 ```
 
 Or run them separately:
 
-```powershell
-cd codes
+```bash
 npm run dev:frontend
 npm run dev:backend
 ```
@@ -148,7 +145,13 @@ Frontend: http://localhost:3000
 Backend health: http://localhost:4000/health
 ```
 
-Opening `http://localhost:4000/` returns `404 NOT_FOUND`. That is expected because the backend has no homepage route.
+Opening `http://localhost:4000/` returns `404_NOT_FOUND`. That is expected because the backend has no homepage route.
+
+## Deployment
+
+Deployment uses Vercel for the frontend, Render for the backend, and the existing Supabase project for the database.
+
+Follow the production runbook in [DEPLOYMENT.md](DEPLOYMENT.md). Keep all production secrets in Vercel/Render environment variables only.
 
 ## API
 
@@ -196,40 +199,25 @@ Expected responses:
 
 Run static checks:
 
-```powershell
-cd codes
-npm run lint --workspace frontend
-npm run type-check --workspace frontend
-npm run build --workspace frontend
-npm run type-check --workspace backend
-npm run build --workspace backend
-npm audit --audit-level=low --workspace frontend --workspace backend
+```bash
+npm run lint
+npm run type-check
+npm run build
+npm audit --audit-level=low
 ```
 
-Backend smoke tests:
+Backend smoke test:
 
-```powershell
-Invoke-WebRequest -UseBasicParsing http://localhost:4000/health
+```bash
+curl http://localhost:4000/health
 ```
 
 Example waitlist request:
 
-```powershell
-$body = @{
-  fullName = "Test User"
-  contactNumber = "+91 9876543210"
-  email = "test-user@example.com"
-  collegeName = "DevHub Institute"
-  city = "Mumbai"
-  courseBackground = "BTech Computer Science"
-} | ConvertTo-Json -Compress
-
-Invoke-WebRequest `
-  -UseBasicParsing `
-  -Uri http://localhost:4000/api/waitlist `
-  -Method POST `
-  -ContentType "application/json" `
-  -Body $body
+```bash
+curl -i -X POST http://localhost:4000/api/waitlist \
+  -H "Content-Type: application/json" \
+  -d "{\"fullName\":\"Test User\",\"contactNumber\":\"+91 9876543210\",\"email\":\"test-user@example.com\",\"collegeName\":\"DevHub Institute\",\"city\":\"Mumbai\",\"courseBackground\":\"BTech Computer Science\"}"
 ```
 
 ## Security Posture
@@ -262,18 +250,17 @@ Before deployment:
 
 Check that the backend is running:
 
-```powershell
-Invoke-WebRequest -UseBasicParsing http://localhost:4000/health
+```bash
+curl http://localhost:4000/health
 ```
 
 If it cannot connect, start the backend:
 
-```powershell
-cd codes
+```bash
 npm run dev:backend
 ```
 
-### Backend root shows `404 NOT_FOUND`
+### Backend root shows `404_NOT_FOUND`
 
 That is expected. Use:
 
@@ -286,7 +273,7 @@ http://localhost:4000/health
 Run the latest SQL from:
 
 ```text
-codes/backend/supabase/schema.sql
+backend/supabase/schema.sql
 ```
 
 Then run:
@@ -304,8 +291,8 @@ That is expected. The `email` column is unique so each email can join once.
 Project-local evidence lives in:
 
 ```text
-codes/.gsd/STATE.md
-codes/.gsd/VERIFICATION.md
-codes/security-reports/security-report-2026-05-10.md
-codes/verification-screenshots/
+.gsd/STATE.md
+.gsd/VERIFICATION.md
+security-reports/security-report-2026-05-10.md
+verification-screenshots/
 ```

@@ -12,6 +12,27 @@
 
 ## Latest Snapshot
 
+**Objective:** Prepare `codes` repo root for production deployment.
+
+**Changes:**
+- Added `codes/render.yaml` Render blueprint for the Express backend.
+- Added `codes/DEPLOYMENT.md` with Vercel, Render, Supabase, CORS, and smoke-test steps.
+- Added `codes/README.md` for the GitHub repo root.
+
+**Verification:**
+- `npm run lint`: passed.
+- `npm run type-check`: passed.
+- `npm run build`: passed.
+- `npm audit --audit-level=low`: 0 vulnerabilities.
+- Secret scan over git-included files: no Supabase JWTs, publishable keys, DB URLs, Context7 keys, Perplexity keys, TestSprite keys, or Google API keys found.
+- `codes` git remote is `https://github.com/WisdomKingAR/DevHub_0to1.git`.
+
+**Risks/Debt:**
+- Production deployment still requires entering secrets manually in Render and public frontend URLs in Vercel/Render.
+- Rotate pasted credentials before serious public launch.
+
+## Previous Snapshot
+
 **Objective:** Add the missing screenshot-style waitlist panel, micro animations, and expanded waitlist data capture.
 
 **Changes:**
