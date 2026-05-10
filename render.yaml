@@ -4,7 +4,7 @@ services:
     name: 0to1-devhub-api
     plan: free
     region: singapore
-    buildCommand: npm ci && npm run build -w backend
+    buildCommand: npm ci --include=dev && npm run build -w backend
     startCommand: npm run start -w backend
     healthCheckPath: /health
     autoDeployTrigger: commit

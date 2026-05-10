@@ -24,7 +24,7 @@ npm audit --audit-level=low
 Use the root `render.yaml` blueprint, or create a Web Service manually with:
 
 - Runtime: Node
-- Build command: `npm ci && npm run build -w backend`
+- Build command: `npm ci --include=dev && npm run build -w backend`
 - Start command: `npm run start -w backend`
 - Health check path: `/health`
 

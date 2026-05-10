@@ -31,6 +31,18 @@
 - Production deployment still requires entering secrets manually in Render and public frontend URLs in Vercel/Render.
 - Rotate pasted credentials before serious public launch.
 
+## Render Build Fix Snapshot
+
+**Objective:** Fix Render backend deployment failure during TypeScript build.
+
+**Changes:**
+- Updated Render backend build command to `npm ci --include=dev && npm run build -w backend` so TypeScript and Express type packages are available during build even with `NODE_ENV=production`.
+- Updated deployment guide to match the Render blueprint.
+
+**Verification:**
+- `npm run build -w backend`: passed locally.
+- Secret scan over deployment docs/config/GSD: no known key patterns found.
+
 ## Previous Snapshot
 
 **Objective:** Add the missing screenshot-style waitlist panel, micro animations, and expanded waitlist data capture.

@@ -57,3 +57,6 @@ Date: 2026-05-10
 - Secret scan over git-included files: no Supabase JWTs, Supabase publishable keys, direct Postgres URLs, Context7 keys, Perplexity keys, TestSprite keys, or Google API keys found.
 - `codes` repository remote: `https://github.com/WisdomKingAR/DevHub_0to1.git`.
 - Added deployment artifacts at repo root: `README.md`, `DEPLOYMENT.md`, and `render.yaml`.
+- Render deploy failure diagnosis: `NODE_ENV=production` caused npm to omit dev dependencies required by TypeScript build.
+- Updated Render build command to `npm ci --include=dev && npm run build -w backend`.
+- `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run build -w backend`: passed after build command update.
