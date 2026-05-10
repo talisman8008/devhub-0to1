@@ -16,6 +16,7 @@ Date: 2026-05-10
   - `npm.cmd run type-check -w frontend`: passed after progress tuning.
   - `npm.cmd run build -w frontend`: passed after progress tuning.
   - `..\node_modules\.bin\eslint.cmd components/animation-boot.tsx --max-warnings=0`: passed after progress tuning.
+  - Second follow-up tuning moved the Journey progress start lower in the viewport and slightly extended the travel distance for a slower line fill.
 - Animation smoothness fix:
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check -w frontend`: passed.
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint -w frontend`: passed.

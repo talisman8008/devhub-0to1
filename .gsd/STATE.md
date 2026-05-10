@@ -119,6 +119,7 @@
 - `npm.cmd run type-check -w frontend`: passed after tuning.
 - `npm.cmd run build -w frontend`: passed after tuning.
 - `..\node_modules\.bin\eslint.cmd components/animation-boot.tsx --max-warnings=0`: passed after tuning.
+- Second follow-up tuning moved the progress start lower in the viewport and slightly extended the travel distance for a slower Journey line fill.
 
 ## Previous Snapshot
 

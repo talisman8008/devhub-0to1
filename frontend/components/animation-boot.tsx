@@ -45,8 +45,8 @@ export function AnimationBoot() {
 
       const rect = journeySection.getBoundingClientRect()
       const viewportHeight = window.innerHeight || 1
-      const startOffset = viewportHeight * 0.32
-      const travelDistance = Math.max(rect.height - viewportHeight * 0.15, 1)
+      const startOffset = viewportHeight * 0.22
+      const travelDistance = Math.max(rect.height + viewportHeight * 0.05, 1)
       const rawProgress = (startOffset - rect.top) / travelDistance
       setJourneyProgress(rawProgress)
     }
