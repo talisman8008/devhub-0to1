@@ -14,7 +14,7 @@ services:
       - key: TRUST_PROXY
         value: "1"
       - key: FRONTEND_ORIGIN
-        sync: false
+        value: https://dev-hub-0to1-frontend.vercel.app
       - key: SUPABASE_URL
         sync: false
       - key: SUPABASE_SERVICE_ROLE_KEY

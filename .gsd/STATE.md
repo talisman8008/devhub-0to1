@@ -43,6 +43,18 @@
 - `npm run build -w backend`: passed locally.
 - Secret scan over deployment docs/config/GSD: no known key patterns found.
 
+## Production CORS Snapshot
+
+**Objective:** Point Render backend CORS to the deployed Vercel frontend.
+
+**Changes:**
+- Updated `render.yaml` `FRONTEND_ORIGIN` from a manual sync value to the public Vercel URL.
+- Updated deployment guide with the current production frontend origin.
+
+**Verification:**
+- Backend `/health` was live before this change.
+- CORS previously returned `http://localhost:3000`; this commit is intended to trigger a Render blueprint sync/redeploy with `https://dev-hub-0to1-frontend.vercel.app`.
+
 ## Previous Snapshot
 
 **Objective:** Add the missing screenshot-style waitlist panel, micro animations, and expanded waitlist data capture.

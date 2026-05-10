@@ -60,3 +60,5 @@ Date: 2026-05-10
 - Render deploy failure diagnosis: `NODE_ENV=production` caused npm to omit dev dependencies required by TypeScript build.
 - Updated Render build command to `npm ci --include=dev && npm run build -w backend`.
 - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run build -w backend`: passed after build command update.
+- Production backend health endpoint reached at `https://zeroto1-devhub-api.onrender.com/health`: `200`.
+- CORS check before fix returned `Access-Control-Allow-Origin: http://localhost:3000`; `render.yaml` now sets `FRONTEND_ORIGIN` to `https://dev-hub-0to1-frontend.vercel.app`.

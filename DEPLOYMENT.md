@@ -60,7 +60,13 @@ NEXT_PUBLIC_API_URL=https://your-render-service.onrender.com
 NEXT_PUBLIC_APP_URL=https://your-vercel-domain.vercel.app
 ```
 
-After Vercel gives you the production URL, update Render `FRONTEND_ORIGIN` to exactly that URL and redeploy the backend.
+Current production frontend origin:
+
+```text
+https://dev-hub-0to1-frontend.vercel.app
+```
+
+If the Vercel production URL changes, update Render `FRONTEND_ORIGIN` to exactly the new URL and redeploy the backend.
 
 ## 4. Production Smoke Tests
 
