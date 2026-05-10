@@ -413,21 +413,64 @@
   .audience-grid {
     display: grid;
     grid-template-columns: 1fr;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.13);
-    border-radius: 28px;
-    background: rgba(255, 255, 255, 0.08);
+    gap: clamp(1.35rem, 2.5vw, 2rem);
+    overflow: visible;
+    background: transparent;
   }
 
   .audience-card {
-    min-height: 250px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: #000000;
-    padding: clamp(2rem, 4vw, 2.7rem);
+    display: flex;
+    min-height: 300px;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid rgba(255, 255, 255, 0.105);
+    border-radius: 34px;
+    background:
+      radial-gradient(circle at 58% 24%, rgba(255, 255, 255, 0.035), transparent 14rem),
+      linear-gradient(135deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.006)),
+      #030303;
+    padding: clamp(2rem, 4.5vw, 2.9rem);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
   }
 
-  .audience-card:last-child {
-    border-bottom: 0;
+  .audience-icon-wrap {
+    display: inline-flex;
+    width: 4rem;
+    height: 4rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.055);
+    color: rgba(255, 255, 255, 0.58);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+  }
+
+  .audience-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    stroke-width: 1.9;
+  }
+
+  .audience-title {
+    max-width: 22rem;
+    margin-top: 2rem;
+    color: #ffffff;
+    font-family: var(--font-display), sans-serif;
+    font-size: clamp(1.72rem, 2.4vw, 2rem);
+    font-weight: 900;
+    line-height: 1.02;
+    letter-spacing: 0;
+    text-transform: uppercase;
+  }
+
+  .audience-copy {
+    max-width: 22rem;
+    margin-top: 1.25rem;
+    color: #6f707b;
+    font-size: 1.08rem;
+    font-weight: 750;
+    line-height: 1.68;
   }
 
   .compare-card {
@@ -768,18 +811,6 @@
     .audience-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
-    .audience-card {
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .audience-card:nth-child(2n) {
-      border-right: 0;
-    }
-
-    .audience-card:nth-last-child(-n + 2) {
-      border-bottom: 0;
-    }
   }
 
   @media (min-width: 768px) {
@@ -806,19 +837,6 @@
   @media (min-width: 1024px) {
     .audience-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .audience-card,
-    .audience-card:nth-child(2n) {
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .audience-card:nth-child(3n) {
-      border-right: 0;
-    }
-
-    .audience-card:nth-last-child(-n + 3) {
-      border-bottom: 0;
     }
   }
 

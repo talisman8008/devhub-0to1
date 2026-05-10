@@ -130,6 +130,20 @@
 - `npm.cmd run build -w frontend`: passed after React Bits integration.
 - Headless Chrome hero screenshot captured nonblank LiquidEther output at `C:\Users\HP\AppData\Local\Temp\devhub-reactbits-hero.png`.
 
+## Audience Card Reference Snapshot
+
+**Objective:** Bring the audience section back in line with the current 0to1 reference card style without changing the hero LiquidEther animation or final waitlist Galaxy animation.
+
+**Changes:**
+- Replaced the bordered checklist grid presentation with six individual rounded dark cards.
+- Restored reference-like icon tiles, uppercase headings, subdued copy, wider card gaps, and softer per-card borders.
+- Kept the existing responsive 1/2/3-column layout and did not touch frontend API, backend, hero animation, or waitlist animation code.
+
+**Verification:**
+- `npm.cmd run type-check -w frontend`: passed.
+- `..\node_modules\.bin\eslint.cmd components/landing-page.tsx --max-warnings=0`: passed.
+- `npm.cmd run build -w frontend`: passed.
+
 ## Previous Snapshot
 
 **Objective:** Add the missing screenshot-style waitlist panel, micro animations, and expanded waitlist data capture.

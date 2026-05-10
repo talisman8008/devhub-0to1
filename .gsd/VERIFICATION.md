@@ -26,6 +26,11 @@ Date: 2026-05-10
   - `..\node_modules\.bin\eslint.cmd components/Galaxy.jsx components/LiquidEther.jsx components/react-bits-backgrounds.tsx components/landing-page.tsx --max-warnings=0`: passed.
   - `npm.cmd run build -w frontend`: passed after React Bits integration.
   - Headless Chrome hero screenshot captured nonblank LiquidEther output at `C:\Users\HP\AppData\Local\Temp\devhub-reactbits-hero.png`.
+  - Audience section matched back to the current reference card treatment: six separate rounded dark cards, icon tiles, uppercase headings, muted copy, and open gutters between cards.
+  - Hero LiquidEther animation and final waitlist Galaxy/form animation were intentionally left untouched during the audience-card update.
+  - `npm.cmd run type-check -w frontend`: passed after audience-card reference update.
+  - `..\node_modules\.bin\eslint.cmd components/landing-page.tsx --max-warnings=0`: passed after audience-card reference update.
+  - `npm.cmd run build -w frontend`: passed after audience-card reference update.
 - Animation smoothness fix:
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check -w frontend`: passed.
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint -w frontend`: passed.

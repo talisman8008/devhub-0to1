@@ -4,10 +4,10 @@ import {
   ArrowDown,
   BadgeCheck,
   BriefcaseBusiness,
-  Check,
   Code2,
   Compass,
   Megaphone,
+  Palette,
   Rocket,
   Sparkles,
   Star,
@@ -59,12 +59,12 @@ const phases = [
 ] as const
 
 const audience = [
-  ['Developers & Engineers', 'Who want to build products, not just features.'],
-  ['Designers', 'Who want to shape real user experiences.'],
-  ['Marketers & Growth', 'Who want to take products to market.'],
-  ['Business Students', 'Who want hands-on startup exposure.'],
-  ['Aspiring Founders', 'Anyone who wants to explore entrepreneurship seriously.'],
-  ['Cross-Functional Collaboration', 'Work together as a startup team, just like in the real world.']
+  { icon: Code2, title: 'Developers & Engineers', text: 'Who want to build products, not just features.' },
+  { icon: Palette, title: 'Designers', text: 'Who want to shape real user experiences.' },
+  { icon: Megaphone, title: 'Marketers & Growth', text: 'Who want to take products to market.' },
+  { icon: BriefcaseBusiness, title: 'Business Students', text: 'Who want hands-on startup exposure.' },
+  { icon: Rocket, title: 'Aspiring Founders', text: 'Anyone who wants to explore entrepreneurship seriously.' },
+  { icon: Users, title: 'Cross-Functional Collaboration', text: 'Work together as a startup team, just like in the real world.' }
 ] as const
 
 const outcomes = [
@@ -267,11 +267,13 @@ function Audience() {
           </p>
         </div>
         <div className="audience-grid reveal mt-16">
-          {audience.map(([title, text]) => (
+          {audience.map(({ icon: Icon, title, text }) => (
             <article key={title} className="audience-card">
-              <Check className="mb-8 h-5 w-5 text-accent" aria-hidden="true" />
-              <h3 className="font-syne text-2xl font-black text-white">{title}</h3>
-              <p className="mt-4 text-base font-semibold leading-7 text-zinc-500">{text}</p>
+              <span className="audience-icon-wrap">
+                <Icon className="audience-icon" aria-hidden="true" />
+              </span>
+              <h3 className="audience-title">{title}</h3>
+              <p className="audience-copy">{text}</p>
             </article>
           ))}
         </div>
