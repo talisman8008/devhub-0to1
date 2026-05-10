@@ -27,18 +27,33 @@ export function ParticleField() {
     if (!canvas || !context) return
 
     let frame = 0
-    let running = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let resizeFrame = 0
+    let running = false
+    let isVisible = true
+    let width = 0
+    let height = 0
+    let lastDrawTime = 0
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const frameInterval = 1000 / 30
+
+    const updateCanvasSize = () => {
+      const rect = canvas.getBoundingClientRect()
+      const maxRatio = window.innerWidth < 768 ? 1 : 1.25
+      const ratio = Math.min(window.devicePixelRatio || 1, maxRatio)
+      const nextWidth = Math.max(Math.floor(rect.width * ratio), 1)
+      const nextHeight = Math.max(Math.floor(rect.height * ratio), 1)
+
+      if (canvas.width !== nextWidth || canvas.height !== nextHeight) {
+        canvas.width = nextWidth
+        canvas.height = nextHeight
+      }
+
+      width = nextWidth
+      height = nextHeight
+    }
 
     const draw = (time = 0) => {
-      const rect = canvas.getBoundingClientRect()
-      const ratio = Math.min(window.devicePixelRatio || 1, 1.5)
-      const width = Math.max(Math.floor(rect.width * ratio), 1)
-      const height = Math.max(Math.floor(rect.height * ratio), 1)
-
-      if (canvas.width !== width || canvas.height !== height) {
-        canvas.width = width
-        canvas.height = height
-      }
+      if (!width || !height) updateCanvasSize()
 
       context.clearRect(0, 0, width, height)
       const { backColor, dyeColor, densityDiffusion, velocityDiffusion } = fluidConfig
@@ -74,21 +89,81 @@ export function ParticleField() {
       bottomFade.addColorStop(1, 'rgba(0,0,0,0.34)')
       context.fillStyle = bottomFade
       context.fillRect(0, height * 0.76, width, height * 0.24)
-
-      if (running) {
-        frame = requestAnimationFrame(draw)
-      }
     }
 
-    const handleResize = () => draw()
+    const scheduleFrame = () => {
+      if (frame || !running) return
+      frame = requestAnimationFrame(loop)
+    }
+
+    const loop = (time: number) => {
+      frame = 0
+
+      if (!running) return
+
+      if (time - lastDrawTime >= frameInterval) {
+        lastDrawTime = time
+        draw(time)
+      }
+
+      scheduleFrame()
+    }
+
+    const updateRunningState = () => {
+      const shouldRun = isVisible && !document.hidden && !reducedMotionQuery.matches
+      if (running === shouldRun) return
+
+      running = shouldRun
+
+      if (running) {
+        scheduleFrame()
+        return
+      }
+
+      if (frame) {
+        cancelAnimationFrame(frame)
+        frame = 0
+      }
+
+      draw(lastDrawTime)
+    }
+
+    const handleResize = () => {
+      if (resizeFrame) return
+      resizeFrame = requestAnimationFrame(() => {
+        resizeFrame = 0
+        updateCanvasSize()
+        draw(lastDrawTime)
+      })
+    }
+
+    const handleVisibilityChange = () => updateRunningState()
+    const handleReducedMotionChange = () => updateRunningState()
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry?.isIntersecting ?? true
+        updateRunningState()
+      },
+      { threshold: 0.01 }
+    )
+
     window.addEventListener('resize', handleResize)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    reducedMotionQuery.addEventListener('change', handleReducedMotionChange)
+    observer.observe(canvas)
+
+    updateCanvasSize()
     draw()
-    if (running) frame = requestAnimationFrame(draw)
+    updateRunningState()
 
     return () => {
       running = false
       cancelAnimationFrame(frame)
+      cancelAnimationFrame(resizeFrame)
+      observer.disconnect()
       window.removeEventListener('resize', handleResize)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      reducedMotionQuery.removeEventListener('change', handleReducedMotionChange)
     }
   }, [])
 

@@ -12,6 +12,23 @@
 
 ## Latest Snapshot
 
+**Objective:** Smooth frontend scrolling and remove jumpy section reveals.
+
+**Changes:**
+- Optimized the hero smoke canvas to cache sizing, cap redraw work, and pause when hidden/off-screen.
+- Tuned Lenis so it uses a lighter lerp, pauses while the tab is hidden, and skips coarse-touch devices.
+- Throttled nav scroll-state updates with `requestAnimationFrame`.
+- Changed section reveal behavior from vertical movement to opacity-only reveal, removing the small jump seen while scrolling.
+
+**Verification:**
+- `npm run type-check -w frontend`: passed.
+- `npm run lint -w frontend`: passed.
+- `npm run build -w frontend`: passed.
+- Headless Chrome DevTools scroll probe: `#about` visible after scroll, nav dark state active, hero canvas nonblank, reveal transform final state `matrix(1, 0, 0, 1, 0, 0)`.
+
+**Risks/Debt:**
+- Manual browser feel-check is still recommended before pushing to production because animation smoothness is partly device/GPU-dependent.
+
 **Objective:** Prepare `codes` repo root for production deployment.
 
 **Changes:**
@@ -54,6 +71,32 @@
 **Verification:**
 - Backend `/health` was live before this change.
 - CORS previously returned `http://localhost:3000`; this commit is intended to trigger a Render blueprint sync/redeploy with `https://dev-hub-0to1-frontend.vercel.app`.
+
+## Production Smoke Test Snapshot
+
+**Objective:** Verify deployed frontend/backend integration after Render env update.
+
+**Verification:**
+- `GET https://zeroto1-devhub-api.onrender.com/health`: `200`, `success: true`.
+- CORS health request from `https://dev-hub-0to1-frontend.vercel.app`: `Access-Control-Allow-Origin` matches the Vercel origin.
+- `OPTIONS /api/waitlist` preflight from Vercel origin: `204`, correct CORS methods and headers.
+- `POST /api/waitlist` with full payload from Vercel origin: `201`.
+- Repeated same production payload: `409 DUPLICATE_EMAIL`.
+- Vercel environment was corrected from the old API URL to `https://zeroto1-devhub-api.onrender.com`.
+- Deployed frontend bundle now contains the correct backend URL and no longer contains the old wrong API URL.
+
+## Uptime Cron Snapshot
+
+**Objective:** Keep the Render free backend warm.
+
+**Operational Setup:**
+- External cron provider: cron-job.org.
+- Schedule: every 5 minutes.
+- Target: `https://zeroto1-devhub-api.onrender.com/health`.
+
+**Verification:**
+- cron-job.org test run returned `200 OK`.
+- Test response included expected backend/CORS headers.
 
 ## Previous Snapshot
 

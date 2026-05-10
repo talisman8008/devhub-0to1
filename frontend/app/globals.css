@@ -464,6 +464,7 @@
 
   .waitlist-field {
     transform-origin: center;
+    will-change: opacity;
   }
 
   .waitlist-input {
@@ -535,7 +536,31 @@
 
   .reveal {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
+  }
+
+  .secure-kicker,
+  .secure-title-line,
+  .devhub-mark,
+  .mini-proof,
+  .waitlist-field,
+  .waitlist-submit {
+    will-change: opacity;
+  }
+
+  .secure-kicker.is-visible,
+  .secure-title-line.is-visible,
+  .devhub-mark.is-visible,
+  .mini-proof.is-visible,
+  .waitlist-field.is-visible,
+  .waitlist-submit.is-visible {
+    will-change: auto;
   }
 
   @media (max-width: 767px) {

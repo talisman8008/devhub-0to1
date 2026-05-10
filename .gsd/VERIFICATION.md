@@ -3,6 +3,13 @@
 Date: 2026-05-10
 
 ## Frontend
+- Animation smoothness fix:
+  - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check -w frontend`: passed.
+  - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint -w frontend`: passed.
+  - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run build -w frontend`: passed.
+  - Headless Chrome screenshot captured nonblank desktop hero smoke at `.codex-temp/animation-check/desktop-hero.png`.
+  - Headless Chrome screenshot captured mobile hero at `.codex-temp/animation-check/mobile-hero.png`.
+  - Headless Chrome DevTools scroll probe on `http://localhost:3000`: `#about` visible after scrolling, `scrollY: 854`, `navDark: true`, canvas size `749x680`, reveal transform `matrix(1, 0, 0, 1, 0, 0)`.
 - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint --workspace frontend --cache .\.npm-cache`: passed.
 - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check --workspace frontend --cache .\.npm-cache`: passed.
 - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run build --workspace frontend --cache .\.npm-cache`: passed.
@@ -62,3 +69,11 @@ Date: 2026-05-10
 - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run build -w backend`: passed after build command update.
 - Production backend health endpoint reached at `https://zeroto1-devhub-api.onrender.com/health`: `200`.
 - CORS check before fix returned `Access-Control-Allow-Origin: http://localhost:3000`; `render.yaml` now sets `FRONTEND_ORIGIN` to `https://dev-hub-0to1-frontend.vercel.app`.
+- After manual Render env update, CORS health request returns `Access-Control-Allow-Origin: https://dev-hub-0to1-frontend.vercel.app`.
+- Production preflight `OPTIONS /api/waitlist`: `204`, allows `GET,POST,OPTIONS` and `Content-Type`.
+- Production `POST /api/waitlist` full payload: `201`, success `true`.
+- Production duplicate `POST /api/waitlist` same email: `409 DUPLICATE_EMAIL`.
+- Production Vercel bundle API URL check: `https://zeroto1-devhub-api.onrender.com` found, old `https://0to1-devhub-api.onrender.com` not found.
+- User-confirmed live form submission works after Vercel env update and redeploy.
+- cron-job.org keep-awake job configured for `https://zeroto1-devhub-api.onrender.com/health` every 5 minutes.
+- cron-job.org test run returned `200 OK`.
