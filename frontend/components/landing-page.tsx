@@ -15,7 +15,7 @@ import {
   Users
 } from 'lucide-react'
 import { AnimationBoot } from '@/components/animation-boot'
-import { ParticleField } from '@/components/particle-field'
+import { HeroLiquidBackground, WaitlistGalaxyBackground } from '@/components/react-bits-backgrounds'
 import { SmoothScrollProvider } from '@/components/smooth-scroll-provider'
 import { WaitlistForm } from '@/components/waitlist-form'
 import { Button } from '@/components/ui/button'
@@ -149,7 +149,7 @@ function Nav() {
 function Hero() {
   return (
     <section className="hero-light relative flex min-h-[100svh] items-center justify-center overflow-hidden px-5 pb-16 pt-24 text-black" aria-label="Hero">
-      <ParticleField />
+      <HeroLiquidBackground />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_52%_30%,rgba(255,255,255,0.1),rgba(255,255,255,0)_42%)]" aria-hidden="true" />
       <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col items-center text-center">
         <p className="hero-badge pill-light mb-10">
@@ -399,6 +399,7 @@ function Journey() {
 function Waitlist() {
   return (
     <section id="waitlist" className="waitlist-galaxy section-dark relative py-24 md:py-36" aria-label="Join waitlist">
+      <WaitlistGalaxyBackground />
       <div className="container-page">
         <div className="reveal cta-panel secure-panel">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">

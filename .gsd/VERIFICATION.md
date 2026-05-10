@@ -21,6 +21,11 @@ Date: 2026-05-10
   - `npm.cmd run type-check -w frontend`: passed after audience/galaxy update.
   - `..\node_modules\.bin\eslint.cmd components/landing-page.tsx --max-warnings=0`: passed after audience/galaxy update.
   - `npm.cmd run build -w frontend`: passed after audience/galaxy update.
+  - React Bits `LiquidEther-JS-CSS` and `Galaxy-JS-CSS` installed through the shadcn registry flow and wired into the hero and waitlist backgrounds.
+  - `npm.cmd run type-check -w frontend`: passed after React Bits integration.
+  - `..\node_modules\.bin\eslint.cmd components/Galaxy.jsx components/LiquidEther.jsx components/react-bits-backgrounds.tsx components/landing-page.tsx --max-warnings=0`: passed.
+  - `npm.cmd run build -w frontend`: passed after React Bits integration.
+  - Headless Chrome hero screenshot captured nonblank LiquidEther output at `C:\Users\HP\AppData\Local\Temp\devhub-reactbits-hero.png`.
 - Animation smoothness fix:
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check -w frontend`: passed.
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint -w frontend`: passed.
