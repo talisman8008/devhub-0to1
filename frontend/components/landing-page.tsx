@@ -265,7 +265,7 @@ function Audience() {
             0to1 is built for students who want more than a resume line.
           </p>
         </div>
-        <div className="audience-grid reveal mt-16">
+        <div className="audience-grid reveal mt-8">
           {audience.map(({ icon: Icon, title, text }) => (
             <article key={title} className="audience-card">
               <span className="audience-icon-wrap">

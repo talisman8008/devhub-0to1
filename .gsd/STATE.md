@@ -152,12 +152,14 @@
 **Changes:**
 - Replaced the split audience intro with a centered reference-style header.
 - Added a centered "Target Audience" pill, huge two-line white uppercase headline, muted centered subtitle, and soft radial title glow.
+- Reduced the reserved intro height and grid margin so the audience cards sit closer to the subtitle.
 - Did not touch LiquidEther, Galaxy, waitlist, backend, or environment configuration.
 
 **Verification:**
 - `npm.cmd run type-check -w frontend`: passed.
 - `..\node_modules\.bin\eslint.cmd components/landing-page.tsx --max-warnings=0`: passed.
 - `npm.cmd run build -w frontend`: passed.
+- Playwright/Chrome measured the subtitle-to-card gap at approximately 114px after the spacing adjustment.
 
 ## Previous Snapshot
 

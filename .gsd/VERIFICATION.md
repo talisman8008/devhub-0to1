@@ -37,6 +37,10 @@ Date: 2026-05-10
   - `..\node_modules\.bin\eslint.cmd components/landing-page.tsx --max-warnings=0`: passed after audience-intro reference update.
   - `npm.cmd run build -w frontend`: passed after audience-intro reference update.
   - Playwright/Chrome viewport screenshot captured the centered audience intro at `codes/verification-screenshots/audience-intro-viewport.png`.
+  - Audience intro spacing tightened: the reserved intro height and grid top margin were reduced, and Playwright/Chrome measured the subtitle-to-card gap at approximately 114px.
+  - `npm.cmd run type-check -w frontend`: passed after audience-gap reduction.
+  - `..\node_modules\.bin\eslint.cmd components/landing-page.tsx --max-warnings=0`: passed after audience-gap reduction.
+  - `npm.cmd run build -w frontend`: passed after audience-gap reduction.
 - Animation smoothness fix:
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check -w frontend`: passed.
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint -w frontend`: passed.
