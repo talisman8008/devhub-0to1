@@ -1,0 +1,38 @@
+# 0to1 DevHub MVP State
+
+## Current Position
+- Phase: MVP implementation
+- Status: Expanded animated waitlist panel complete; full-form Supabase insert verified
+
+## Constraints
+- Shared toolkit folders are read-only references.
+- Context7 was used for current Next.js, Express, Supabase, and Zod implementation guidance.
+- Stitch UI design skill was used for responsive frontend polish.
+- Secrets must remain in local environment files only.
+
+## Latest Snapshot
+
+**Objective:** Add the missing screenshot-style waitlist panel, micro animations, and expanded waitlist data capture.
+
+**Changes:**
+- Rebuilt the final waitlist section as a dark glass "Secure Your Future" panel matching the provided screenshot.
+- Added full form fields: full name, contact number, mail, college name, city, and course background.
+- Added micro-interactions for section reveal, title/form stagger, card hover lift, input focus glow, and submit arrow movement.
+- Extended backend Zod validation and Supabase insert mapping for the full form payload.
+- Updated `codes/backend/supabase/schema.sql` with the new columns and PostgREST schema reload notification.
+
+**Verification:**
+- `npm run lint --workspace frontend`: passed.
+- `npm run type-check --workspace frontend`: passed.
+- `npm run build --workspace frontend`: passed.
+- `npm run type-check --workspace backend`: passed.
+- `npm run build --workspace backend`: passed.
+- `npm audit --audit-level=low --workspace frontend --workspace backend`: 0 vulnerabilities.
+- Expanded API matrix passed for health, full-form valid insert, duplicate email, missing required field, and email-only strict rejection.
+- Desktop and mobile screenshots captured for the expanded waitlist panel.
+- Secret scan for pasted keys/JWT/DB URL patterns: no matches in source.
+- `DOCUMENTATION/`, `SCREENSHOTS/`, and `codes/backend/.env.local` are ignored.
+
+**Risks/Debt:**
+- Rotate pasted Supabase/database credentials before any non-local deployment.
+- Headless Chrome synthetic form filling was unreliable for React controlled inputs; the public API path was verified directly with the same expanded payload.
