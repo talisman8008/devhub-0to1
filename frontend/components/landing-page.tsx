@@ -253,16 +253,15 @@ function About() {
 
 function Audience() {
   return (
-    <section className="section-dark py-24 md:py-36" aria-label="Who is 0to1 for">
+    <section className="audience-section section-dark" aria-label="Who is 0to1 for">
       <div className="container-page">
-        <div className="reveal grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <div>
-            <p className="section-pill mb-8">Target Audience</p>
-            <h2 className="mega-title">
-              Who is <span className="block text-accent">0to1 for?</span>
-            </h2>
-          </div>
-          <p className="max-w-2xl text-xl font-semibold leading-9 text-zinc-500">
+        <div className="audience-intro reveal">
+          <p className="section-pill audience-pill">Target Audience</p>
+          <h2 className="audience-heading">
+            <span>Who is</span>
+            <span>0to1 for?</span>
+          </h2>
+          <p className="audience-subtitle">
             0to1 is built for students who want more than a resume line.
           </p>
         </div>

@@ -143,6 +143,21 @@
 - `npm.cmd run type-check -w frontend`: passed.
 - `..\node_modules\.bin\eslint.cmd components/landing-page.tsx --max-warnings=0`: passed.
 - `npm.cmd run build -w frontend`: passed.
+- Playwright/Chrome viewport screenshot captured the centered reference-style audience intro at `codes/verification-screenshots/audience-intro-viewport.png`.
+
+## Audience Intro Reference Snapshot
+
+**Objective:** Match the "WHO IS 0TO1 FOR?" intro block to the current reference screenshot while preserving the audience cards, hero animation, and final form animation.
+
+**Changes:**
+- Replaced the split audience intro with a centered reference-style header.
+- Added a centered "Target Audience" pill, huge two-line white uppercase headline, muted centered subtitle, and soft radial title glow.
+- Did not touch LiquidEther, Galaxy, waitlist, backend, or environment configuration.
+
+**Verification:**
+- `npm.cmd run type-check -w frontend`: passed.
+- `..\node_modules\.bin\eslint.cmd components/landing-page.tsx --max-warnings=0`: passed.
+- `npm.cmd run build -w frontend`: passed.
 
 ## Previous Snapshot
 

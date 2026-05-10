@@ -31,6 +31,12 @@ Date: 2026-05-10
   - `npm.cmd run type-check -w frontend`: passed after audience-card reference update.
   - `..\node_modules\.bin\eslint.cmd components/landing-page.tsx --max-warnings=0`: passed after audience-card reference update.
   - `npm.cmd run build -w frontend`: passed after audience-card reference update.
+  - Audience intro updated to match the reference screenshot: centered "Target Audience" pill, large two-line white "WHO IS 0TO1 FOR?" heading, centered muted subtitle, and soft glow behind the heading.
+  - Hero LiquidEther and final waitlist Galaxy/form animation code were not changed during this intro update.
+  - `npm.cmd run type-check -w frontend`: passed after audience-intro reference update.
+  - `..\node_modules\.bin\eslint.cmd components/landing-page.tsx --max-warnings=0`: passed after audience-intro reference update.
+  - `npm.cmd run build -w frontend`: passed after audience-intro reference update.
+  - Playwright/Chrome viewport screenshot captured the centered audience intro at `codes/verification-screenshots/audience-intro-viewport.png`.
 - Animation smoothness fix:
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check -w frontend`: passed.
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint -w frontend`: passed.
