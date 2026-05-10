@@ -98,6 +98,24 @@
 - cron-job.org test run returned `200 OK`.
 - Test response included expected backend/CORS headers.
 
+## Journey Timeline Animation Snapshot
+
+**Objective:** Add the missing scroll-synced glowing timeline line in the Journey section while preserving the recent smooth-scroll fixes.
+
+**Changes:**
+- Replaced the static Journey divider with layered base, active glow, and dot timeline elements.
+- Added a requestAnimationFrame-throttled scroll observer in `AnimationBoot` that updates `--journey-progress` and `--journey-progress-y` only while the Journey section is near the viewport.
+- Added simplified mobile left-rail timeline behavior and reduced-motion styling that hides the moving active line/dot.
+
+**Verification:**
+- `npm.cmd run type-check -w frontend`: passed.
+- `npm.cmd run lint -w frontend`: passed.
+- `npm.cmd run build -w frontend`: passed.
+- Headless Chrome DevTools probe confirmed desktop progress changed from `0.3338` to `0.5214` while scrolling.
+- Desktop screenshot captured the aqua active center line and glowing dot.
+- Mobile probe confirmed left rail at `28px` with active line and dot visible.
+- Reduced-motion emulation confirmed active line and dot are hidden.
+
 ## Previous Snapshot
 
 **Objective:** Add the missing screenshot-style waitlist panel, micro animations, and expanded waitlist data capture.

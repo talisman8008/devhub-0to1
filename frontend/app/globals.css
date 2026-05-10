@@ -233,6 +233,89 @@
     color: rgba(255, 255, 255, 0.15);
   }
 
+  .journey-section {
+    --journey-progress: 0;
+    --journey-progress-y: 0%;
+  }
+
+  .journey-track {
+    isolation: isolate;
+  }
+
+  .journey-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 1.75rem;
+    z-index: 0;
+    width: 1px;
+    pointer-events: none;
+  }
+
+  .journey-line-base,
+  .journey-line-active {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    border-radius: 999px;
+  }
+
+  .journey-line-base {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .journey-line-active {
+    height: var(--journey-progress-y);
+    background: linear-gradient(180deg, rgba(100, 211, 255, 0), rgba(0, 255, 196, 0.92) 58%, rgba(100, 211, 255, 0.68));
+    box-shadow: 0 0 18px rgba(0, 255, 196, 0.58), 0 0 42px rgba(0, 255, 196, 0.24);
+  }
+
+  .journey-line-dot {
+    position: absolute;
+    top: var(--journey-progress-y);
+    left: 50%;
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow: 0 0 0 1px rgba(0, 255, 196, 0.8), 0 0 18px rgba(0, 255, 196, 0.95), 0 0 44px rgba(0, 255, 196, 0.5);
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    will-change: top, opacity;
+  }
+
+  .journey-item {
+    z-index: 1;
+    padding-left: 3.5rem;
+  }
+
+  .journey-marker {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.75rem;
+    z-index: 2;
+    display: flex;
+    transform: translateX(-50%);
+  }
+
+  .journey-marker-badge {
+    display: flex;
+    width: 3.25rem;
+    height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 255, 196, 0.72);
+    border-radius: 999px;
+    background: #000000;
+    color: #00ffc4;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.78rem;
+    font-weight: 900;
+    box-shadow: 0 0 30px rgba(0, 255, 196, 0.24);
+  }
+
   .cta-title {
     max-width: 720px;
     font-family: var(--font-display), sans-serif;
@@ -340,6 +423,8 @@
   }
 
   .journey-card {
+    position: relative;
+    z-index: 1;
     border-radius: 32px;
     padding: clamp(2rem, 4vw, 2.6rem);
   }
@@ -609,6 +694,34 @@
 
     .secure-form-shell {
       width: 100%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .journey-line {
+      left: 50%;
+    }
+
+    .journey-item {
+      padding-left: 0;
+    }
+
+    .journey-marker {
+      left: 50%;
+    }
+
+    .journey-marker-badge {
+      width: 4rem;
+      height: 4rem;
+      font-size: 0.86rem;
+      box-shadow: 0 0 40px rgba(0, 255, 196, 0.35);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .journey-line-active,
+    .journey-line-dot {
+      display: none;
     }
   }
 }

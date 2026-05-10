@@ -3,6 +3,15 @@
 Date: 2026-05-10
 
 ## Frontend
+- Scroll-synced Journey timeline animation:
+  - `npm.cmd run type-check -w frontend`: passed.
+  - `npm.cmd run lint -w frontend`: passed.
+  - `npm.cmd run build -w frontend`: passed.
+  - Headless Chrome DevTools desktop probe confirmed `--journey-progress` changed from `0.3338` to `0.5214` while scrolling the Journey section.
+  - Desktop active line evidence: `--journey-progress-y` moved from `33.38%` to `52.14%`, active line height from `591.188px` to `923.453px`, dot display `block`.
+  - Mobile probe at 390px confirmed simplified left rail: `markerLeft: 28px`, active line and dot display `block`, `--journey-progress: 0.3302`.
+  - Reduced-motion emulation confirmed active line and moving dot are hidden: `activeDisplay: none`, `dotDisplay: none`, `--journey-progress: 0.0000`.
+  - Temporary verification screenshots captured at `C:\Users\HP\AppData\Local\Temp\devhub-journey-verify\desktop-journey-mid.png` and `C:\Users\HP\AppData\Local\Temp\devhub-journey-verify\mobile-journey.png`.
 - Animation smoothness fix:
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check -w frontend`: passed.
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint -w frontend`: passed.

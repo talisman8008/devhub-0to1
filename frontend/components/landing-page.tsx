@@ -356,7 +356,7 @@ function Outcomes() {
 
 function Journey() {
   return (
-    <section id="journey" className="section-dark py-24 md:py-40" aria-label="6-month journey">
+    <section id="journey" className="journey-section section-dark py-24 md:py-40" aria-label="6-month journey">
       <div className="container-page">
         <div className="reveal mx-auto max-w-5xl text-center">
           <p className="section-pill mx-auto mb-12">The Roadmap</p>
@@ -364,14 +364,18 @@ function Journey() {
             The 6-month <span>journey</span>
           </h2>
         </div>
-        <div className="relative mx-auto mt-28 max-w-6xl">
-          <div className="absolute left-7 top-0 hidden h-full w-px bg-white/[0.12] md:left-1/2 md:block" aria-hidden="true" />
+        <div className="journey-track relative mx-auto mt-28 max-w-6xl">
+          <div className="journey-line" aria-hidden="true">
+            <span className="journey-line-base" />
+            <span className="journey-line-active" />
+            <span className="journey-line-dot" />
+          </div>
           <div className="space-y-10 md:space-y-0">
             {journey.map(([number, Icon, title, text], index) => {
               const isLeft = index % 2 === 0
 
               return (
-                <article key={title} className="reveal relative grid min-h-[270px] grid-cols-1 md:grid-cols-[1fr_120px_1fr]">
+                <article key={title} className="journey-item reveal relative grid min-h-[270px] grid-cols-1 md:grid-cols-[1fr_120px_1fr]">
                   <div className={cn('journey-card', isLeft ? 'md:col-start-1' : 'md:col-start-3')}>
                     <span className="mb-9 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/[0.1] bg-white/[0.04] text-accent">
                       <Icon className="h-5 w-5" aria-hidden="true" />
@@ -379,10 +383,8 @@ function Journey() {
                     <h3 className="font-syne text-3xl font-black text-white">{title}</h3>
                     <p className="mt-5 text-lg font-semibold leading-8 text-zinc-500">{text}</p>
                   </div>
-                  <div className="absolute left-0 top-6 hidden translate-x-[-50%] md:left-1/2 md:flex md:translate-x-[-50%]">
-                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-accent bg-black font-mono text-sm font-black text-accent shadow-[0_0_40px_rgba(0,255,196,0.35)]">
-                      {number}
-                    </span>
+                  <div className="journey-marker" aria-hidden="true">
+                    <span className="journey-marker-badge">{number}</span>
                   </div>
                 </article>
               )
