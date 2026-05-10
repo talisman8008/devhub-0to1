@@ -115,6 +115,10 @@
 - Desktop screenshot captured the aqua active center line and glowing dot.
 - Mobile probe confirmed left rail at `28px` with active line and dot visible.
 - Reduced-motion emulation confirmed active line and dot are hidden.
+- Follow-up tuning delayed the progress start point and stretched the travel distance so the line movement is not mostly complete before the user scrolls down the roadmap.
+- `npm.cmd run type-check -w frontend`: passed after tuning.
+- `npm.cmd run build -w frontend`: passed after tuning.
+- `..\node_modules\.bin\eslint.cmd components/animation-boot.tsx --max-warnings=0`: passed after tuning.
 
 ## Previous Snapshot
 

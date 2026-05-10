@@ -12,6 +12,10 @@ Date: 2026-05-10
   - Mobile probe at 390px confirmed simplified left rail: `markerLeft: 28px`, active line and dot display `block`, `--journey-progress: 0.3302`.
   - Reduced-motion emulation confirmed active line and moving dot are hidden: `activeDisplay: none`, `dotDisplay: none`, `--journey-progress: 0.0000`.
   - Temporary verification screenshots captured at `C:\Users\HP\AppData\Local\Temp\devhub-journey-verify\desktop-journey-mid.png` and `C:\Users\HP\AppData\Local\Temp\devhub-journey-verify\mobile-journey.png`.
+  - Follow-up tuning delayed the Journey progress curve so the line does not appear mostly completed before the roadmap cards are scrolled.
+  - `npm.cmd run type-check -w frontend`: passed after progress tuning.
+  - `npm.cmd run build -w frontend`: passed after progress tuning.
+  - `..\node_modules\.bin\eslint.cmd components/animation-boot.tsx --max-warnings=0`: passed after progress tuning.
 - Animation smoothness fix:
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check -w frontend`: passed.
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint -w frontend`: passed.
