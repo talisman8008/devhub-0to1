@@ -26,6 +26,7 @@ logs/
 # Local reports and verification output
 security-reports/
 verification-screenshots/
+.codex-temp/
 
 # Temporary caches
 .npm-cache/
