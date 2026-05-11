@@ -161,6 +161,25 @@
 - `npm.cmd run build -w frontend`: passed.
 - Playwright/Chrome measured the subtitle-to-card gap at approximately 114px after the spacing adjustment.
 
+## Final Frontend Polish Snapshot
+
+**Objective:** Improve Lenis scrolling and match the phase cards to the supplied 0to1 reference without touching the completed hero or waitlist animations.
+
+**Changes:**
+- Tuned `SmoothScrollProvider` to use smoother desktop wheel interpolation and Lenis-powered same-page anchor navigation with a fixed nav offset.
+- Rebuilt the Ideate / Build / Market / Run phase cards as centered dark cards with icon tiles, phase labels, white headings, and muted centered copy.
+- Kept LiquidEther, Galaxy, waitlist form, backend, API, env, and deployment config unchanged.
+
+**Verification:**
+- Context7 Lenis documentation checked before implementation.
+- Antigravity references used: `context7-auto-research`, `ui-skills`, `cc-skill-frontend-patterns`, `cc-skill-coding-standards`, `playwright-skill`, `verification-before-completion`.
+- `npm.cmd run type-check -w frontend`: passed.
+- `..\node_modules\.bin\eslint.cmd components/smooth-scroll-provider.tsx components/landing-page.tsx --max-warnings=0`: passed.
+- `npm.cmd run build -w frontend`: passed.
+- Playwright/Chrome confirmed Lenis class on normal desktop, no Lenis class under reduced motion, and anchor scroll progressed smoothly across samples.
+- Playwright/Chrome confirmed phase cards: four desktop columns, one mobile column, titles `Ideate`, `Build`, `Market`, `Run`, and screenshots saved under ignored `verification-screenshots/`.
+- Playwright/Chrome confirmed hero LiquidEther and waitlist Galaxy canvas layers were still present.
+
 ## Previous Snapshot
 
 **Objective:** Add the missing screenshot-style waitlist panel, micro animations, and expanded waitlist data capture.

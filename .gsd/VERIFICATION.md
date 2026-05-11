@@ -41,6 +41,14 @@ Date: 2026-05-10
   - `npm.cmd run type-check -w frontend`: passed after audience-gap reduction.
   - `..\node_modules\.bin\eslint.cmd components/landing-page.tsx --max-warnings=0`: passed after audience-gap reduction.
   - `npm.cmd run build -w frontend`: passed after audience-gap reduction.
+  - Final frontend polish applied: Lenis desktop wheel settings tuned, same-page anchor navigation delegated to Lenis `scrollTo`, and phase cards rebuilt in the supplied reference style.
+  - `npm.cmd run type-check -w frontend`: passed after final frontend polish.
+  - `..\node_modules\.bin\eslint.cmd components/smooth-scroll-provider.tsx components/landing-page.tsx --max-warnings=0`: passed after final frontend polish.
+  - `npm.cmd run build -w frontend`: passed after final frontend polish.
+  - Playwright/Chrome smooth-anchor probe sampled scrollY as `1445`, `3156`, `4484`, `5943`, `6019`, `6051` from 80ms to 1400ms after clicking Journey.
+  - Playwright/Chrome phase-card probe confirmed 4 cards, 4 desktop columns, 1 mobile column, and titles `Ideate`, `Build`, `Market`, `Run`.
+  - Playwright/Chrome confirmed reduced-motion mode does not add the Lenis class.
+  - Playwright/Chrome confirmed hero LiquidEther and waitlist Galaxy canvas layers are still present.
 - Animation smoothness fix:
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check -w frontend`: passed.
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint -w frontend`: passed.

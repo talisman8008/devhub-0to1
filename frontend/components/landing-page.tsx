@@ -5,12 +5,12 @@ import {
   BadgeCheck,
   BriefcaseBusiness,
   Code2,
-  Compass,
   Megaphone,
   Palette,
   Rocket,
   Sparkles,
   Star,
+  TrendingUp,
   Trophy,
   Users
 } from 'lucide-react'
@@ -37,22 +37,26 @@ const programPillars = [
 
 const phases = [
   {
-    icon: Compass,
+    icon: Rocket,
+    tone: 'accent',
     title: 'Ideate',
     text: 'Come up with real business ideas and validate them'
   },
   {
     icon: Code2,
+    tone: 'violet',
     title: 'Build',
     text: 'Build products from scratch with clear ownership'
   },
   {
     icon: Megaphone,
+    tone: 'accent',
     title: 'Market',
     text: 'Take products to market and find real users'
   },
   {
-    icon: BriefcaseBusiness,
+    icon: TrendingUp,
+    tone: 'violet',
     title: 'Run',
     text: 'Run your startup like a real business'
   }
@@ -234,15 +238,15 @@ function About() {
         <p className="reveal mx-auto mt-20 max-w-4xl text-center text-2xl font-bold leading-10 text-zinc-400 md:text-3xl">
           You don&apos;t just &quot;learn&quot; how startups work. <span className="italic text-white">You build one from zero.</span>
         </p>
-        <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-4">
-          {phases.map(({ icon: Icon, title, text }, index) => (
+        <div className="phase-grid">
+          {phases.map(({ icon: Icon, tone, title, text }, index) => (
             <article key={title} className="reveal phase-card">
-              <div className="mb-8 flex items-center justify-between">
-                <Icon className="h-7 w-7 text-accent" aria-hidden="true" />
-                <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-zinc-500">Phase {String(index + 1).padStart(2, '0')}</span>
-              </div>
-              <h3 className="font-syne text-3xl font-black text-white">{title}</h3>
-              <p className="mt-4 text-base font-semibold leading-7 text-zinc-500">{text}</p>
+              <span className={cn('phase-icon-wrap', tone === 'violet' && 'phase-icon-wrap-violet')}>
+                <Icon className="phase-icon" aria-hidden="true" />
+              </span>
+              <span className="phase-label">Phase {String(index + 1).padStart(2, '0')}</span>
+              <h3 className="phase-title">{title}</h3>
+              <p className="phase-copy">{text}</p>
             </article>
           ))}
         </div>
