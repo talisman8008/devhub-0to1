@@ -39,10 +39,10 @@ export function SmoothScrollProvider() {
     import('lenis').then(({ default: Lenis }) => {
       if (destroyed) return
       const lenisInstance = new Lenis({
-        lerp: 0.14,
+        lerp: 0.22,
         smoothWheel: true,
         syncTouch: false,
-        wheelMultiplier: 1.18,
+        wheelMultiplier: 1.38,
         touchMultiplier: 1,
         autoResize: true,
         prevent: (node: Element) => Boolean(node.closest('[data-lenis-prevent], input, textarea, select, dialog'))
@@ -101,7 +101,7 @@ export function SmoothScrollProvider() {
         event.preventDefault()
         lenisInstance.scrollTo(targetElement, {
           offset: ANCHOR_OFFSET,
-          duration: 0.9,
+          duration: 0.65,
           easing: anchorEasing,
           lock: false
         })

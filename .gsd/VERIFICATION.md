@@ -56,6 +56,12 @@ Date: 2026-05-10
   - Playwright/Chrome wheel probe after a 900px wheel input sampled scrollY `603`, `890`, `977`, `1034` from 60ms to 420ms.
   - Playwright/Chrome anchor probe sampled scrollY `3188`, `4046`, `5577`, `5975`, `6051` from 80ms to 850ms.
   - Playwright/Chrome confirmed Lenis class remains absent in reduced-motion mode.
+  - Final scroll resistance fix applied after screenshot feedback: Lenis `lerp` raised to `0.22`, wheel multiplier to `1.38`, anchor duration to `0.65s`, and section transition gaps tightened.
+  - `npm.cmd run type-check -w frontend`: passed after final scroll resistance fix.
+  - `..\node_modules\.bin\eslint.cmd components/smooth-scroll-provider.tsx components/landing-page.tsx --max-warnings=0`: passed after final scroll resistance fix.
+  - `npm.cmd run build -w frontend`: passed after final scroll resistance fix.
+  - Playwright/Chrome wheel probe after a 900px wheel input sampled scrollY `908`, `1068`, `1068`, `1234` from 50ms to 380ms.
+  - Playwright/Chrome measured phase-to-audience and outcomes-to-journey gaps at approximately `80px`.
 - Animation smoothness fix:
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check -w frontend`: passed.
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint -w frontend`: passed.

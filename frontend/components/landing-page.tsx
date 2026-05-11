@@ -217,7 +217,7 @@ function StatsMarquee() {
 
 function About() {
   return (
-    <section id="about" className="section-dark py-24 md:py-36" aria-label="What is 0to1">
+    <section id="about" className="section-dark pb-14 pt-24 md:pb-20 md:pt-36" aria-label="What is 0to1">
       <div className="container-page">
         <div className="reveal mx-auto max-w-[920px] text-center">
           <p className="section-pill mx-auto mb-10">The Program</p>
@@ -292,7 +292,7 @@ function Audience() {
 
 function Paradigm() {
   return (
-    <section className="section-dark py-24 md:py-36" aria-label="0to1 distinct">
+    <section className="section-dark py-20 md:py-28" aria-label="0to1 distinct">
       <div className="container-page">
         <div className="reveal mx-auto max-w-4xl text-center">
           <p className="section-pill mx-auto mb-8">The Paradigm Shift</p>
@@ -331,7 +331,7 @@ function Paradigm() {
 
 function Outcomes() {
   return (
-    <section id="outcomes" className="section-dark py-24 md:py-36" aria-label="Outcomes">
+    <section id="outcomes" className="section-dark pb-16 pt-20 md:pb-20 md:pt-28" aria-label="Outcomes">
       <div className="container-page">
         <div className="reveal text-center">
           <p className="section-pill mx-auto mb-12">The Result</p>
@@ -361,7 +361,7 @@ function Outcomes() {
 
 function Journey() {
   return (
-    <section id="journey" className="journey-section section-dark py-24 md:py-40" aria-label="6-month journey">
+    <section id="journey" className="journey-section section-dark pb-24 pt-16 md:pb-32 md:pt-20" aria-label="6-month journey">
       <div className="container-page">
         <div className="reveal mx-auto max-w-5xl text-center">
           <p className="section-pill mx-auto mb-12">The Roadmap</p>
@@ -369,7 +369,7 @@ function Journey() {
             The 6-month <span>journey</span>
           </h2>
         </div>
-        <div className="journey-track relative mx-auto mt-28 max-w-6xl">
+        <div className="journey-track relative mx-auto mt-20 max-w-6xl md:mt-24">
           <div className="journey-line" aria-hidden="true">
             <span className="journey-line-base" />
             <span className="journey-line-active" />

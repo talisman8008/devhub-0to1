@@ -198,6 +198,22 @@
 - Playwright/Chrome anchor probe sampled scrollY `3188`, `4046`, `5577`, `5975`, `6051` from 80ms to 850ms.
 - Playwright/Chrome confirmed Lenis class is present on normal desktop and absent with reduced motion.
 
+## Final Scroll Resistance Fix Snapshot
+
+**Objective:** Address screenshot-marked areas where scroll still felt hard or stalled across long dark section transitions.
+
+**Changes:**
+- Increased Lenis responsiveness again: `lerp` to `0.22`, wheel multiplier to `1.38`, and anchor duration to `0.65s`.
+- Reduced oversized transition spacing between phase cards and audience, and between outcomes and roadmap.
+- Kept hero LiquidEther, final Galaxy/form animation, backend, API, and env untouched.
+
+**Verification:**
+- `npm.cmd run type-check -w frontend`: passed.
+- `..\node_modules\.bin\eslint.cmd components/smooth-scroll-provider.tsx components/landing-page.tsx --max-warnings=0`: passed.
+- `npm.cmd run build -w frontend`: passed.
+- Playwright/Chrome wheel probe after a 900px wheel input sampled scrollY `908`, `1068`, `1068`, `1234` from 50ms to 380ms.
+- Playwright/Chrome measured phase-to-audience and outcomes-to-journey gaps at approximately `80px`.
+
 ## Previous Snapshot
 
 **Objective:** Add the missing screenshot-style waitlist panel, micro animations, and expanded waitlist data capture.
