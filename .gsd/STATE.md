@@ -180,6 +180,24 @@
 - Playwright/Chrome confirmed phase cards: four desktop columns, one mobile column, titles `Ideate`, `Build`, `Market`, `Run`, and screenshots saved under ignored `verification-screenshots/`.
 - Playwright/Chrome confirmed hero LiquidEther and waitlist Galaxy canvas layers were still present.
 
+## Responsive Scroll Tuning Snapshot
+
+**Objective:** Remove the remaining heavy/resistant scroll feel while keeping Lenis active for desktop and reduced-motion safe.
+
+**Changes:**
+- Increased Lenis interpolation from `0.075` to `0.14` and wheel multiplier from `1` to `1.18` for faster response.
+- Shortened anchor scroll duration to `0.9s`, removed anchor `lock`, and kept the fixed nav offset.
+- Added Lenis recommended root CSS and scroll-prevent behavior for form/native-scroll elements.
+
+**Verification:**
+- Context7 Lenis CSS/options guidance checked before tuning.
+- `npm.cmd run type-check -w frontend`: passed.
+- `..\node_modules\.bin\eslint.cmd components/smooth-scroll-provider.tsx --max-warnings=0`: passed.
+- `npm.cmd run build -w frontend`: passed.
+- Playwright/Chrome wheel probe after a 900px wheel input sampled scrollY `603`, `890`, `977`, `1034` from 60ms to 420ms.
+- Playwright/Chrome anchor probe sampled scrollY `3188`, `4046`, `5577`, `5975`, `6051` from 80ms to 850ms.
+- Playwright/Chrome confirmed Lenis class is present on normal desktop and absent with reduced motion.
+
 ## Previous Snapshot
 
 **Objective:** Add the missing screenshot-style waitlist panel, micro animations, and expanded waitlist data capture.

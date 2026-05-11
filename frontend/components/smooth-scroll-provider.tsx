@@ -19,7 +19,7 @@ type LenisInstance = {
 }
 
 const ANCHOR_OFFSET = -72
-const anchorEasing = (value: number) => 1 - Math.pow(1 - value, 3)
+const anchorEasing = (value: number) => 1 - Math.pow(1 - value, 4)
 
 export function SmoothScrollProvider() {
   useEffect(() => {
@@ -39,11 +39,13 @@ export function SmoothScrollProvider() {
     import('lenis').then(({ default: Lenis }) => {
       if (destroyed) return
       const lenisInstance = new Lenis({
-        lerp: 0.075,
+        lerp: 0.14,
         smoothWheel: true,
         syncTouch: false,
-        wheelMultiplier: 1,
-        autoResize: true
+        wheelMultiplier: 1.18,
+        touchMultiplier: 1,
+        autoResize: true,
+        prevent: (node: Element) => Boolean(node.closest('[data-lenis-prevent], input, textarea, select, dialog'))
       }) as LenisInstance
       lenis = lenisInstance
 
@@ -99,9 +101,9 @@ export function SmoothScrollProvider() {
         event.preventDefault()
         lenisInstance.scrollTo(targetElement, {
           offset: ANCHOR_OFFSET,
-          duration: 1.15,
+          duration: 0.9,
           easing: anchorEasing,
-          lock: true
+          lock: false
         })
         window.history.pushState(null, '', hash)
       }

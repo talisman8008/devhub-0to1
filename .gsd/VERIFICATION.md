@@ -49,6 +49,13 @@ Date: 2026-05-10
   - Playwright/Chrome phase-card probe confirmed 4 cards, 4 desktop columns, 1 mobile column, and titles `Ideate`, `Build`, `Market`, `Run`.
   - Playwright/Chrome confirmed reduced-motion mode does not add the Lenis class.
   - Playwright/Chrome confirmed hero LiquidEther and waitlist Galaxy canvas layers are still present.
+  - Responsive Lenis tuning applied after user reported resistant/abrupt scrolling: interpolation increased, wheel multiplier raised, anchor duration shortened, anchor lock removed, and Lenis root CSS added.
+  - `npm.cmd run type-check -w frontend`: passed after responsive Lenis tuning.
+  - `..\node_modules\.bin\eslint.cmd components/smooth-scroll-provider.tsx --max-warnings=0`: passed after responsive Lenis tuning.
+  - `npm.cmd run build -w frontend`: passed after responsive Lenis tuning.
+  - Playwright/Chrome wheel probe after a 900px wheel input sampled scrollY `603`, `890`, `977`, `1034` from 60ms to 420ms.
+  - Playwright/Chrome anchor probe sampled scrollY `3188`, `4046`, `5577`, `5975`, `6051` from 80ms to 850ms.
+  - Playwright/Chrome confirmed Lenis class remains absent in reduced-motion mode.
 - Animation smoothness fix:
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run type-check -w frontend`: passed.
   - `node "C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js" run lint -w frontend`: passed.
