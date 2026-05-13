@@ -194,6 +194,7 @@ export default function Galaxy({
   const smoothMousePos = useRef({ x: 0.5, y: 0.5 });
   const targetMouseActive = useRef(0.0);
   const smoothMouseActive = useRef(0.0);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     if (!ctnDom.current) return;
@@ -213,6 +214,7 @@ export default function Galaxy({
     }
 
     let program;
+    let running = false;
 
     function resize() {
       const scale = 1;
@@ -261,7 +263,22 @@ export default function Galaxy({
     const mesh = new Mesh(gl, { geometry, program });
     let animateId;
 
+    function startLoop() {
+      if (running) return;
+      running = true;
+      animateId = requestAnimationFrame(update);
+    }
+
+    function stopLoop() {
+      running = false;
+      if (animateId) {
+        cancelAnimationFrame(animateId);
+        animateId = null;
+      }
+    }
+
     function update(t) {
+      if (!running) return;
       animateId = requestAnimationFrame(update);
       if (!disableAnimation) {
         program.uniforms.uTime.value = t * 0.001;
@@ -280,8 +297,33 @@ export default function Galaxy({
 
       renderer.render({ scene: mesh });
     }
-    animateId = requestAnimationFrame(update);
+
     ctn.appendChild(gl.canvas);
+
+    // Pause rendering when the Galaxy is not visible in the viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        const visible = entry.isIntersecting && entry.intersectionRatio > 0;
+        isVisibleRef.current = visible;
+        if (visible && !document.hidden) {
+          startLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { threshold: [0, 0.01, 0.1] }
+    );
+    observer.observe(ctn);
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopLoop();
+      } else if (isVisibleRef.current) {
+        startLoop();
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     function handleMouseMove(e) {
       const rect = ctn.getBoundingClientRect();
@@ -300,8 +342,15 @@ export default function Galaxy({
       ctn.addEventListener('mouseleave', handleMouseLeave);
     }
 
+    // Initial start — observer will control from here
+    if (isVisibleRef.current && !document.hidden) {
+      startLoop();
+    }
+
     return () => {
-      cancelAnimationFrame(animateId);
+      stopLoop();
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       window.removeEventListener('resize', resize);
       if (mouseInteraction) {
         ctn.removeEventListener('mousemove', handleMouseMove);

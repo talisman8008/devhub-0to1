@@ -52,7 +52,11 @@ export function SmoothScrollProvider() {
       const raf = (time: number) => {
         frame = 0
         if (destroyed || document.hidden) return
-        lenisInstance.raf(time)
+        try {
+          lenisInstance.raf(time)
+        } catch {
+          // Swallow errors from Lenis raf to prevent loop death
+        }
         scheduleFrame()
       }
 
@@ -71,8 +75,23 @@ export function SmoothScrollProvider() {
         scheduleFrame()
       }
 
+      // Self-healing: if the rAF loop dies for any reason, restart it
+      // when the user tries to scroll again
+      const handleScrollAttempt = () => {
+        if (!destroyed && !document.hidden && !frame) {
+          scheduleFrame()
+        }
+      }
+
       document.addEventListener('visibilitychange', handleVisibilityChange)
       removeVisibilityListener = () => document.removeEventListener('visibilitychange', handleVisibilityChange)
+
+      window.addEventListener('wheel', handleScrollAttempt, { passive: true })
+      window.addEventListener('touchmove', handleScrollAttempt, { passive: true })
+      const removeScrollRecovery = () => {
+        window.removeEventListener('wheel', handleScrollAttempt)
+        window.removeEventListener('touchmove', handleScrollAttempt)
+      }
 
       const handleAnchorClick = (event: MouseEvent) => {
         if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
@@ -109,7 +128,10 @@ export function SmoothScrollProvider() {
       }
 
       document.addEventListener('click', handleAnchorClick)
-      removeAnchorListener = () => document.removeEventListener('click', handleAnchorClick)
+      removeAnchorListener = () => {
+        document.removeEventListener('click', handleAnchorClick)
+        removeScrollRecovery()
+      }
       scheduleFrame()
     })
 

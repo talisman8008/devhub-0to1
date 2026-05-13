@@ -804,7 +804,6 @@
 
   .waitlist-field {
     transform-origin: center;
-    will-change: opacity;
   }
 
   .waitlist-input {
@@ -891,7 +890,8 @@
   .mini-proof,
   .waitlist-field,
   .waitlist-submit {
-    will-change: opacity;
+    /* will-change removed: animation-boot.tsx manages opacity via JS;
+       permanent will-change wastes GPU compositor layers on desktop */
   }
 
   .secure-kicker.is-visible,

@@ -108,7 +108,7 @@ export function LandingPage() {
     <>
       <SmoothScrollProvider />
       <AnimationBoot />
-      <main id="top" className="min-h-screen overflow-hidden bg-void text-primary">
+      <main id="top" className="min-h-screen overflow-x-hidden bg-void text-primary">
         <Nav />
         <Hero />
         <StatsMarquee />
