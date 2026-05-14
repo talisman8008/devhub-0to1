@@ -45,7 +45,7 @@ export function SmoothScrollProvider() {
         wheelMultiplier: 1.38,
         touchMultiplier: 1,
         autoResize: true,
-        prevent: (node: Element) => Boolean(node.closest('[data-lenis-prevent], input, textarea, select, dialog'))
+        prevent: (node: Element) => Boolean(node.closest('[data-lenis-prevent], dialog'))
       }) as LenisInstance
       lenis = lenisInstance
 
