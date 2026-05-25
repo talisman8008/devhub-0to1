@@ -32,9 +32,14 @@ CREATE POLICY "Block anon select" ON public.waitlist
   USING (false);
 
 DROP POLICY IF EXISTS "Block anon insert" ON public.waitlist;
-CREATE POLICY "Block anon insert" ON public.waitlist
+DROP POLICY IF EXISTS "Allow anon insert" ON public.waitlist;
+CREATE POLICY "Allow anon insert" ON public.waitlist
   FOR INSERT
   TO anon
-  WITH CHECK (false);
+  WITH CHECK (true);
+
+-- Ensure anon role has permissions to access the schema and table
+GRANT USAGE ON SCHEMA public TO anon, authenticated;
+GRANT ALL ON TABLE public.waitlist TO anon, authenticated;
 
 NOTIFY pgrst, 'reload schema';

@@ -117,6 +117,8 @@ export function LandingPage() {
         <Paradigm />
         <Outcomes />
         <Journey />
+        <Pricing />
+        <DemoDay />
         <Waitlist />
         <Footer />
       </main>
@@ -135,15 +137,24 @@ function Nav() {
           <a className="nav-link transition-colors" href="#about">
             About
           </a>
+          <a className="nav-link transition-colors" href="#structure">
+            Structure
+          </a>
           <a className="nav-link transition-colors" href="#journey">
             Journey
           </a>
           <a className="nav-link transition-colors" href="#outcomes">
             Outcomes
           </a>
+          <a className="nav-link transition-colors" href="#pricing">
+            Pricing
+          </a>
+          <a className="nav-link transition-colors" href="#waitlist">
+            Apply
+          </a>
         </div>
         <Button asChild size="sm" className="nav-cta rounded-full px-5">
-          <a href="#waitlist">Join Waitlist</a>
+          <a href="#waitlist">Apply Now</a>
         </Button>
       </div>
     </nav>
@@ -158,7 +169,7 @@ function Hero() {
       <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col items-center text-center">
         <p className="hero-badge pill-light mb-10">
           <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
-          0to1 by DevHub | Cohort 2025
+          0to1 by DevHub | Cohort 01 — Starts June 21, 2026
         </p>
         <h1 className="hero-heading font-syne font-black uppercase leading-[0.86] tracking-normal">
           <span className="hero-word block whitespace-nowrap">Build a real</span>
@@ -173,14 +184,14 @@ function Hero() {
             This is where engineers, designers, marketers, and business students come together to turn ideas into real products and real businesses.
           </p>
         </div>
-        <div className="hero-tags mt-8 flex flex-wrap items-center justify-center gap-3 text-sm font-bold text-zinc-700">
+        <div className="hero-tags m-8 flex flex-wrap items-center justify-center gap-x-8 text-sm font-bold text-zinc-700">
           <span>No classrooms</span>
           <span>No simulations</span>
           <span>Just building</span>
         </div>
-        <div className="hero-actions mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="hero-actions mt-8 flex flex-col items-center justify-center gap-7 sm:flex-row">
           <Button asChild size="lg" className="rounded-full bg-black px-7 text-white hover:bg-zinc-800">
-            <a href="#waitlist">Secure Your Spot</a>
+            <a href="#waitlist">Apply for Cohort 01</a>
           </Button>
           <Button asChild variant="secondary" size="lg" className="rounded-full border-zinc-300 bg-white/40 px-7 text-black hover:bg-white">
             <a href="#about">
@@ -219,7 +230,7 @@ function About() {
   return (
     <section id="about" className="section-dark pb-14 pt-24 md:pb-20 md:pt-36" aria-label="What is 0to1">
       <div className="container-page">
-        <div className="reveal mx-auto max-w-[920px] text-center">
+        <div className="reveal mx-auto  max-w-[920px] text-center">
           <p className="section-pill mx-auto mb-10">The Program</p>
           <h2 className="mega-title normal-case">
             What is <span className="italic text-accent">0to1?</span>
@@ -282,7 +293,7 @@ function Audience() {
         </div>
         <div className="reveal mt-14 flex justify-center">
           <Button asChild size="lg" className="rounded-full bg-accent px-8 text-black hover:bg-[#32ffd0]">
-            <a href="#waitlist">Apply for Cohort 2025</a>
+            <a href="#waitlist">Apply for Cohort 01</a>
           </Button>
         </div>
       </div>
@@ -401,6 +412,162 @@ function Journey() {
   )
 }
 
+
+function Pricing() {
+  return (
+      <section id="pricing" className="section-dark py-24 md:py-32 " aria-label="Pricing">
+        <div className="container-page">
+          <div className="reveal mx-auto max-w-4xl text-center">
+            <p className="section-pill mx-auto mb-8">Simple Pricing</p>
+            <h2 className="mega-title">
+              6 months. <span className="text-accent">Real execution.</span>
+            </h2>
+            <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-500">
+              This is not a course. You're paying to build, execute, collaborate, and work inside a structured startup environment.
+            </p>
+          </div>
+          <div className="mt-20 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <article className="reveal compare-card">
+              <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Monthly Plan</p>
+              <h3 className="mt-5 font-syne text-5xl font-black text-white">₹999<span className="text-2xl text-zinc-500">/month</span></h3>
+              <p className="mt-3 text-zinc-500 font-semibold">For 6 months</p>
+              <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
+                <li>✓ Full program access</li>
+                <li>✓ Weekly mentorship</li>
+                <li>✓ Team collaboration</li>
+                <li>✓ Demo Day</li>
+              </ul>
+              <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
+                Apply Now
+              </a>
+            </article>
+            <article className="reveal compare-card compare-card-hot">
+              <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-accent">Best Value</p>
+              <h3 className="mt-5 font-syne text-5xl font-black text-white">₹5,499<span className="text-2xl text-zinc-500"> once</span></h3>
+              <p className="mt-3 text-accent font-semibold">One-time payment</p>
+              <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
+                <li>✓ Full program access</li>
+                <li>✓ Weekly mentorship</li>
+                <li>✓ Team collaboration</li>
+                <li>✓ Demo Day</li>
+                <li className="text-accent">✓ Save ₹495</li>
+              </ul>
+              <a href="#waitlist" className="mt-10 block w-full rounded-full bg-accent py-3 text-center text-sm font-black uppercase tracking-widest text-black transition hover:opacity-90">
+                Apply Now
+              </a>
+            </article>
+            <article className="reveal compare-card">
+              <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Group Plan</p>
+              <h3 className="mt-5 font-syne text-5xl font-black text-white">Discounts</h3>
+              <p className="mt-3 text-zinc-500 font-semibold">For teams & friends</p>
+              <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
+                <li>✓ Apply with your team</li>
+                <li>✓ Group discount available</li>
+                <li>✓ Built-in collaboration</li>
+                <li>✓ All plan features</li>
+              </ul>
+              <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
+                Apply Now
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+  )
+}
+
+
+
+function DemoDay() {
+  return (
+      <section id="demo-day" className="section-dark py-24 md:py-32" aria-label="Demo Day">
+        <div className="container-page">
+          <div className="reveal mx-auto max-w-4xl text-center">
+            <p className="section-pill mx-auto mb-8">Demo Day</p>
+            <h2 className="mega-title">
+              Where builders become <span className="italic text-accent">founders.</span>
+            </h2>
+            <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-500">
+              After 6 months of execution, your team takes the stage. Real products. Real traction. Real audience. Not a college presentation — a startup launch.
+            </p>
+          </div>
+
+          {/* Date/Format badge row */}
+          <div className="reveal mx-auto mt-14 flex w-fit flex-wrap items-center justify-center gap-0 divide-x divide-white/10 rounded-2xl border border-white/[0.07] bg-[#0D0D0D] px-2">
+            {[
+              ['Event', 'Demo Day'],
+              ['Cohort 01', 'December 2026'],
+              ['Format', 'Live + Online'],
+            ].map(([label, value]) => (
+                <div key={label} className="px-8 py-5 text-center">
+                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">{label}</p>
+                  <p className="mt-1 font-syne text-lg font-black text-white">{value}</p>
+                </div>
+            ))}
+          </div>
+
+          {/* Cards grid */}
+          <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+            {[
+              {
+                icon: Rocket,
+                title: 'Live Product Demo',
+                text: 'Present the product you built in front of a real audience — investors, mentors, and industry builders.',
+              },
+              {
+                icon: TrendingUp,
+                title: 'Traction Showcase',
+                text: 'Show real numbers — users, feedback, revenue signals. Not slides. Execution evidence.',
+              },
+              {
+                icon: Trophy,
+                title: 'Top Team Awards',
+                text: 'Outstanding teams receive recognition, ecosystem opportunities, and a path to incubation within DevHub.',
+              },
+              {
+                icon: Users,
+                title: 'Founder Network Access',
+                text: 'Direct access to the DevHub founder network, mentors, and future cohort opportunities.',
+              },
+            ].map(({ icon: Icon, title, text }) => (
+                <article key={title} className="reveal compare-card">
+              <span className="mb-8 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-accent/20 bg-accent/[0.06]">
+                <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
+              </span>
+                  <h3 className="font-syne text-xl font-black text-white">{title}</h3>
+                  <p className="mt-4 text-base font-semibold leading-7 text-zinc-500">{text}</p>
+                </article>
+            ))}
+          </div>
+
+          {/* Bottom CTA panel */}
+          <div className="reveal compare-card compare-card-hot mt-6 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+            <h3 className="font-syne text-4xl font-black leading-tight text-white md:text-5xl">
+              This isn&apos;t a demo.<br />
+              It&apos;s your <span className="italic text-accent">launch.</span>
+            </h3>
+            <div className="flex flex-col gap-5 lg:items-end">
+              <p className="text-lg font-semibold leading-8 text-zinc-400 lg:text-right">
+                Only the best teams make it here. Start building now to earn your spot on stage.
+              </p>
+
+              <a href="#waitlist"
+              className="w-fit rounded-full bg-accent px-8 py-3 text-sm font-black uppercase tracking-widest text-black transition hover:opacity-90 hover:-translate-y-0.5"
+              >
+              Apply for Cohort 01
+            </a>
+          </div>
+        </div>
+      </div>
+</section>
+)
+}
+
+
+
+
+
+
 function Waitlist() {
   return (
     <section id="waitlist" className="waitlist-galaxy section-dark relative py-24 md:py-36" aria-label="Join waitlist">
@@ -430,14 +597,14 @@ function Waitlist() {
                 </div>
                 <div className="mini-proof">
                   <p>Limited Intake</p>
-                  <span>100 slots for Cohort 2025.</span>
+                  <span>100 slots for Cohort 01.</span>
                 </div>
               </div>
             </div>
             <div className="secure-form-shell">
               <WaitlistForm />
               <p className="mt-5 text-center text-xs font-bold uppercase tracking-[0.18em] text-zinc-600">
-                Early Access Membership &bull; Cohort 2025
+                Early Access Membership &bull; Cohort 01 &bull;June 2026
               </p>
             </div>
           </div>
@@ -456,13 +623,15 @@ function Footer() {
             0to1
           </a>
           <p className="mt-5 max-w-md text-base leading-7">A DevHub Accelerator Program helping the next generation of builders become founders.</p>
-          <p className="mt-8 text-zinc-600">(c) 2025 0to1 by DevHub. Built for builders.</p>
+          <p className="mt-8 text-zinc-600">(c) 2026 0to1 by DevHub. Built for builders.</p>
         </div>
         <div className="grid gap-4">
           <h3 className="font-syne text-base font-black text-white">Quick Links</h3>
           <a className="transition-colors hover:text-white" href="#about">About</a>
           <a className="transition-colors hover:text-white" href="#journey">Journey</a>
           <a className="transition-colors hover:text-white" href="#outcomes">Outcomes</a>
+          <a className="transition-colors hover:text-white" href="#pricing">Pricing</a>
+          <a className="transition-colors hover:text-white" href="#demo-day">Demo Day</a>
           <a className="transition-colors hover:text-white" href="#waitlist">Waitlist</a>
         </div>
         <div className="grid content-start gap-4">

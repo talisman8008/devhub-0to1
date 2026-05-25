@@ -10,7 +10,7 @@
     --color-bg-elevated: #111111;
     --color-text-primary: #ffffff;
     --color-text-secondary: #8b8b98;
-    --color-accent-primary: #00ffc4;
+    --color-accent-primary: #B6FF5C;
   }
 
   html {
@@ -66,7 +66,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid #00ffc4;
+    outline: 2px solid #B6FF5C;
     outline-offset: 4px;
   }
 
@@ -132,7 +132,7 @@
   }
 
   .nav-shell.nav-on-dark .nav-link:hover {
-    color: #00ffc4;
+    color: #B6FF5C;
   }
 
   .nav-shell.nav-on-dark .nav-cta {
@@ -352,7 +352,7 @@
     border: 1px solid rgba(0, 255, 196, 0.72);
     border-radius: 999px;
     background: #000000;
-    color: #00ffc4;
+    color: #B6FF5C;
     font-family: var(--font-mono), monospace;
     font-size: 0.78rem;
     font-weight: 900;
@@ -386,7 +386,7 @@
       linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025)),
       #0d0d0d;
     padding: 1.3rem 1rem;
-    color: #00ffc4;
+    color: #B6FF5C;
     font-family: var(--font-mono), monospace;
     font-size: 0.86rem;
     font-weight: 900;
@@ -453,7 +453,7 @@
     border: 1px solid rgba(255, 255, 255, 0.11);
     border-radius: 20px;
     background: rgba(0, 0, 0, 0.22);
-    color: #00ffc4;
+    color: #B6FF5C;
   }
 
   .phase-icon-wrap-violet {
@@ -762,7 +762,7 @@
   }
 
   .devhub-mark {
-    border-bottom: 2px solid #00ffc4;
+    border-bottom: 2px solid #B6FF5C;
     line-height: 1.1;
   }
 
@@ -786,7 +786,7 @@
   }
 
   .mini-proof:nth-child(2) p {
-    color: #00ffc4;
+    color: #B6FF5C;
   }
 
   .mini-proof span {
@@ -843,7 +843,7 @@
   }
 
   .waitlist-submit:hover {
-    background: #00ffc4 !important;
+    background: #B6FF5C !important;
     box-shadow: 0 14px 36px rgba(0, 255, 196, 0.18);
     transform: translateY(-2px);
   }
@@ -866,7 +866,7 @@
     border-radius: 24px;
     background: rgba(0, 255, 196, 0.09);
     padding: 1.5rem;
-    color: #00ffc4;
+    color: #B6FF5C;
     font-size: 0.95rem;
     font-weight: 900;
     line-height: 1.5;
