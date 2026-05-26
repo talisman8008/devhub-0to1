@@ -1,24 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono, Montserrat } from 'next/font/google'
 import './globals.css'
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  weight: ['500', '600', '700', '800', '900'],
-  variable: '--font-display'
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  variable: '--font-body'
-})
-
-const jetBrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-mono'
-})
 
 export const metadata: Metadata = {
   title: '0to1 - Build a Real Startup in 6 Months',
@@ -28,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${inter.variable} ${jetBrainsMono.variable}`} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>{children}</body>
     </html>
   )

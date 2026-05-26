@@ -2,13 +2,12 @@
 
 import {
   ArrowDown,
-  BadgeCheck,
-  BriefcaseBusiness,
-  Code2,
+  Code,
+  Globe,
+  Layers,
   Megaphone,
   Palette,
   Rocket,
-  Sparkles,
   Star,
   TrendingUp,
   Trophy,
@@ -43,14 +42,14 @@ const phases = [
     text: 'Come up with real business ideas and validate them'
   },
   {
-    icon: Code2,
+    icon: Code,
     tone: 'violet',
     title: 'Build',
     text: 'Build products from scratch with clear ownership'
   },
   {
     icon: Megaphone,
-    tone: 'accent',
+    tone: 'orange',
     title: 'Market',
     text: 'Take products to market and find real users'
   },
@@ -62,14 +61,7 @@ const phases = [
   }
 ] as const
 
-const audience = [
-  { icon: Code2, title: 'Developers & Engineers', text: 'Who want to build products, not just features.' },
-  { icon: Palette, title: 'Designers', text: 'Who want to shape real user experiences.' },
-  { icon: Megaphone, title: 'Marketers & Growth', text: 'Who want to take products to market.' },
-  { icon: BriefcaseBusiness, title: 'Business Students', text: 'Who want hands-on startup exposure.' },
-  { icon: Rocket, title: 'Aspiring Founders', text: 'Anyone who wants to explore entrepreneurship seriously.' },
-  { icon: Users, title: 'Cross-Functional Collaboration', text: 'Work together as a startup team, just like in the real world.' }
-] as const
+
 
 const outcomes = [
   {
@@ -96,11 +88,11 @@ const outcomes = [
 
 const journey = [
   ['01', Rocket, 'Ideation & Problem Discovery', 'Identify real problems worth solving and validate ideas early.'],
-  ['02', Code2, 'Product & MVP Building', 'Design and build a functional product with clear ownership across roles.'],
-  ['03', Users, 'Market Validation', 'Test assumptions with real users, feedback, and iterations.'],
-  ['04', Megaphone, 'Launch', 'Ship the product publicly. Not a demo, a real launch.'],
-  ['05', Sparkles, 'Growth & Execution', 'Work on traction, growth experiments, and early revenue signals.'],
-  ['06', BadgeCheck, 'Incubation Path', 'High-performing teams move forward into founder tracks and incubation within DevHub.']
+  ['02', Palette, 'Product & MVP Building', 'Design and build a functional product with clear ownership across roles.'],
+  ['03', Globe, 'Market Validation', 'Test assumptions with real users, feedback, and iterations.'],
+  ['04', TrendingUp, 'Launch', 'Ship the product publicly. Not a demo, a real launch.'],
+  ['05', Layers, 'Growth & Execution', 'Work on traction, growth experiments, and early revenue signals.'],
+  ['06', Trophy, 'Incubation Path', 'High-performing teams move forward into founder tracks and incubation within DevHub.']
 ] as const
 
 export function LandingPage() {
@@ -171,8 +163,7 @@ function Hero() {
           <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
           0to1 by DevHub | Cohort 01 — Starts June 21, 2026
         </p>
-        <h1 className="hero-heading font-syne font-black uppercase leading-[0.86] tracking-normal">
-          <span className="hero-word block whitespace-nowrap">Build a real</span>
+        <h1 className="hero-heading font-syne font-black uppercase  text-center mx-auto">          <span className="hero-word block whitespace-nowrap">Build a real</span>
           <span className="hero-word block whitespace-nowrap">startup</span>
         </h1>
         <div className="hero-copy mt-16 max-w-[830px]">
@@ -233,7 +224,7 @@ function About() {
         <div className="reveal mx-auto  max-w-[920px] text-center">
           <p className="section-pill mx-auto mb-10">The Program</p>
           <h2 className="mega-title normal-case">
-            What is <span className="italic text-accent">0to1?</span>
+            What is <span className="italic text-beige">0to1?</span>
           </h2>
           <p className="mx-auto mt-10 max-w-[890px] text-xl font-semibold leading-9 text-zinc-500 md:text-2xl md:leading-[1.65]">
             0to1 is a real-world startup internship + accelerator hybrid. Instead of working on hypothetical assignments or isolated tasks, participants:
@@ -251,8 +242,8 @@ function About() {
         </p>
         <div className="phase-grid">
           {phases.map(({ icon: Icon, tone, title, text }, index) => (
-            <article key={title} className="reveal phase-card">
-              <span className={cn('phase-icon-wrap', tone === 'violet' && 'phase-icon-wrap-violet')}>
+            <article key={title} className="phase-card reveal">
+              <span className={cn('phase-icon-wrap', tone === 'violet' && 'phase-icon-wrap-violet', tone === 'orange' && 'phase-icon-wrap-orange')}>
                 <Icon className="phase-icon" aria-hidden="true" />
               </span>
               <span className="phase-label">Phase {String(index + 1).padStart(2, '0')}</span>
@@ -268,34 +259,37 @@ function About() {
 
 function Audience() {
   return (
-    <section className="audience-section section-dark" aria-label="Who is 0to1 for">
-      <div className="container-page">
-        <div className="audience-intro reveal">
-          <p className="section-pill audience-pill">Target Audience</p>
-          <h2 className="audience-heading">
-            <span>Who is</span>
-            <span>0to1 for?</span>
-          </h2>
-          <p className="audience-subtitle">
-            0to1 is built for students who want more than a resume line.
-          </p>
+    <section className="section-dark py-24 md:py-32" aria-label="What is 0to1">
+      <div className="container-page relative z-10 flex flex-col items-center text-center">
+        <p className="section-pill mb-6">THE PROGRAM</p>
+
+        <h2 className="font-syne text-5xl font-black tracking-tight text-white md:text-[5.5rem] md:leading-none">
+          What is <span className="text-accent italic">0to1?</span>
+        </h2>
+
+        <p className="mt-8 max-w-3xl text-lg font-medium leading-relaxed text-[#a1a1a1] md:text-xl">
+          0to1 is a real-world startup internship + accelerator hybrid. Instead of working on
+          hypothetical assignments or isolated tasks, participants:
+        </p>
+
+        <div className="mt-12 grid w-full max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
+          <div className="glass-pill flex min-h-[100px] items-center justify-center text-center p-4">
+            <span>Come up with<br />business ideas</span>
+          </div>
+          <div className="glass-pill flex min-h-[100px] items-center justify-center text-center p-4">
+            <span>Build products<br />from scratch</span>
+          </div>
+          <div className="glass-pill flex min-h-[100px] items-center justify-center text-center p-4">
+            <span>Take them to<br />market</span>
+          </div>
+          <div className="glass-pill flex min-h-[100px] items-center justify-center text-center p-4">
+            <span>Run them like real<br />startups</span>
+          </div>
         </div>
-        <div className="audience-grid reveal mt-8">
-          {audience.map(({ icon: Icon, title, text }) => (
-            <article key={title} className="audience-card">
-              <span className="audience-icon-wrap">
-                <Icon className="audience-icon" aria-hidden="true" />
-              </span>
-              <h3 className="audience-title">{title}</h3>
-              <p className="audience-copy">{text}</p>
-            </article>
-          ))}
-        </div>
-        <div className="reveal mt-14 flex justify-center">
-          <Button asChild size="lg" className="rounded-full bg-accent px-8 text-black hover:bg-[#32ffd0]">
-            <a href="#waitlist">Apply for Cohort 01</a>
-          </Button>
-        </div>
+
+        <p className="mt-16 text-lg text-[#a1a1a1] md:text-xl">
+          You don't just "learn" how startups work. <strong className="font-bold italic text-white">You build one from zero.</strong>
+        </p>
       </div>
     </section>
   )
@@ -308,7 +302,7 @@ function Paradigm() {
         <div className="reveal mx-auto max-w-4xl text-center">
           <p className="section-pill mx-auto mb-8">The Paradigm Shift</p>
           <h2 className="mega-title">
-            0to1 <span className="text-accent">Distinct</span>
+            0to1 <span className="text-beige">Distinct</span>
           </h2>
         </div>
         <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-2">
@@ -325,8 +319,8 @@ function Paradigm() {
             </p>
           </article>
           <article className="reveal compare-card compare-card-hot">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-accent">The 0to1 Paradigm</p>
-            <h3 className="mt-5 font-syne text-5xl font-black text-accent md:text-7xl">Inside 1</h3>
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-beige">The 0to1 Paradigm</p>
+            <h3 className="mt-5 font-syne text-5xl font-black text-beige md:text-7xl">Inside 1</h3>
             <ul className="mt-10 space-y-5 text-xl font-bold text-white">
               <li>Real Accountability</li>
               <li>Actual Market Launch</li>
@@ -347,7 +341,7 @@ function Outcomes() {
         <div className="reveal text-center">
           <p className="section-pill mx-auto mb-12">The Result</p>
           <h2 className="mega-title">
-            What you&apos;ll <span className="text-accent">achieve</span>
+            What you&apos;ll <span className="text-beige">achieve</span>
           </h2>
         </div>
         <div className="mt-20 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -393,7 +387,10 @@ function Journey() {
               return (
                 <article key={title} className="journey-item reveal relative grid min-h-[270px] grid-cols-1 md:grid-cols-[1fr_120px_1fr]">
                   <div className={cn('journey-card', isLeft ? 'md:col-start-1' : 'md:col-start-3')}>
-                    <span className="mb-9 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/[0.1] bg-white/[0.04] text-accent">
+                    <span className={cn(
+                      "mb-9 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/[0.1] bg-white/[0.04]",
+                      index % 2 === 0 ? "text-accent" : "text-[#7c3aed]"
+                    )}>
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </span>
                     <h3 className="font-syne text-3xl font-black text-white">{title}</h3>
@@ -415,64 +412,64 @@ function Journey() {
 
 function Pricing() {
   return (
-      <section id="pricing" className="section-dark py-24 md:py-32 " aria-label="Pricing">
-        <div className="container-page">
-          <div className="reveal mx-auto max-w-4xl text-center">
-            <p className="section-pill mx-auto mb-8">Simple Pricing</p>
-            <h2 className="mega-title">
-              6 months. <span className="text-accent">Real execution.</span>
-            </h2>
-            <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-500">
-              This is not a course. You're paying to build, execute, collaborate, and work inside a structured startup environment.
-            </p>
-          </div>
-          <div className="mt-20 grid grid-cols-1 gap-6 lg:grid-cols-3">
-            <article className="reveal compare-card">
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Monthly Plan</p>
-              <h3 className="mt-5 font-syne text-5xl font-black text-white">₹999<span className="text-2xl text-zinc-500">/month</span></h3>
-              <p className="mt-3 text-zinc-500 font-semibold">For 6 months</p>
-              <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
-                <li>✓ Full program access</li>
-                <li>✓ Weekly mentorship</li>
-                <li>✓ Team collaboration</li>
-                <li>✓ Demo Day</li>
-              </ul>
-              <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
-                Apply Now
-              </a>
-            </article>
-            <article className="reveal compare-card compare-card-hot">
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-accent">Best Value</p>
-              <h3 className="mt-5 font-syne text-5xl font-black text-white">₹5,499<span className="text-2xl text-zinc-500"> once</span></h3>
-              <p className="mt-3 text-accent font-semibold">One-time payment</p>
-              <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
-                <li>✓ Full program access</li>
-                <li>✓ Weekly mentorship</li>
-                <li>✓ Team collaboration</li>
-                <li>✓ Demo Day</li>
-                <li className="text-accent">✓ Save ₹495</li>
-              </ul>
-              <a href="#waitlist" className="mt-10 block w-full rounded-full bg-accent py-3 text-center text-sm font-black uppercase tracking-widest text-black transition hover:opacity-90">
-                Apply Now
-              </a>
-            </article>
-            <article className="reveal compare-card">
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Group Plan</p>
-              <h3 className="mt-5 font-syne text-5xl font-black text-white">Discounts</h3>
-              <p className="mt-3 text-zinc-500 font-semibold">For teams & friends</p>
-              <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
-                <li>✓ Apply with your team</li>
-                <li>✓ Group discount available</li>
-                <li>✓ Built-in collaboration</li>
-                <li>✓ All plan features</li>
-              </ul>
-              <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
-                Apply Now
-              </a>
-            </article>
-          </div>
+    <section id="pricing" className="section-dark py-24 md:py-32 " aria-label="Pricing">
+      <div className="container-page">
+        <div className="reveal mx-auto max-w-4xl text-center">
+          <p className="section-pill mx-auto mb-8">Simple Pricing</p>
+          <h2 className="mega-title">
+            6 months. <span className="text-beige">Real execution.</span>
+          </h2>
+          <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-500">
+            This is not a course. You're paying to build, execute, collaborate, and work inside a structured startup environment.
+          </p>
         </div>
-      </section>
+        <div className="mt-20 grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <article className="reveal compare-card">
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Monthly Plan</p>
+            <h3 className="mt-5 font-syne text-5xl font-black text-white">₹999<span className="text-2xl text-zinc-500">/month</span></h3>
+            <p className="mt-3 text-zinc-500 font-semibold">For 6 months</p>
+            <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
+              <li>✓ Full program access</li>
+              <li>✓ Weekly mentorship</li>
+              <li>✓ Team collaboration</li>
+              <li>✓ Demo Day</li>
+            </ul>
+            <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
+              Apply Now
+            </a>
+          </article>
+          <article className="reveal compare-card compare-card-hot">
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-beige">Best Value</p>
+            <h3 className="mt-5 font-syne text-5xl font-black text-white">₹5,499<span className="text-2xl text-zinc-500"> once</span></h3>
+            <p className="mt-3 text-beige font-semibold">One-time payment</p>
+            <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
+              <li>✓ Full program access</li>
+              <li>✓ Weekly mentorship</li>
+              <li>✓ Team collaboration</li>
+              <li>✓ Demo Day</li>
+              <li className="text-beige">✓ Save ₹495</li>
+            </ul>
+            <a href="#waitlist" className="mt-10 block w-full rounded-full bg-accent py-3 text-center text-sm font-black uppercase tracking-widest text-black transition hover:opacity-90">
+              Apply Now
+            </a>
+          </article>
+          <article className="reveal compare-card">
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Group Plan</p>
+            <h3 className="mt-5 font-syne text-5xl font-black text-white">Discounts</h3>
+            <p className="mt-3 text-zinc-500 font-semibold">For teams & friends</p>
+            <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
+              <li>✓ Apply with your team</li>
+              <li>✓ Group discount available</li>
+              <li>✓ Built-in collaboration</li>
+              <li>✓ All plan features</li>
+            </ul>
+            <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
+              Apply Now
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -480,87 +477,87 @@ function Pricing() {
 
 function DemoDay() {
   return (
-      <section id="demo-day" className="section-dark py-24 md:py-32" aria-label="Demo Day">
-        <div className="container-page">
-          <div className="reveal mx-auto max-w-4xl text-center">
-            <p className="section-pill mx-auto mb-8">Demo Day</p>
-            <h2 className="mega-title">
-              Where builders become <span className="italic text-accent">founders.</span>
-            </h2>
-            <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-500">
-              After 6 months of execution, your team takes the stage. Real products. Real traction. Real audience. Not a college presentation — a startup launch.
-            </p>
-          </div>
+    <section id="demo-day" className="section-dark py-24 md:py-32" aria-label="Demo Day">
+      <div className="container-page">
+        <div className="reveal mx-auto max-w-4xl text-center">
+          <p className="section-pill mx-auto mb-8">Demo Day</p>
+          <h2 className="mega-title">
+            Where builders become <span className="italic text-beige">founders.</span>
+          </h2>
+          <p className="mx-auto mt-8 max-w-2xl text-xl font-semibold leading-9 text-zinc-500">
+            After 6 months of execution, your team takes the stage. Real products. Real traction. Real audience. Not a college presentation — a startup launch.
+          </p>
+        </div>
 
-          {/* Date/Format badge row */}
-          <div className="reveal mx-auto mt-14 flex w-fit flex-wrap items-center justify-center gap-0 divide-x divide-white/10 rounded-2xl border border-white/[0.07] bg-[#0D0D0D] px-2">
-            {[
-              ['Event', 'Demo Day'],
-              ['Cohort 01', 'December 2026'],
-              ['Format', 'Live + Online'],
-            ].map(([label, value]) => (
-                <div key={label} className="px-8 py-5 text-center">
-                  <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">{label}</p>
-                  <p className="mt-1 font-syne text-lg font-black text-white">{value}</p>
-                </div>
-            ))}
-          </div>
+        {/* Date/Format badge row */}
+        <div className="reveal mx-auto mt-14 flex w-fit flex-wrap items-center justify-center gap-0 divide-x divide-white/10 rounded-2xl border border-white/[0.07] bg-[#0D0D0D] px-2">
+          {[
+            ['Event', 'Demo Day'],
+            ['Cohort 01', 'June 2026'],
+            ['Format', 'Live + Online'],
+          ].map(([label, value]) => (
+            <div key={label} className="px-8 py-5 text-center">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-500">{label}</p>
+              <p className="mt-1 font-syne text-lg font-black text-white">{value}</p>
+            </div>
+          ))}
+        </div>
 
-          {/* Cards grid */}
-          <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
-            {[
-              {
-                icon: Rocket,
-                title: 'Live Product Demo',
-                text: 'Present the product you built in front of a real audience — investors, mentors, and industry builders.',
-              },
-              {
-                icon: TrendingUp,
-                title: 'Traction Showcase',
-                text: 'Show real numbers — users, feedback, revenue signals. Not slides. Execution evidence.',
-              },
-              {
-                icon: Trophy,
-                title: 'Top Team Awards',
-                text: 'Outstanding teams receive recognition, ecosystem opportunities, and a path to incubation within DevHub.',
-              },
-              {
-                icon: Users,
-                title: 'Founder Network Access',
-                text: 'Direct access to the DevHub founder network, mentors, and future cohort opportunities.',
-              },
-            ].map(({ icon: Icon, title, text }) => (
-                <article key={title} className="reveal compare-card">
-              <span className="mb-8 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-accent/20 bg-accent/[0.06]">
-                <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
+        {/* Cards grid */}
+        <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          {[
+            {
+              icon: Rocket,
+              title: 'Live Product Demo',
+              text: 'Present the product you built in front of a real audience — investors, mentors, and industry builders.',
+            },
+            {
+              icon: TrendingUp,
+              title: 'Traction Showcase',
+              text: 'Show real numbers — users, feedback, revenue signals. Not slides. Execution evidence.',
+            },
+            {
+              icon: Trophy,
+              title: 'Top Team Awards',
+              text: 'Outstanding teams receive recognition, ecosystem opportunities, and a path to incubation within DevHub.',
+            },
+            {
+              icon: Users,
+              title: 'Founder Network Access',
+              text: 'Direct access to the DevHub founder network, mentors, and future cohort opportunities.',
+            },
+          ].map(({ icon: Icon, title, text }) => (
+            <article key={title} className="reveal compare-card">
+              <span className="mb-8 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-beige/20 bg-beige/[0.06]">
+                <Icon className="h-5 w-5 text-beige" aria-hidden="true" />
               </span>
-                  <h3 className="font-syne text-xl font-black text-white">{title}</h3>
-                  <p className="mt-4 text-base font-semibold leading-7 text-zinc-500">{text}</p>
-                </article>
-            ))}
-          </div>
+              <h3 className="font-syne text-xl font-black text-white">{title}</h3>
+              <p className="mt-4 text-base font-semibold leading-7 text-zinc-500">{text}</p>
+            </article>
+          ))}
+        </div>
 
-          {/* Bottom CTA panel */}
-          <div className="reveal compare-card compare-card-hot mt-6 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-            <h3 className="font-syne text-4xl font-black leading-tight text-white md:text-5xl">
-              This isn&apos;t a demo.<br />
-              It&apos;s your <span className="italic text-accent">launch.</span>
-            </h3>
-            <div className="flex flex-col gap-5 lg:items-end">
-              <p className="text-lg font-semibold leading-8 text-zinc-400 lg:text-right">
-                Only the best teams make it here. Start building now to earn your spot on stage.
-              </p>
+        {/* Bottom CTA panel */}
+        <div className="reveal compare-card compare-card-hot mt-6 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+          <h3 className="font-syne text-4xl font-black leading-tight text-white md:text-5xl">
+            This isn&apos;t a demo.<br />
+            It&apos;s your <span className="italic text-beige">launch.</span>
+          </h3>
+          <div className="flex flex-col gap-5 lg:items-end">
+            <p className="text-lg font-semibold leading-8 text-zinc-400 lg:text-right">
+              Only the best teams make it here. Start building now to earn your spot on stage.
+            </p>
 
-              <a href="#waitlist"
+            <a href="#waitlist"
               className="w-fit rounded-full bg-accent px-8 py-3 text-sm font-black uppercase tracking-widest text-black transition hover:opacity-90 hover:-translate-y-0.5"
-              >
+            >
               Apply for Cohort 01
             </a>
           </div>
         </div>
       </div>
-</section>
-)
+    </section>
+  )
 }
 
 

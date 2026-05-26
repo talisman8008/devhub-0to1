@@ -5,22 +5,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        void: '#000000',
-        panel: '#080808',
-        elevated: '#111111',
+        void: '#050505',
+        panel: '#0D0D0D',
+        elevated: '#171717',
         divider: '#222222',
-        primary: '#FFFFFF',
-        secondary: '#8B8B98',
+        primary: '#F5F5F5',
+        secondary: '#A1A1A1',
         muted: '#444444',
-        accent: '#00FFC4',
-        warm: '#FF6B35',
-        success: '#00FFC4',
+        accent: '#00ffc4',
+        beige: '#00ffc4',
+        success: '#B6FF5C',
         error: '#FF4D6D'
       },
       fontFamily: {
-        syne: ['var(--font-display)', 'sans-serif'],
-        space: ['var(--font-body)', 'sans-serif'],
-        mono: ['var(--font-mono)', 'monospace']
+        syne: ['"Helvetica Suite"', 'system-ui', '-apple-system', 'sans-serif'],
+        space: ['"Helvetica Suite"', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['"Helvetica Suite"', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"Helvetica Suite"', 'monospace']
       },
       boxShadow: {
         card: '0 0 0 1px rgba(255,255,255,0.06)',
