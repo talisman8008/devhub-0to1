@@ -543,7 +543,7 @@ function Outcomes() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 relative z-10">
           {outcomes.map(({ icon: Icon, title, text }, index) => (
             <article
-              key={title}
+              key={index}
               className="group relative flex flex-col justify-between overflow-hidden rounded-[32px] border border-white/10 bg-[#060010] p-8 min-h-[480px] xl:min-h-[520px] transition-all duration-500 hover:border-[#00ffc4]/40 hover:shadow-[0_0_40px_-10px_rgba(0,255,196,0.15)]"
             >
               {/* Background Glow Effect */}
