@@ -32,11 +32,11 @@ const stats = [
 ] as const
 
 const programPillars = [
-  'Come up with business ideas',
-  'Build products from scratch',
-  'Take them to market',
-  'Run them like real startups'
-] as const
+  <>Come up with business<br /> ideas</>,
+  <>Build products from<br /> scratch</>,
+  <>Take them to<br /> market</>,
+  <>Run them like real<br /> startups</>
+]
 
 const phases = [
   {
@@ -80,7 +80,7 @@ const outcomes = [
   },
   {
     icon: Star,
-    title: 'Impactful Portfolio',
+    title: <>Impactful<br />Portfolio</>,
     text: 'Strong execution and a portfolio that reflects real-world impact and traction.'
   },
   {
@@ -88,7 +88,7 @@ const outcomes = [
     title: 'DevHub Ecosystem Path',
     text: 'Certification, recommendations, and long-term opportunities within the DevHub ecosystem.'
   }
-] as const
+]
 
 const journey = [
   ['01', Rocket, 'Ideation & Problem Discovery', 'Identify real problems worth solving and validate ideas early.'],
@@ -332,8 +332,8 @@ function About() {
         </p>
 
         <div className="mt-16 grid w-full max-w-5xl grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {programPillars.map((pillar) => (
-            <div key={pillar} className="reveal glass-pill flex items-center justify-center text-center">
+          {programPillars.map((pillar, index) => (
+            <div key={index} className="reveal glass-pill flex items-center justify-center text-center">
               {pillar}
             </div>
           ))}
@@ -375,32 +375,32 @@ const targetAudiences = [
   {
     icon: Code,
     title: 'Developers & Engineers',
-    description: 'Who want to build products, not just features.'
+    description: <>Who want to build products, not just features.</>
   },
   {
     icon: Palette,
     title: 'Designers',
-    description: 'Who want to shape real user experiences.'
+    description: <>Who want to shape real user experiences.</>
   },
   {
     icon: Megaphone,
     title: 'Marketers & Growth',
-    description: 'Who want to take products to market.'
+    description: <>Who want to take products <br className="hidden lg:block" /> to market.</>
   },
   {
     icon: Briefcase,
     title: 'Business Students',
-    description: 'Who want hands-on startup exposure.'
+    description: <>Who want hands-on startup exposure.</>
   },
   {
     icon: Rocket,
     title: 'Aspiring Founders',
-    description: 'Anyone who wants to explore entrepreneurship seriously.'
+    description: <>Anyone who wants to explore entrepreneurship seriously.</>
   },
   {
     icon: Users,
     title: 'Cross-Functional Collaboration',
-    description: 'Work together as a startup team, just like in the real world.'
+    description: <>Work together as a startup team, just like in the real world.</>
   }
 ]
 
@@ -647,14 +647,14 @@ function Pricing() {
         </div>
         <div className="mt-20 grid grid-cols-1 gap-6 lg:grid-cols-3">
           <article className="reveal compare-card">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Group Plan</p>
-            <h3 className="mt-5 font-syne text-5xl font-black text-white">Discounts</h3>
-            <p className="mt-3 text-zinc-500 font-semibold">For teams & friends</p>
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Monthly</p>
+            <h3 className="mt-5 font-syne text-5xl font-black text-white">₹999<span className="text-2xl text-zinc-500"> /mo</span></h3>
+            <p className="mt-3 text-zinc-500 font-semibold">Pay as you go</p>
             <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
-              <li>✓ Apply with your team</li>
-              <li>✓ Group discount available</li>
-              <li>✓ Built-in collaboration</li>
-              <li>✓ All plan features</li>
+              <li>✓ Full program access</li>
+              <li>✓ Weekly mentorship</li>
+              <li>✓ Team collaboration</li>
+              <li>✓ Cancel anytime</li>
             </ul>
             <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
               Apply Now
@@ -676,14 +676,14 @@ function Pricing() {
             </a>
           </article>
           <article className="reveal compare-card">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Monthly</p>
-            <h3 className="mt-5 font-syne text-5xl font-black text-white">₹999<span className="text-2xl text-zinc-500"> /mo</span></h3>
-            <p className="mt-3 text-zinc-500 font-semibold">Pay as you go</p>
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Group Plan</p>
+            <h3 className="mt-5 font-syne text-5xl font-black text-white">Discounts</h3>
+            <p className="mt-3 text-zinc-500 font-semibold">For teams & friends</p>
             <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
-              <li>✓ Full program access</li>
-              <li>✓ Weekly mentorship</li>
-              <li>✓ Team collaboration</li>
-              <li>✓ Cancel anytime</li>
+              <li>✓ Apply with your team</li>
+              <li>✓ Group discount available</li>
+              <li>✓ Built-in collaboration</li>
+              <li>✓ All plan features</li>
             </ul>
             <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
               Apply Now
