@@ -344,7 +344,7 @@ function About() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 pt-10 mt-16 gap-4 md:gap-6">
           {phases.map(({ icon: Icon, tone, title, text }, index) => {
-            const toneColor = tone === 'violet' ? 'text-[#7c3aed]' : tone === 'orange' ? 'text-[#f97316]' : 'text-[#00ffc4]';
+            const toneColor = tone === 'violet' ? 'text-[#7c3aed]' : 'text-[#00ffc4]';
             return (
               <div key={title} className="group reveal">
                 <article className="flex flex-col gap-6 rounded-[24px] md:rounded-[32px] border shadow-sm relative h-full bg-zinc-900/40 border-white/5 p-8 md:p-12 text-center backdrop-blur-xl overflow-hidden transition-all duration-500 hover:bg-zinc-900/60 hover:border-white/20 hover:-translate-y-2">
