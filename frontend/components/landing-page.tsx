@@ -111,8 +111,8 @@ export function LandingPage() {
         <About />
         <Audience />
         <Paradigm />
-        <Outcomes />
         <Journey />
+        <Outcomes />
         <Pricing />
         <DemoDay />
         <Waitlist />
@@ -165,7 +165,7 @@ function Nav() {
         {/* Desktop Links */}
         <div className="hidden items-center gap-10 text-sm font-semibold md:flex">
           <a className="nav-link transition-colors" href="#about">About</a>
-          <a className="nav-link transition-colors" href="#structure">Structure</a>
+          <a className="nav-link transition-colors" href="#audience">Audience</a>
           <a className="nav-link transition-colors" href="#journey">Journey</a>
           <a className="nav-link transition-colors" href="#outcomes">Outcomes</a>
           <a className="nav-link transition-colors" href="#pricing">Pricing</a>
@@ -192,7 +192,7 @@ function Nav() {
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-16 left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10 px-5 py-6 flex flex-col gap-6 shadow-2xl">
           <a className="nav-link transition-colors text-lg font-medium" href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
-          <a className="nav-link transition-colors text-lg font-medium" href="#structure" onClick={() => setIsMobileMenuOpen(false)}>Structure</a>
+          <a className="nav-link transition-colors text-lg font-medium" href="#audience" onClick={() => setIsMobileMenuOpen(false)}>Audience</a>
           <a className="nav-link transition-colors text-lg font-medium" href="#journey" onClick={() => setIsMobileMenuOpen(false)}>Journey</a>
           <a className="nav-link transition-colors text-lg font-medium" href="#outcomes" onClick={() => setIsMobileMenuOpen(false)}>Outcomes</a>
           <a className="nav-link transition-colors text-lg font-medium" href="#pricing" onClick={() => setIsMobileMenuOpen(false)}>Pricing</a>
@@ -539,8 +539,8 @@ function Outcomes() {
         </div>
         <div className="mt-16 md:mt-32 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 relative z-10">
           {outcomes.map(({ icon: Icon, title, text }, index) => (
-            <article 
-              key={title} 
+            <article
+              key={title}
               className="group relative flex flex-col justify-between overflow-hidden rounded-[32px] border border-white/5 bg-[#060010] p-8 transition-all duration-500 hover:border-[#00ffc4]/30 hover:shadow-[0_0_40px_-10px_rgba(0,255,196,0.15)]"
             >
               {/* Background Glow Effect */}
@@ -657,7 +657,7 @@ function Pricing() {
               Apply Now
             </a>
           </article>
-          <article className="reveal compare-card compare-card-hot">
+          <article className="reveal compare-card lg:scale-105 relative z-10 shadow-2xl compare-card-hot">
             <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-beige">Best Value</p>
             <h3 className="mt-5 font-syne text-5xl font-black text-white">₹5,499<span className="text-2xl text-zinc-500"> once</span></h3>
             <p className="mt-3 text-beige font-semibold">One-time payment</p>
@@ -669,6 +669,20 @@ function Pricing() {
               <li className="text-beige">✓ Save ₹495</li>
             </ul>
             <a href="#waitlist" className="mt-10 block w-full rounded-full bg-accent py-3 text-center text-sm font-black uppercase tracking-widest text-black transition hover:opacity-90">
+              Apply Now
+            </a>
+          </article>
+          <article className="reveal compare-card">
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Monthly</p>
+            <h3 className="mt-5 font-syne text-5xl font-black text-white">₹999<span className="text-2xl text-zinc-500"> /mo</span></h3>
+            <p className="mt-3 text-zinc-500 font-semibold">Pay as you go</p>
+            <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
+              <li>✓ Full program access</li>
+              <li>✓ Weekly mentorship</li>
+              <li>✓ Team collaboration</li>
+              <li>✓ Cancel anytime</li>
+            </ul>
+            <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
               Apply Now
             </a>
           </article>
@@ -773,7 +787,7 @@ function DemoDay() {
 
 function Waitlist() {
   return (
-    <section id="waitlist" className="waitlist-galaxy section-dark relative py-24 md:py-36" aria-label="Join waitlist">
+    <section id="waitlist" className="waitlist-galaxy section-dark relative min-h-[100svh] flex flex-col justify-center py-24 md:py-24" aria-label="Join waitlist">
       <WaitlistGalaxyBackground />
       <div className="container-page">
         <div className="reveal cta-panel secure-panel">

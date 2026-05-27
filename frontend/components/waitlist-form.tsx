@@ -137,38 +137,65 @@ export function WaitlistForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="waitlist-form">
+    <form onSubmit={handleSubmit} noValidate className="waitlist-form flex flex-col gap-4">
 
-      {/* ── Single-line inputs ── */}
-      {inputFields.map((field) => (
-        <div key={field.name} className="waitlist-field">
-          <label className="sr-only" htmlFor={`waitlist-${field.name}`}>
-            {field.label}
-          </label>
-          <Input
-            id={`waitlist-${field.name}`}
-            name={field.name}
-            type={field.type}
-            inputMode={
-              field.name === 'contactNumber' ? 'tel'
-                : field.name === 'email' ? 'email'
-                  : 'text'
-            }
-            autoComplete={field.autoComplete}
-            maxLength={field.maxLength}
-            required
-            value={values[field.name]}
-            onChange={(e) => updateField(field.name, e.target.value)}
-            placeholder={field.label}
-            disabled={state === 'loading'}
-            aria-describedby={message ? 'waitlist-message' : undefined}
-            className="waitlist-input !h-[3.2rem] !rounded-[14px] !border-white/[0.15] !bg-white/[0.075]"
-          />
-        </div>
-      ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* ── Single-line inputs ── */}
+        {inputFields.map((field) => (
+          <div key={field.name} className="waitlist-field">
+            <label className="sr-only" htmlFor={`waitlist-${field.name}`}>
+              {field.label}
+            </label>
+            <Input
+              id={`waitlist-${field.name}`}
+              name={field.name}
+              type={field.type}
+              inputMode={
+                field.name === 'contactNumber' ? 'tel'
+                  : field.name === 'email' ? 'email'
+                    : 'text'
+              }
+              autoComplete={field.autoComplete}
+              maxLength={field.maxLength}
+              required
+              value={values[field.name]}
+              onChange={(e) => updateField(field.name, e.target.value)}
+              placeholder={field.label}
+              disabled={state === 'loading'}
+              aria-describedby={message ? 'waitlist-message' : undefined}
+              className="waitlist-input !h-[3.2rem] !rounded-[14px] !border-white/[0.15] !bg-white/[0.075]"
+            />
+          </div>
+        ))}
 
-      {/* ── Why Join? textarea ── */}
-      <div className="waitlist-field">
+        {/* ── Select fields ── */}
+        {selectFields.map((field) => (
+          <div key={field.name} className="waitlist-field">
+            <label className="sr-only" htmlFor={`waitlist-${field.name}`}>
+              {field.label}
+            </label>
+            <select
+              id={`waitlist-${field.name}`}
+              name={field.name}
+              required
+              value={values[field.name]}
+              onChange={(e) => updateField(field.name, e.target.value)}
+              disabled={state === 'loading'}
+              aria-describedby={message ? 'waitlist-message' : undefined}
+              className="waitlist-input w-full !h-[3.2rem] !rounded-[14px] border border-white/[0.15] bg-white/[0.075] px-4 text-sm text-white/80 outline-none focus:border-white/30 appearance-none cursor-pointer"
+            >
+              {field.options.map((opt) => (
+                <option key={opt.value} value={opt.value} disabled={opt.value === ''} className="bg-[#0D0D0D] text-white">
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        ))}
+      </div>
+
+      {/* ── Why Join? textarea (Full Width) ── */}
+      <div className="waitlist-field w-full">
         <label className="sr-only" htmlFor="waitlist-whyJoin">
           Why do you want to join?
         </label>
@@ -177,7 +204,7 @@ export function WaitlistForm() {
           name="whyJoin"
           required
           maxLength={600}
-          rows={4}
+          rows={3}
           value={values.whyJoin}
           onChange={(e) => updateField('whyJoin', e.target.value)}
           placeholder="Why do you want to join 0to1? (max 600 chars)"
@@ -187,36 +214,11 @@ export function WaitlistForm() {
         />
       </div>
 
-      {/* ── Select fields ── */}
-      {selectFields.map((field) => (
-        <div key={field.name} className="waitlist-field">
-          <label className="sr-only" htmlFor={`waitlist-${field.name}`}>
-            {field.label}
-          </label>
-          <select
-            id={`waitlist-${field.name}`}
-            name={field.name}
-            required
-            value={values[field.name]}
-            onChange={(e) => updateField(field.name, e.target.value)}
-            disabled={state === 'loading'}
-            aria-describedby={message ? 'waitlist-message' : undefined}
-            className="waitlist-input w-full !h-[3.2rem] !rounded-[14px] border border-white/[0.15] bg-white/[0.075] px-4 text-sm text-white/80 outline-none focus:border-white/30 appearance-none cursor-pointer"
-          >
-            {field.options.map((opt) => (
-              <option key={opt.value} value={opt.value} disabled={opt.value === ''} className="bg-[#0D0D0D] text-white">
-                {opt.label}
-              </option>
-            ))}
-          </select>
-        </div>
-      ))}
-
       {/* ── Submit ── */}
       <Button
         type="submit"
         disabled={state === 'loading'}
-        className="waitlist-submit group !h-[3.2rem] !rounded-[14px]"
+        className="waitlist-submit group !h-[3.2rem] !rounded-[14px] w-full"
       >
         <span>{state === 'loading' ? 'Submitting...' : 'Apply Now'}</span>
         {state === 'loading'
@@ -226,7 +228,7 @@ export function WaitlistForm() {
       </Button>
 
       {message ? (
-        <p id="waitlist-message" className="text-sm font-medium text-error" role="alert">
+        <p id="waitlist-message" className="text-sm font-medium text-error mt-2" role="alert">
           {message}
         </p>
       ) : null}
