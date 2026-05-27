@@ -19,20 +19,8 @@ export function AnimationBoot() {
     const stagedChildren = Array.from(
       document.querySelectorAll<HTMLElement>('.secure-kicker, .secure-title-line, .devhub-mark, .mini-proof, .waitlist-field, .waitlist-submit')
     )
-    let navFrame = 0
     let journeyFrame = 0
     let journeyIsActive = false
-    const updateNavTone = () => {
-      if (!nav) return
-      nav.classList.toggle('nav-on-dark', window.scrollY > window.innerHeight * 0.82)
-    }
-    const requestNavToneUpdate = () => {
-      if (navFrame) return
-      navFrame = window.requestAnimationFrame(() => {
-        navFrame = 0
-        updateNavTone()
-      })
-    }
     const setJourneyProgress = (progress: number) => {
       if (!journeySection) return
       const clampedProgress = Math.min(Math.max(progress, 0), 1)
@@ -55,15 +43,11 @@ export function AnimationBoot() {
       journeyFrame = window.requestAnimationFrame(updateJourneyProgress)
     }
     const requestScrollUpdates = () => {
-      requestNavToneUpdate()
       requestJourneyProgressUpdate()
     }
 
-    updateNavTone()
-
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setJourneyProgress(0)
-      window.addEventListener('scroll', requestNavToneUpdate, { passive: true })
       document
         .querySelectorAll<HTMLElement>('.reveal, .nav-shell, .hero-badge, .hero-word, .hero-copy, .hero-actions, .secure-kicker, .secure-title-line, .devhub-mark, .mini-proof, .waitlist-field, .waitlist-submit')
         .forEach((element) => {
@@ -72,9 +56,7 @@ export function AnimationBoot() {
           element.style.transform = 'none'
         })
       return () => {
-        if (navFrame) window.cancelAnimationFrame(navFrame)
         if (journeyFrame) window.cancelAnimationFrame(journeyFrame)
-        window.removeEventListener('scroll', requestNavToneUpdate)
       }
     }
 
@@ -169,7 +151,6 @@ export function AnimationBoot() {
         element.style.opacity = ''
         element.style.transform = ''
       })
-      if (navFrame) window.cancelAnimationFrame(navFrame)
       if (journeyFrame) window.cancelAnimationFrame(journeyFrame)
       window.removeEventListener('scroll', requestScrollUpdates)
       window.removeEventListener('resize', requestJourneyProgressUpdate)

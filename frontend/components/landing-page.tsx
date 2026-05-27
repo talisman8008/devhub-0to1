@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import {
   ArrowDown,
   Code,
@@ -11,7 +12,10 @@ import {
   Star,
   TrendingUp,
   Trophy,
-  Users
+  Users,
+  Menu,
+  X,
+  Briefcase
 } from 'lucide-react'
 import { AnimationBoot } from '@/components/animation-boot'
 import { HeroLiquidBackground, WaitlistGalaxyBackground } from '@/components/react-bits-backgrounds'
@@ -49,7 +53,7 @@ const phases = [
   },
   {
     icon: Megaphone,
-    tone: 'orange',
+    tone: 'accent',
     title: 'Market',
     text: 'Take products to market and find real users'
   },
@@ -119,36 +123,86 @@ export function LandingPage() {
 }
 
 function Nav() {
+  const navRef = useRef<HTMLElement>(null)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  useEffect(() => {
+    let frameId: number
+
+    const handleScroll = () => {
+      frameId = requestAnimationFrame(handleScroll)
+
+      if (!navRef.current) return
+
+      const currentScroll = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop
+      const isDark = navRef.current.classList.contains('nav-on-dark')
+
+      if (currentScroll > 5 && !isDark) {
+        navRef.current.classList.add('nav-on-dark')
+        navRef.current.classList.remove('bg-transparent')
+      } else if (currentScroll <= 5 && isDark) {
+        navRef.current.classList.remove('nav-on-dark')
+        navRef.current.classList.add('bg-transparent')
+      }
+    }
+
+    frameId = requestAnimationFrame(handleScroll)
+
+    return () => {
+      if (frameId) {
+        cancelAnimationFrame(frameId)
+      }
+    }
+  }, [])
+
   return (
-    <nav className="nav-shell fixed inset-x-0 top-0 z-50 bg-transparent" aria-label="Main navigation">
+    <nav ref={navRef} className="nav-shell fixed inset-x-0 top-0 z-50 bg-transparent transition-all duration-300 ease-in-out" aria-label="Main navigation">
       <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-5 sm:px-7">
         <a href="#top" className="logo-mark text-2xl font-black tracking-[-0.06em]" aria-label="0to1 home">
           0to1
         </a>
+
+        {/* Desktop Links */}
         <div className="hidden items-center gap-10 text-sm font-semibold md:flex">
-          <a className="nav-link transition-colors" href="#about">
-            About
-          </a>
-          <a className="nav-link transition-colors" href="#structure">
-            Structure
-          </a>
-          <a className="nav-link transition-colors" href="#journey">
-            Journey
-          </a>
-          <a className="nav-link transition-colors" href="#outcomes">
-            Outcomes
-          </a>
-          <a className="nav-link transition-colors" href="#pricing">
-            Pricing
-          </a>
-          <a className="nav-link transition-colors" href="#waitlist">
-            Apply
-          </a>
+          <a className="nav-link transition-colors" href="#about">About</a>
+          <a className="nav-link transition-colors" href="#structure">Structure</a>
+          <a className="nav-link transition-colors" href="#journey">Journey</a>
+          <a className="nav-link transition-colors" href="#outcomes">Outcomes</a>
+          <a className="nav-link transition-colors" href="#pricing">Pricing</a>
+          <a className="nav-link transition-colors" href="#waitlist">Apply</a>
         </div>
-        <Button asChild size="sm" className="nav-cta rounded-full px-5">
-          <a href="#waitlist">Apply Now</a>
-        </Button>
+
+        <div className="flex items-center gap-4">
+          <Button asChild size="sm" className="nav-cta rounded-full px-5">
+            <a href="#waitlist">Apply Now</a>
+          </Button>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="md:hidden p-2 text-current"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden absolute top-16 left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10 px-5 py-6 flex flex-col gap-6 shadow-2xl">
+          <a className="nav-link transition-colors text-lg font-medium" href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+          <a className="nav-link transition-colors text-lg font-medium" href="#structure" onClick={() => setIsMobileMenuOpen(false)}>Structure</a>
+          <a className="nav-link transition-colors text-lg font-medium" href="#journey" onClick={() => setIsMobileMenuOpen(false)}>Journey</a>
+          <a className="nav-link transition-colors text-lg font-medium" href="#outcomes" onClick={() => setIsMobileMenuOpen(false)}>Outcomes</a>
+          <a className="nav-link transition-colors text-lg font-medium" href="#pricing" onClick={() => setIsMobileMenuOpen(false)}>Pricing</a>
+          <a className="nav-link transition-colors text-lg font-medium" href="#waitlist" onClick={() => setIsMobileMenuOpen(false)}>Apply</a>
+
+          <Button asChild size="lg" className="nav-cta rounded-full w-full mt-4">
+            <a href="#waitlist" onClick={() => setIsMobileMenuOpen(false)}>Apply Now</a>
+          </Button>
+        </div>
+      )}
     </nav>
   )
 }
@@ -167,11 +221,11 @@ function Hero() {
           <span className="hero-word block whitespace-nowrap">startup</span>
         </h1>
         <div className="hero-copy mt-16 max-w-[830px]">
-          <p className="text-[1.35rem] font-bold leading-tight text-black md:text-[1.48rem]">Build a real startup. Not just an internship.</p>
-          <p className="mx-auto mt-6 max-w-[780px] text-lg font-semibold leading-8 text-zinc-600 md:text-[1.32rem] md:leading-9">
-            0to1 is a 6-month, execution-first startup program by DevHub, built for students who don&apos;t just want experience. They want ownership.
+          <p className="text-xl font-bold leading-tight text-black md:text-2xl lg:text-3xl">Build a real startup. Not just an internship.</p>
+          <p className="mx-auto mt-6 max-w-[780px] text-base font-semibold leading-8 text-zinc-600 md:text-lg lg:text-xl md:leading-9">
+            0to1 is a 6-month, execution-first startup program by DevHub, built for students who don't just want experience. They want ownership.
           </p>
-          <p className="mx-auto mt-5 max-w-[780px] text-base font-semibold leading-7 text-zinc-500 md:text-lg md:leading-8">
+          <p className="mx-auto mt-5 max-w-[780px] text-sm font-semibold leading-7 text-zinc-500 md:text-base lg:text-lg md:leading-8">
             This is where engineers, designers, marketers, and business students come together to turn ideas into real products and real businesses.
           </p>
         </div>
@@ -203,7 +257,7 @@ function StatsMarquee() {
       <div className="flex min-w-max animate-marquee gap-4">
         {row.map(([target, label, suffix], index) => (
           <div key={`${label}-${index}`} className="stat-card">
-            <div className="font-mono text-[3.8rem] font-bold leading-none text-white">
+            <div className="font-mono text-5xl md:text-6xl lg:text-7xl font-bold leading-none text-white">
               <span className="counter" data-target={target}>
                 0
               </span>
@@ -217,53 +271,57 @@ function StatsMarquee() {
   )
 }
 
+// function About() {
+//   return (
+//     <section id="about" className="section-dark pb-14 pt-24 md:pb-20 md:pt-36" aria-label="What is 0to1">
+//       <div className="container-page">
+//         <div className="reveal mx-auto  max-w-[920px] text-center">
+//           <p className="section-pill mx-auto mb-10">The Program</p>
+//           <h2 className="mega-title normal-case">
+//             What is <span className="italic text-beige">0to1?</span>
+//           </h2>
+//           <p className="mx-auto mt-10 max-w-[890px] text-xl font-semibold leading-9 text-zinc-500 md:text-2xl md:leading-[1.65]">
+//             0to1 is a real-world startup internship + accelerator hybrid. Instead of working on hypothetical assignments or isolated tasks, participants:
+
+//           </p>
+//         </div>
+//         <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-4">
+//           {programPillars.map((pillar) => (
+//             <div key={pillar} className="reveal glass-pill text-center">
+//               {pillar}
+//             </div>
+//           ))}
+//         </div>
+
+
+
+//         <p className="reveal mx-auto mt-20 max-w-4xl text-center text-2xl font-bold leading-10 text-zinc-400 md:text-3xl">
+//           You don&apos;t just &quot;learn&quot; how startups work. <span className="italic text-white">You build one from zero.</span>
+//         </p>
+//         <div className="phase-grid">
+//           {phases.map(({ icon: Icon, tone, title, text }, index) => (
+//             <article key={title} className="phase-card reveal">
+//               <span className={cn('phase-icon-wrap', tone === 'violet' && 'phase-icon-wrap-violet', tone === 'orange' && 'phase-icon-wrap-orange')}>
+//                 <Icon className="phase-icon" aria-hidden="true" />
+//               </span>
+//               <span className="phase-label">Phase {String(index + 1).padStart(2, '0')}</span>
+//               <h3 className="phase-title">{title}</h3>
+//               <p className="phase-copy">{text}</p>
+//             </article>
+//           ))}
+//         </div>
+//       </div>
+//     </section>
+//   )
+// }
+
 function About() {
   return (
-    <section id="about" className="section-dark pb-14 pt-24 md:pb-20 md:pt-36" aria-label="What is 0to1">
-      <div className="container-page">
-        <div className="reveal mx-auto  max-w-[920px] text-center">
-          <p className="section-pill mx-auto mb-10">The Program</p>
-          <h2 className="mega-title normal-case">
-            What is <span className="italic text-beige">0to1?</span>
-          </h2>
-          <p className="mx-auto mt-10 max-w-[890px] text-xl font-semibold leading-9 text-zinc-500 md:text-2xl md:leading-[1.65]">
-            0to1 is a real-world startup internship + accelerator hybrid. Instead of working on hypothetical assignments or isolated tasks, participants:
-          </p>
-        </div>
-        <div className="mt-16 grid grid-cols-1 gap-4 md:grid-cols-4">
-          {programPillars.map((pillar) => (
-            <div key={pillar} className="reveal glass-pill text-center">
-              {pillar}
-            </div>
-          ))}
-        </div>
-        <p className="reveal mx-auto mt-20 max-w-4xl text-center text-2xl font-bold leading-10 text-zinc-400 md:text-3xl">
-          You don&apos;t just &quot;learn&quot; how startups work. <span className="italic text-white">You build one from zero.</span>
-        </p>
-        <div className="phase-grid">
-          {phases.map(({ icon: Icon, tone, title, text }, index) => (
-            <article key={title} className="phase-card reveal">
-              <span className={cn('phase-icon-wrap', tone === 'violet' && 'phase-icon-wrap-violet', tone === 'orange' && 'phase-icon-wrap-orange')}>
-                <Icon className="phase-icon" aria-hidden="true" />
-              </span>
-              <span className="phase-label">Phase {String(index + 1).padStart(2, '0')}</span>
-              <h3 className="phase-title">{title}</h3>
-              <p className="phase-copy">{text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function Audience() {
-  return (
-    <section className="section-dark py-24 md:py-32" aria-label="What is 0to1">
+    <section id="about" className="section-dark py-24 md:py-32" aria-label="What is 0to1">
       <div className="container-page relative z-10 flex flex-col items-center text-center">
         <p className="section-pill mb-6">THE PROGRAM</p>
 
-        <h2 className="font-syne text-5xl font-black tracking-tight text-white md:text-[5.5rem] md:leading-none">
+        <h2 className="font-syne text-5xl font-black tracking-tight text-white md:text-7xl lg:text-8xl md:leading-none">
           What is <span className="text-accent italic">0to1?</span>
         </h2>
 
@@ -272,24 +330,117 @@ function Audience() {
           hypothetical assignments or isolated tasks, participants:
         </p>
 
-        <div className="mt-12 grid w-full max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
-          <div className="glass-pill flex min-h-[100px] items-center justify-center text-center p-4">
-            <span>Come up with<br />business ideas</span>
-          </div>
-          <div className="glass-pill flex min-h-[100px] items-center justify-center text-center p-4">
-            <span>Build products<br />from scratch</span>
-          </div>
-          <div className="glass-pill flex min-h-[100px] items-center justify-center text-center p-4">
-            <span>Take them to<br />market</span>
-          </div>
-          <div className="glass-pill flex min-h-[100px] items-center justify-center text-center p-4">
-            <span>Run them like real<br />startups</span>
-          </div>
+        <div className="mt-16 grid w-full max-w-5xl grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          {programPillars.map((pillar) => (
+            <div key={pillar} className="reveal glass-pill flex items-center justify-center text-center">
+              {pillar}
+            </div>
+          ))}
         </div>
 
-        <p className="mt-16 text-lg text-[#a1a1a1] md:text-xl">
+        <p className="mt-20 max-w-4xl text-center text-2xl font-bold leading-10 text-zinc-400 md:text-3xl">
           You don't just "learn" how startups work. <strong className="font-bold italic text-white">You build one from zero.</strong>
         </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 pt-10 mt-16 gap-4 md:gap-6">
+          {phases.map(({ icon: Icon, tone, title, text }, index) => {
+            const toneColor = tone === 'violet' ? 'text-[#7c3aed]' : tone === 'orange' ? 'text-[#f97316]' : 'text-[#00ffc4]';
+            return (
+              <div key={title} className="group reveal">
+                <article className="flex flex-col gap-6 rounded-[24px] md:rounded-[32px] border shadow-sm relative h-full bg-zinc-900/40 border-white/5 p-8 md:p-12 text-center backdrop-blur-xl overflow-hidden transition-all duration-500 hover:bg-zinc-900/60 hover:border-white/20 hover:-translate-y-2">
+                  <div className="relative z-10">
+                    <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-6 md:mb-10 relative">
+                      <div className="relative w-full h-full bg-zinc-950 rounded-[20px] md:rounded-[24px] flex items-center justify-center border border-white/10 group-hover:border-white/30 transition-colors duration-500">
+                        <Icon className={cn("w-6 h-6 md:w-8 md:h-8", toneColor)} aria-hidden="true" />
+                      </div>
+                    </div>
+                    <div className="text-[10px] font-black text-zinc-600 mb-3 md:mb-4 uppercase tracking-[0.3em]">
+                      Phase {String(index + 1).padStart(2, '0')}
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-black mb-3 md:mb-4 tracking-tight text-white">{title}</h3>
+                    <p className="text-zinc-500 text-sm leading-relaxed font-medium">{text}</p>
+                  </div>
+                </article>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+const targetAudiences = [
+  {
+    icon: Code,
+    title: 'Developers & Engineers',
+    description: 'Who want to build products, not just features.'
+  },
+  {
+    icon: Palette,
+    title: 'Designers',
+    description: 'Who want to shape real user experiences.'
+  },
+  {
+    icon: Megaphone,
+    title: 'Marketers & Growth',
+    description: 'Who want to take products to market.'
+  },
+  {
+    icon: Briefcase,
+    title: 'Business Students',
+    description: 'Who want hands-on startup exposure.'
+  },
+  {
+    icon: Rocket,
+    title: 'Aspiring Founders',
+    description: 'Anyone who wants to explore entrepreneurship seriously.'
+  },
+  {
+    icon: Users,
+    title: 'Cross-Functional Collaboration',
+    description: 'Work together as a startup team, just like in the real world.'
+  }
+]
+
+function Audience() {
+  return (
+    <section id="audience" className="py-20 md:py-40 px-4 md:px-6 relative overflow-hidden bg-black text-white">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none"></div>
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="text-center mb-16 md:mb-32 reveal">
+          <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 md:mb-10 bg-white/[0.03] border border-white/10 rounded-full">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Target Audience</span>
+          </div>
+          <h2 className="text-5xl md:text-[110px] font-black mb-6 md:mb-10 tracking-tighter leading-[0.85] uppercase">
+            WHO IS <br /><span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">0TO1 FOR?</span>
+          </h2>
+          <p className="text-lg md:text-2xl text-zinc-500 max-w-2xl mx-auto font-medium leading-relaxed">
+            0to1 is built for students who want more than a resume line.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {targetAudiences.map(({ icon: Icon, title, description }) => (
+            <div key={title} className="group relative reveal">
+              <div className="flex flex-col gap-6 border shadow-sm h-full bg-zinc-900/20 border-white/5 p-8 md:p-12 backdrop-blur-xl rounded-[32px] md:rounded-[40px] overflow-hidden transition-all duration-500 hover:bg-zinc-900/40 hover:border-white/20">
+                <div className="relative z-10 space-y-6 md:space-y-8">
+                  <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center relative group-hover:border-white/30 transition-colors overflow-hidden">
+                    <div className="relative opacity-50">
+                      <Icon className="w-7 h-7 md:w-8 md:h-8 text-white stroke-[1.5] relative z-10" aria-hidden="true" />
+                      <div className="absolute inset-0 bg-white/20 blur-md rounded-full pointer-events-none"></div>
+                    </div>
+                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  </div>
+                  <div className="space-y-3 md:space-y-4">
+                    <h3 className="text-xl md:text-3xl font-bold tracking-tighter uppercase leading-none text-white">{title}</h3>
+                    <p className="text-zinc-500 text-base md:text-lg font-medium leading-relaxed">{description}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -297,37 +448,79 @@ function Audience() {
 
 function Paradigm() {
   return (
-    <section className="section-dark py-20 md:py-28" aria-label="0to1 distinct">
-      <div className="container-page">
-        <div className="reveal mx-auto max-w-4xl text-center">
-          <p className="section-pill mx-auto mb-8">The Paradigm Shift</p>
-          <h2 className="mega-title">
-            0to1 <span className="text-beige">Distinct</span>
+    <section className="py-12 md:py-24 px-4 md:px-6 relative overflow-hidden bg-black text-white" aria-label="0to1 distinct">
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,196,0.05),transparent_70%)]"></div>
+      </div>
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="text-center mb-10 md:mb-16 reveal">
+          <span className="inline-block px-4 py-1.5 mb-6 text-[10px] font-bold uppercase tracking-[0.3em] text-[#00ffc4] bg-[#00ffc4]/10 border border-[#00ffc4]/20 rounded-full">
+            The Paradigm Shift
+          </span>
+          <h2 className="text-3xl md:text-6xl font-black mb-4 md:mb-6 tracking-tighter uppercase">
+            0to1 <span className="text-[#00ffc4]">DISTINCT</span>
           </h2>
         </div>
-        <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <article className="reveal compare-card opacity-80">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">The Traditional Way</p>
-            <h3 className="mt-5 font-syne text-5xl font-black text-white/[0.18] md:text-7xl">Watching</h3>
-            <ul className="mt-10 space-y-5 text-xl font-bold text-zinc-500">
-              <li>Classroom-based learning</li>
-              <li>Task-based intern work</li>
-              <li>Simulated projects</li>
-            </ul>
-            <p className="mt-10 text-lg font-semibold leading-8 text-zinc-600">
-              Most programs keep you on the sidelines. You observe, but you don&apos;t own.
-            </p>
-          </article>
-          <article className="reveal compare-card compare-card-hot">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-beige">The 0to1 Paradigm</p>
-            <h3 className="mt-5 font-syne text-5xl font-black text-beige md:text-7xl">Inside 1</h3>
-            <ul className="mt-10 space-y-5 text-xl font-bold text-white">
-              <li>Real Accountability</li>
-              <li>Actual Market Launch</li>
-              <li>Direct Core Access</li>
-            </ul>
-            <p className="mt-10 text-lg font-semibold leading-8 text-zinc-400">Direct bridge to the Founding Team.</p>
-          </article>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+          {/* Traditional Way Card */}
+          <div className="group reveal">
+            <div className="flex flex-col gap-6 border shadow-sm h-full bg-zinc-900/40 border-white/5 p-8 md:p-12 backdrop-blur-xl rounded-[24px] md:rounded-[32px]">
+              <div className="space-y-6 md:space-y-8">
+                <div className="space-y-2 md:space-y-3">
+                  <h3 className="text-zinc-600 font-bold text-[10px] md:text-xs uppercase tracking-[0.4em]">The Traditional Way</h3>
+                  <p className="text-2xl md:text-3xl font-black uppercase text-white/20 tracking-tighter">WATCHING</p>
+                </div>
+                <div className="space-y-3 md:space-y-4">
+                  <div className="flex items-center gap-3 text-zinc-600 font-medium text-sm md:text-base line-through decoration-zinc-800">
+                    <div className="w-1.5 h-1.5 rounded-full bg-zinc-800"></div>Classroom-based learning
+                  </div>
+                  <div className="flex items-center gap-3 text-zinc-600 font-medium text-sm md:text-base line-through decoration-zinc-800">
+                    <div className="w-1.5 h-1.5 rounded-full bg-zinc-800"></div>Task-based intern work
+                  </div>
+                  <div className="flex items-center gap-3 text-zinc-600 font-medium text-sm md:text-base line-through decoration-zinc-800">
+                    <div className="w-1.5 h-1.5 rounded-full bg-zinc-800"></div>Simulated projects
+                  </div>
+                </div>
+                <p className="text-zinc-500 font-medium text-sm leading-relaxed">
+                  Most programs keep you on the sidelines. You observe, but you don&apos;t own.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 0to1 Paradigm Card */}
+          <div className="group reveal">
+            <div className="flex flex-col gap-6 border shadow-sm h-full bg-zinc-900/60 border-white/10 p-8 md:p-12 backdrop-blur-3xl rounded-[24px] md:rounded-[32px] relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-48 h-48 bg-[#00ffc4]/5 blur-[80px] -mr-24 -mt-24"></div>
+              <div className="relative z-10 space-y-6 md:space-y-8">
+                <div className="space-y-2 md:space-y-3">
+                  <h3 className="text-[#00ffc4] font-bold text-[10px] md:text-xs uppercase tracking-[0.4em]">The 0to1 Paradigm</h3>
+                  <p className="text-2xl md:text-3xl font-black uppercase text-white tracking-tighter">INSIDE 1</p>
+                </div>
+                <div className="space-y-4 md:space-y-6">
+                  <div className="flex items-center gap-3 md:gap-4 group/item">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#00ffc4]"></div>
+                    <span className="text-lg md:text-xl font-black text-white tracking-tighter">Real Accountability</span>
+                  </div>
+                  <div className="flex items-center gap-3 md:gap-4 group/item">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#00ffc4]"></div>
+                    <span className="text-lg md:text-xl font-black text-white tracking-tighter">Actual Market Launch</span>
+                  </div>
+                  <div className="flex items-center gap-3 md:gap-4 group/item">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#00ffc4]"></div>
+                    <span className="text-lg md:text-xl font-black text-white tracking-tighter">Direct Core Access</span>
+                  </div>
+                </div>
+                <div className="pt-6 md:pt-8 border-t border-white/5">
+                  <p className="text-zinc-400 font-bold text-sm md:text-base leading-tight">
+                    Direct bridge to the <span className="text-white underline decoration-[#00ffc4]">Founding Team</span>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -344,18 +537,38 @@ function Outcomes() {
             What you&apos;ll <span className="text-beige">achieve</span>
           </h2>
         </div>
-        <div className="mt-20 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-16 md:mt-32 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 relative z-10">
           {outcomes.map(({ icon: Icon, title, text }, index) => (
-            <article key={title} className="reveal outcome-card">
-              <span className="absolute inset-x-0 top-14 select-none text-center font-syne text-[8rem] font-black italic leading-none text-white/[0.035] md:text-[10rem]">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <span className="relative z-10 inline-flex border-l-2 border-accent bg-white/[0.04] px-4 py-2 font-mono text-xs font-bold tracking-[0.35em] text-zinc-300">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <Icon className="relative z-10 mx-auto my-16 h-16 w-16 text-white" aria-hidden="true" />
-              <h3 className="relative z-10 font-syne text-2xl font-black text-white">{title}</h3>
-              <p className="relative z-10 mt-4 text-base font-semibold leading-7 text-zinc-500">{text}</p>
+            <article 
+              key={title} 
+              className="group relative flex flex-col justify-between overflow-hidden rounded-[32px] border border-white/5 bg-[#060010] p-8 transition-all duration-500 hover:border-[#00ffc4]/30 hover:shadow-[0_0_40px_-10px_rgba(0,255,196,0.15)]"
+            >
+              {/* Background Glow Effect */}
+              <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#00ffc4]/[0.02] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+
+              {/* Header: Label & Background Number */}
+              <div className="relative z-10 flex items-start justify-between">
+                <span className="font-mono text-xs font-bold tracking-[0.2em] text-zinc-500">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <span className="absolute -right-4 -top-8 select-none text-[100px] font-black italic leading-none text-white/[0.02] transition-colors duration-500 group-hover:text-white/[0.04]">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+              </div>
+
+              {/* Center Icon with Glowing Backdrop */}
+              <div className="relative z-10 my-16 flex flex-1 items-center justify-center">
+                <div className="relative">
+                  <div className="absolute inset-0 scale-150 rounded-full bg-[#00ffc4] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-20"></div>
+                  <Icon className="relative z-10 h-16 w-16 text-white transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
+                </div>
+              </div>
+
+              {/* Content Footer */}
+              <div className="relative z-10 mt-auto pt-6 border-t border-white/5">
+                <h3 className="mb-3 font-syne text-xl font-bold text-white md:text-2xl">{title}</h3>
+                <p className="text-sm font-medium leading-relaxed text-zinc-400 md:text-base">{text}</p>
+              </div>
             </article>
           ))}
         </div>
@@ -386,15 +599,21 @@ function Journey() {
 
               return (
                 <article key={title} className="journey-item reveal relative grid min-h-[270px] grid-cols-1 md:grid-cols-[1fr_120px_1fr]">
-                  <div className={cn('journey-card', isLeft ? 'md:col-start-1' : 'md:col-start-3')}>
-                    <span className={cn(
-                      "mb-9 inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-white/[0.1] bg-white/[0.04]",
-                      index % 2 === 0 ? "text-accent" : "text-[#7c3aed]"
-                    )}>
-                      <Icon className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                    <h3 className="font-syne text-3xl font-black text-white">{title}</h3>
-                    <p className="mt-5 text-lg font-semibold leading-8 text-zinc-500">{text}</p>
+                  <div className={cn('group relative w-full', isLeft ? 'md:col-start-1 md:pr-12 lg:pr-24' : 'md:col-start-3 md:pl-12 lg:pl-24')}>
+                    <div className="text-card-foreground flex flex-col gap-6 border shadow-sm bg-zinc-900/10 border-white/5 p-6 md:p-10 backdrop-blur-md rounded-[24px] md:rounded-[32px] transition-all duration-500 hover:border-[#00ffc4]/20 hover:bg-zinc-900/20 overflow-hidden">
+                      <div className="flex flex-col gap-4 md:gap-6 relative z-10">
+                        <div className={cn(
+                          "w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center border border-white/10 transition-colors",
+                          index % 2 === 0 ? "group-hover:border-[#00ffc4]/30" : "group-hover:border-[#7c3aed]/30"
+                        )}>
+                          <Icon className={cn("w-5 h-5 md:w-6 md:h-6", index % 2 === 0 ? "text-[#00ffc4]" : "text-[#7c3aed]")} aria-hidden="true" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl md:text-3xl font-bold tracking-tight mb-2 md:mb-4 transition-colors group-hover:text-white text-white/90">{title}</h3>
+                          <p className="text-zinc-400 text-sm md:text-lg leading-relaxed font-medium group-hover:text-zinc-300 transition-colors">{text}</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <div className="journey-marker" aria-hidden="true">
                     <span className="journey-marker-badge">{number}</span>
@@ -425,14 +644,14 @@ function Pricing() {
         </div>
         <div className="mt-20 grid grid-cols-1 gap-6 lg:grid-cols-3">
           <article className="reveal compare-card">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Monthly Plan</p>
-            <h3 className="mt-5 font-syne text-5xl font-black text-white">₹999<span className="text-2xl text-zinc-500">/month</span></h3>
-            <p className="mt-3 text-zinc-500 font-semibold">For 6 months</p>
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Group Plan</p>
+            <h3 className="mt-5 font-syne text-5xl font-black text-white">Discounts</h3>
+            <p className="mt-3 text-zinc-500 font-semibold">For teams & friends</p>
             <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
-              <li>✓ Full program access</li>
-              <li>✓ Weekly mentorship</li>
-              <li>✓ Team collaboration</li>
-              <li>✓ Demo Day</li>
+              <li>✓ Apply with your team</li>
+              <li>✓ Group discount available</li>
+              <li>✓ Built-in collaboration</li>
+              <li>✓ All plan features</li>
             </ul>
             <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
               Apply Now
@@ -453,20 +672,7 @@ function Pricing() {
               Apply Now
             </a>
           </article>
-          <article className="reveal compare-card">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Group Plan</p>
-            <h3 className="mt-5 font-syne text-5xl font-black text-white">Discounts</h3>
-            <p className="mt-3 text-zinc-500 font-semibold">For teams & friends</p>
-            <ul className="mt-10 space-y-4 text-lg font-semibold text-zinc-400">
-              <li>✓ Apply with your team</li>
-              <li>✓ Group discount available</li>
-              <li>✓ Built-in collaboration</li>
-              <li>✓ All plan features</li>
-            </ul>
-            <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
-              Apply Now
-            </a>
-          </article>
+
         </div>
       </div>
     </section>
