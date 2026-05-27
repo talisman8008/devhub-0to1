@@ -839,8 +839,8 @@ function Footer() {
     <footer className="section-dark border-t border-white/[0.08] py-14">
       <div className="container-page grid grid-cols-1 gap-10 text-sm font-semibold text-zinc-500 md:grid-cols-[1fr_auto_auto]">
         <div>
-          <a href="#top" className="logo-mark text-3xl font-black tracking-[-0.06em] text-white">
-            0to1
+          <a href="#top" className="logo-mark flex items-center mb-6">
+            <img src="/darkmode.png" alt="0to1 Logo" className="h-8 md:h-10 w-auto object-contain block" />
           </a>
           <p className="mt-5 max-w-md text-base leading-7">A DevHub Accelerator Program helping the next generation of builders become founders.</p>
           <p className="mt-8 text-zinc-600">(c) 2026 0to1 by DevHub. Built for builders.</p>
