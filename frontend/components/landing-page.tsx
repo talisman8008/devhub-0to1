@@ -532,20 +532,22 @@ function Outcomes() {
   return (
     <section id="outcomes" className="section-dark pb-16 pt-20 md:pb-20 md:pt-28" aria-label="Outcomes">
       <div className="container-page">
-        <div className="reveal text-center">
-          <p className="section-pill mx-auto mb-12">The Result</p>
-          <h2 className="mega-title">
-            What you&apos;ll <span className="text-beige">achieve</span>
+        <div className="reveal text-center mb-16 md:mb-32">
+          <span className="inline-block px-4 py-1.5 mb-6 md:mb-8 text-[10px] font-bold uppercase tracking-[0.3em] text-[#00ffc4] bg-[#00ffc4]/10 border border-[#00ffc4]/20 rounded-full">
+            The Result
+          </span>
+          <h2 className="text-4xl md:text-8xl font-black tracking-tighter uppercase">
+            WHAT YOU&apos;LL <span className="text-[#00ffc4]">ACHIEVE</span>
           </h2>
         </div>
-        <div className="mt-16 md:mt-32 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 relative z-10">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 relative z-10">
           {outcomes.map(({ icon: Icon, title, text }, index) => (
             <article
               key={title}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-[32px] border border-white/5 bg-[#060010] p-8 transition-all duration-500 hover:border-[#00ffc4]/30 hover:shadow-[0_0_40px_-10px_rgba(0,255,196,0.15)]"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-[32px] border border-white/10 bg-[#060010] p-8 min-h-[480px] xl:min-h-[520px] transition-all duration-500 hover:border-[#00ffc4]/40 hover:shadow-[0_0_40px_-10px_rgba(0,255,196,0.15)]"
             >
               {/* Background Glow Effect */}
-              <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#00ffc4]/[0.02] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+              <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#00ffc4]/15 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none"></div>
 
               {/* Header: Label & Background Number */}
               <div className="relative z-10 flex items-start justify-between">
@@ -560,13 +562,13 @@ function Outcomes() {
               {/* Center Icon with Glowing Backdrop */}
               <div className="relative z-10 my-16 flex flex-1 items-center justify-center">
                 <div className="relative">
-                  <div className="absolute inset-0 scale-150 rounded-full bg-[#00ffc4] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-20"></div>
+                  <div className="absolute inset-0 scale-150 rounded-full bg-[#00ffc4] opacity-20 blur-3xl transition-opacity duration-500 group-hover:opacity-40"></div>
                   <Icon className="relative z-10 h-16 w-16 text-white transition-transform duration-500 group-hover:scale-110" aria-hidden="true" />
                 </div>
               </div>
 
               {/* Content Footer */}
-              <div className="relative z-10 mt-auto pt-6 border-t border-white/5">
+              <div className="relative z-10 mt-auto pt-6 border-t border-white/5 h-[180px] flex flex-col justify-start">
                 <h3 className="mb-3 font-syne text-xl font-bold text-white md:text-2xl">{title}</h3>
                 <p className="text-sm font-medium leading-relaxed text-zinc-400 md:text-base">{text}</p>
               </div>
