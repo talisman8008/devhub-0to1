@@ -110,7 +110,7 @@ export function WaitlistForm() {
 
       if (!error) {
         setState('success')
-        setMessage('Application received! Wewill be in touch soon.')
+        setMessage('Application received! We will be in touch soon.')
         setValues(initialValues)
         return
       }
