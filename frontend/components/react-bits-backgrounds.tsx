@@ -26,11 +26,36 @@ function usePrefersReducedMotion() {
   return prefersReducedMotion
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 768px)')
+    const updatePreference = () => setIsMobile(mediaQuery.matches)
+
+    updatePreference()
+    mediaQuery.addEventListener('change', updatePreference)
+
+    return () => mediaQuery.removeEventListener('change', updatePreference)
+  }, [])
+
+  return isMobile
+}
+
 export function HeroLiquidBackground() {
   const prefersReducedMotion = usePrefersReducedMotion()
+  const isMobile = useIsMobile()
 
   if (prefersReducedMotion) {
     return <div className="hero-liquid-fallback" aria-hidden="true" />
+  }
+
+  if (isMobile) {
+    return (
+      <div className="hero-liquid-layer bg-black" aria-hidden="true">
+        <img src="/hero_mobile_bg.png" alt="" className="absolute inset-0 h-full w-full object-cover opacity-80 pointer-events-none z-0" />
+      </div>
+    )
   }
 
   return (

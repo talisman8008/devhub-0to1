@@ -164,13 +164,13 @@ function Nav() {
         </a>
 
         {/* Desktop Links */}
-        <div className="hidden items-center gap-10 text-sm font-semibold md:flex">
-          <a className="nav-link transition-colors" href="#about">About</a>
-          <a className="nav-link transition-colors" href="#audience">Audience</a>
-          <a className="nav-link transition-colors" href="#journey">Journey</a>
-          <a className="nav-link transition-colors" href="#outcomes">Outcomes</a>
-          <a className="nav-link transition-colors" href="#pricing">Pricing</a>
-          <a className="nav-link transition-colors" href="#waitlist">Apply</a>
+        <div className="hidden items-center gap-10 text-sm font-medium md:flex text-zinc-900 group-[.nav-on-dark]:text-zinc-200">
+          <a className="nav-link transition-colors hover:opacity-70" href="#about">About</a>
+          <a className="nav-link transition-colors hover:opacity-70" href="#audience">Audience</a>
+          <a className="nav-link transition-colors hover:opacity-70" href="#journey">Journey</a>
+          <a className="nav-link transition-colors hover:opacity-70" href="#outcomes">Outcomes</a>
+          <a className="nav-link transition-colors hover:opacity-70" href="#pricing">Pricing</a>
+          <a className="nav-link transition-colors hover:opacity-70" href="#waitlist">Apply</a>
         </div>
 
         <div className="flex items-center gap-4">
@@ -192,12 +192,12 @@ function Nav() {
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-16 left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-white/10 px-5 py-6 flex flex-col gap-6 shadow-2xl">
-          <a className="nav-link transition-colors text-lg font-medium" href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
-          <a className="nav-link transition-colors text-lg font-medium" href="#audience" onClick={() => setIsMobileMenuOpen(false)}>Audience</a>
-          <a className="nav-link transition-colors text-lg font-medium" href="#journey" onClick={() => setIsMobileMenuOpen(false)}>Journey</a>
-          <a className="nav-link transition-colors text-lg font-medium" href="#outcomes" onClick={() => setIsMobileMenuOpen(false)}>Outcomes</a>
-          <a className="nav-link transition-colors text-lg font-medium" href="#pricing" onClick={() => setIsMobileMenuOpen(false)}>Pricing</a>
-          <a className="nav-link transition-colors text-lg font-medium" href="#waitlist" onClick={() => setIsMobileMenuOpen(false)}>Apply</a>
+          <a className="nav-link transition-colors text-lg font-medium text-zinc-300 hover:text-white" href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+          <a className="nav-link transition-colors text-lg font-medium text-zinc-300 hover:text-white" href="#audience" onClick={() => setIsMobileMenuOpen(false)}>Audience</a>
+          <a className="nav-link transition-colors text-lg font-medium text-zinc-300 hover:text-white" href="#journey" onClick={() => setIsMobileMenuOpen(false)}>Journey</a>
+          <a className="nav-link transition-colors text-lg font-medium text-zinc-300 hover:text-white" href="#outcomes" onClick={() => setIsMobileMenuOpen(false)}>Outcomes</a>
+          <a className="nav-link transition-colors text-lg font-medium text-zinc-300 hover:text-white" href="#pricing" onClick={() => setIsMobileMenuOpen(false)}>Pricing</a>
+          <a className="nav-link transition-colors text-lg font-medium text-zinc-300 hover:text-white" href="#waitlist" onClick={() => setIsMobileMenuOpen(false)}>Apply</a>
 
           <Button asChild size="lg" className="nav-cta rounded-full w-full mt-4">
             <a href="#waitlist" onClick={() => setIsMobileMenuOpen(false)}>Apply Now</a>
@@ -218,19 +218,20 @@ function Hero() {
           <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
           0to1 by DevHub | Cohort 01 — Starts June 21, 2026
         </p>
-        <h1 className="hero-heading font-syne font-black uppercase  text-center mx-auto">          <span className="hero-word block whitespace-nowrap">Build a real</span>
-          <span className="hero-word block whitespace-nowrap">startup</span>
+        <h1 className="hero-heading font-syne font-black uppercase text-center mx-auto text-[clamp(4.15rem,18vw,8rem)] leading-[0.9]">
+          <span className="hero-word block">Build a real</span>
+          <span className="hero-word block">startup</span>
         </h1>
         <div className="hero-copy mt-16 max-w-[830px]">
-          <p className="text-xl font-bold leading-tight text-black md:text-2xl lg:text-3xl">Build a real startup. Not just an internship.</p>
-          <p className="mx-auto mt-6 max-w-[780px] text-base font-semibold leading-8 text-zinc-600 md:text-lg lg:text-xl md:leading-9">
+          <p className="text-lg font-medium leading-tight text-zinc-800 md:text-2xl lg:text-3xl">Build a real startup. Not just an internship.</p>
+          <p className="mx-auto mt-6 max-w-[780px] text-base font-semibold leading-8 text-zinc-800 md:text-lg lg:text-xl md:leading-9">
             0to1 is a 6-month, execution-first startup program by DevHub, built for students who don't just want experience. They want ownership.
           </p>
-          <p className="mx-auto mt-5 max-w-[780px] text-sm font-semibold leading-7 text-zinc-500 md:text-base lg:text-lg md:leading-8">
+          <p className="mx-auto mt-5 max-w-[780px] text-sm font-semibold leading-7 text-zinc-800 md:text-base lg:text-lg md:leading-8">
             This is where engineers, designers, marketers, and business students come together to turn ideas into real products and real businesses.
           </p>
         </div>
-        <div className="hero-tags m-8 flex flex-wrap items-center justify-center gap-x-8 text-sm font-bold text-zinc-700">
+        <div className="hero-tags m-8 flex flex-wrap items-center justify-center gap-x-8 text-sm font-bold text-zinc-900">
           <span>No classrooms</span>
           <span>No simulations</span>
           <span>Just building</span>

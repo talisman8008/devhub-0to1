@@ -198,7 +198,7 @@
 
   .hero-heading {
     width: min(100%, 1160px);
-    font-size: 2.25rem;
+    font-size: clamp(4.15rem, 20vw, 7.5rem);
     line-height: 0.9;
     letter-spacing: -0.05em;
     transform: none;
@@ -212,6 +212,12 @@
   }
 
   @media (min-width: 768px) {
+    .hero-heading {
+      font-size: 6.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
     .hero-heading {
       font-size: 140px;
     }
