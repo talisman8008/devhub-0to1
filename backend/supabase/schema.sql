@@ -8,6 +8,10 @@ CREATE TABLE IF NOT EXISTS public.waitlist (
   college_name VARCHAR(160) NOT NULL DEFAULT '',
   city VARCHAR(80) NOT NULL DEFAULT '',
   course_background VARCHAR(120) NOT NULL DEFAULT '',
+  area_of_interest VARCHAR(120) NOT NULL DEFAULT '',
+  why_join TEXT NOT NULL DEFAULT '',
+  skill_level VARCHAR(50) NOT NULL DEFAULT '',
+  solo_or_team VARCHAR(50) NOT NULL DEFAULT '',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   source VARCHAR(100) DEFAULT 'landing_page',
   ip_hash VARCHAR(64) NULL
@@ -18,7 +22,11 @@ ALTER TABLE public.waitlist
   ADD COLUMN IF NOT EXISTS contact_number VARCHAR(20) NOT NULL DEFAULT '',
   ADD COLUMN IF NOT EXISTS college_name VARCHAR(160) NOT NULL DEFAULT '',
   ADD COLUMN IF NOT EXISTS city VARCHAR(80) NOT NULL DEFAULT '',
-  ADD COLUMN IF NOT EXISTS course_background VARCHAR(120) NOT NULL DEFAULT '';
+  ADD COLUMN IF NOT EXISTS course_background VARCHAR(120) NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS area_of_interest VARCHAR(120) NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS why_join TEXT NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS skill_level VARCHAR(50) NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS solo_or_team VARCHAR(50) NOT NULL DEFAULT '';
 
 CREATE INDEX IF NOT EXISTS idx_waitlist_email ON public.waitlist(email);
 CREATE INDEX IF NOT EXISTS idx_waitlist_created_at ON public.waitlist(created_at DESC);

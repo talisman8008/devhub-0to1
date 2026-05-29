@@ -105,6 +105,10 @@ export function WaitlistForm() {
         contact_number: payload.contactNumber,
         college_name: payload.collegeName,
         course_background: payload.courseBackground,
+        area_of_interest: payload.areaOfInterest,
+        why_join: payload.whyJoin,
+        skill_level: payload.skillLevel,
+        solo_or_team: payload.soloOrTeam,
         city: 'N/A' // Default value for required column
       }])
 
