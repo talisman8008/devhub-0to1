@@ -1,7 +1,7 @@
 'use client'
 
 import { useLayoutEffect } from 'react'
-
+import anime from 'animejs'
 type AnimeTimeline = {
   add: (options: Record<string, unknown>, offset?: string | number) => AnimeTimeline
   pause?: () => void
@@ -92,11 +92,9 @@ export function AnimationBoot() {
       document.addEventListener('visibilitychange', requestJourneyProgressUpdate)
     }
 
-    import('animejs').then((module) => {
-      if (cancelled) return
-      const anime = (module.default ?? module) as unknown as AnimeApi
+    if (cancelled) return
 
-      const introTimeline = anime.timeline({ easing: 'easeOutQuad', duration: 620 })
+    const introTimeline = anime.timeline({ easing: 'easeOutQuad', duration: 620 })
       timelines.push(introTimeline)
 
       introTimeline
@@ -140,7 +138,6 @@ export function AnimationBoot() {
       )
 
       revealElements.forEach((element) => observer?.observe(element))
-    })
 
     return () => {
       cancelled = true

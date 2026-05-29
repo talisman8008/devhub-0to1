@@ -1,8 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Galaxy from '@/components/Galaxy'
-import LiquidEther from '@/components/LiquidEther'
+import dynamic from 'next/dynamic'
+
+const Galaxy = dynamic(() => import('@/components/Galaxy'), {
+  ssr: false,
+})
+const LiquidEther = dynamic(() => import('@/components/LiquidEther'), {
+  ssr: false,
+})
 
 function usePrefersReducedMotion() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
@@ -34,12 +40,13 @@ export function HeroLiquidBackground() {
         cursorSize={50}
         isViscous={false}
         viscous={30}
+        iterationsPoisson={8}
+        resolution={0.25}
         colors={['#837c7c', '#323131', '#000000']}
         autoDemo
         autoSpeed={0.5}
         autoIntensity={2.2}
         isBounce={false}
-        resolution={0.5}
       />
     </div>
   )
@@ -56,7 +63,7 @@ export function WaitlistGalaxyBackground() {
     <div className="waitlist-galaxy-layer" aria-hidden="true">
       <Galaxy
         starSpeed={0.8}
-        density={1}
+        density={0.5}
         hueShift={140}
         speed={1}
         glowIntensity={0.3}

@@ -791,7 +791,7 @@ function DemoDay() {
 function Waitlist() {
   return (
     <section id="waitlist" className="waitlist-galaxy section-dark relative min-h-[100svh] flex flex-col justify-center py-24 md:py-24" aria-label="Join waitlist">
-      <WaitlistGalaxyBackground />
+      <img src="/waitlistbg.jpg" alt="" className="absolute inset-0 h-full w-full object-cover opacity-50 mix-blend-screen pointer-events-none z-0" aria-hidden="true" />
       <div className="container-page">
         <div className="reveal cta-panel secure-panel">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
