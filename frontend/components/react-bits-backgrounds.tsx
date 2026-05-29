@@ -53,7 +53,7 @@ export function HeroLiquidBackground() {
   if (isMobile) {
     return (
       <div className="hero-liquid-layer bg-black" aria-hidden="true">
-        <img src="/hero_mobile_bg.png" alt="" className="absolute inset-0 h-full w-full object-cover opacity-80 pointer-events-none z-0" />
+        <img src="/hero_mobile_bg.png" alt="" width="1080" height="1920" className="absolute inset-0 h-full w-full object-cover opacity-80 pointer-events-none z-0" />
       </div>
     )
   }

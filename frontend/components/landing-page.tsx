@@ -20,7 +20,9 @@ import {
 import { AnimationBoot } from '@/components/animation-boot'
 import { HeroLiquidBackground, WaitlistGalaxyBackground } from '@/components/react-bits-backgrounds'
 import { SmoothScrollProvider } from '@/components/smooth-scroll-provider'
-import { WaitlistForm } from '@/components/waitlist-form'
+import dynamic from 'next/dynamic'
+
+const WaitlistForm = dynamic(() => import('@/components/waitlist-form').then(mod => mod.WaitlistForm), { ssr: false })
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -159,8 +161,8 @@ function Nav() {
     <nav ref={navRef} className="nav-shell group fixed inset-x-0 top-0 z-50 bg-transparent transition-all duration-300 ease-in-out" aria-label="Main navigation">
       <div className="mx-auto flex h-16 w-full max-w-[1400px] items-center justify-between px-5 sm:px-7">
         <a href="#top" className="logo-mark flex items-center" aria-label="0to1 home">
-          <img src="/lightmode.png" alt="0to1 Logo" className="h-8 md:h-10 w-auto object-contain block group-[.nav-on-dark]:hidden" />
-          <img src="/darkmode.png" alt="0to1 Logo" className="h-8 md:h-10 w-auto object-contain hidden group-[.nav-on-dark]:block" />
+          <img src="/lightmode.png" alt="0to1 Logo" width="120" height="40" className="h-8 md:h-10 w-auto object-contain block group-[.nav-on-dark]:hidden" />
+          <img src="/darkmode.png" alt="0to1 Logo" width="120" height="40" className="h-8 md:h-10 w-auto object-contain hidden group-[.nav-on-dark]:block" />
         </a>
 
         {/* Desktop Links */}
