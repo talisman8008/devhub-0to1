@@ -93,7 +93,7 @@ export function AnimationBoot() {
     }
 
     if (cancelled) return
-    const anime = _anime as unknown as AnimeApi
+    const anime = (((_anime as any).default) ?? _anime) as unknown as AnimeApi
 
     const introTimeline = anime.timeline({ easing: 'easeOutQuad', duration: 620 })
       timelines.push(introTimeline)
