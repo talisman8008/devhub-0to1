@@ -1,7 +1,7 @@
 'use client'
 
 import { useLayoutEffect } from 'react'
-import anime from 'animejs'
+import _anime from 'animejs'
 type AnimeTimeline = {
   add: (options: Record<string, unknown>, offset?: string | number) => AnimeTimeline
   pause?: () => void
@@ -93,6 +93,7 @@ export function AnimationBoot() {
     }
 
     if (cancelled) return
+    const anime = _anime as unknown as AnimeApi
 
     const introTimeline = anime.timeline({ easing: 'easeOutQuad', duration: 620 })
       timelines.push(introTimeline)
