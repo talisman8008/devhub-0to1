@@ -21,14 +21,19 @@ serve(async (req) => {
     const data = await resend.emails.send({
       from: "0to1 Team <welcome@0to1.wtf>",
       to: [email],
-      subject: "Welcome to the 0to1 Waitlist!",
+      subject: "Application Received - 0to1 Cohort 01",
       html: `
-        <h2>Hi ${full_name || 'there'}!</h2>
-        <p>Thanks for applying to join the 0to1 waitlist.</p>
-        <p>We have received your application and will be in touch soon!</p>
+        <p>Hey ${full_name ? full_name.split(' ')[0] : ''},</p>
         <br/>
-        <p>Best,</p>
-        <p>The 0to1 Team</p>
+        <p>Thanks for applying to 0to1.</p>
+        <p>We've received your application for Cohort 01 starting on June 21, 2026.</p>
+        <p>Over the next few days, our team will be reviewing applications and speaking with applicants individually to understand their goals, interests, and what they hope to build during the program.</p>
+        <p>In the meantime, we've created a space for applicants to connect with each other and stay updated.</p>
+        <br/>
+        <p><a href="#">🔗 LINK TO WHATSAPP GROUP</a></p>
+        <br/>
+        <p>We'll be reaching out soon.</p>
+        <p>- Piyush & Team<br/>0to1</p>
       `,
     })
     
