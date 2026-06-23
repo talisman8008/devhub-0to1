@@ -849,17 +849,19 @@ function Waitlist() {
 
 function Footer() {
   return (
-    <footer className="section-dark border-t border-white/[0.08] py-14">
-      <div className="container-page grid grid-cols-1 gap-10 text-sm font-semibold text-zinc-500 md:grid-cols-[1fr_auto_auto]">
-        <div>
+    <footer className="section-dark border-t border-white/[0.08] pt-16 pb-8">
+      <div className="container-page grid grid-cols-1 gap-12 text-sm font-semibold text-zinc-500 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+        <div className="flex flex-col items-start">
           <a href="#top" className="logo-mark flex items-center mb-6">
             <img src="/darkmode.png" alt="0to1 Logo" className="h-8 md:h-10 w-auto object-contain block" />
           </a>
-          <p className="mt-5 max-w-md text-base leading-7">A DevHub Accelerator Program helping the next generation of builders become founders.</p>
-          <p className="mt-8 text-zinc-600">(c) 2026 0to1 by DevHub. Built for builders.</p>
+          <p className="max-w-xs text-base leading-7 text-zinc-400">
+            A DevHub Accelerator Program helping the next generation of builders become founders.
+          </p>
         </div>
-        <div className="grid gap-4">
-          <h3 className="font-syne text-base font-black text-white">Quick Links</h3>
+        
+        <div className="flex flex-col gap-4">
+          <h3 className="font-syne text-sm font-black text-white uppercase tracking-widest">Quick Links</h3>
           <a className="transition-colors hover:text-white" href="#about">About</a>
           <a className="transition-colors hover:text-white" href="#journey">Journey</a>
           <a className="transition-colors hover:text-white" href="#outcomes">Outcomes</a>
@@ -867,18 +869,26 @@ function Footer() {
           <a className="transition-colors hover:text-white" href="#demo-day">Demo Day</a>
           <a className="transition-colors hover:text-white" href="#waitlist">Waitlist</a>
         </div>
-        <div className="grid content-start gap-4">
-          <h3 className="font-syne text-base font-black text-white">Contact</h3>
+
+        <div className="flex flex-col gap-4">
+          <h3 className="font-syne text-sm font-black text-white uppercase tracking-widest">Legal</h3>
+          <Link className="transition-colors hover:text-white" href="/privacy">Privacy Policy</Link>
+          <Link className="transition-colors hover:text-white" href="/terms">Terms of Service</Link>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <h3 className="font-syne text-sm font-black text-white uppercase tracking-widest">Contact</h3>
           <a className="transition-colors hover:text-white" href="mailto:0to1.wtf@gmail.com">0to1.wtf@gmail.com</a>
           <a className="transition-colors hover:text-white" href="https://www.instagram.com/0to1.wtf/" rel="noreferrer" target="_blank">
-            @0to1.wtf
+            Instagram
           </a>
-          <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs uppercase tracking-[0.18em] text-zinc-700">
-            <Link className="transition-colors hover:text-white" href="/privacy">Privacy Policy</Link>
-            <Link className="transition-colors hover:text-white" href="/terms">Terms of Service</Link>
-            <Link className="transition-colors hover:text-white" href="/contact">Contact &amp; Support</Link>
-          </div>
+          <Link className="transition-colors hover:text-white" href="/contact">Support</Link>
         </div>
+      </div>
+      
+      <div className="container-page mt-16 pt-8 border-t border-white/[0.04] flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-semibold text-zinc-600">
+        <p>© 2026 0to1 by DevHub. All rights reserved.</p>
+        <p>Built for builders.</p>
       </div>
     </footer>
   )
