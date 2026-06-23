@@ -26,7 +26,8 @@ serve(async (req) => {
         <p>Hey ${full_name ? full_name.split(' ')[0] : ''},</p>
         <br/>
         <p>Thanks for applying to 0to1.</p>
-        <p>We've received your application for Cohort 01 starting on June 21, 2026.</p>
+        <p>We've received your application for Cohort 01 starting on June 28, 2026.</p>
+        <p>As an added bonus, all applicants will now receive a free 10-day induction prior to the start of the cohort!</p>
         <p>Over the next few days, our team will be reviewing applications and speaking with applicants individually to understand their goals, interests, and what they hope to build during the program.</p>
         <p>In the meantime, we've created a space for applicants to connect with each other and stay updated.</p>
         <br/>

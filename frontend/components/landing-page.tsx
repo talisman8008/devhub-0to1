@@ -213,13 +213,22 @@ function Nav() {
 
 function Hero() {
   return (
-    <section className="hero-light relative flex min-h-[100svh] items-center justify-center overflow-hidden px-5 pb-16 pt-24 text-black" aria-label="Hero">
+    <section className="hero-light relative flex min-h-[100svh] items-center justify-center overflow-hidden px-5 pb-16 pt-32 text-black" aria-label="Hero">
       <HeroLiquidBackground />
+      <div className="absolute top-[64px] left-0 w-full bg-black text-white pt-[5px] pb-[6px] overflow-hidden z-40 border-b border-white/10">
+        <div className="flex whitespace-nowrap animate-marquee">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <span key={i} className="mx-6 text-xs md:text-sm font-bold tracking-wider">
+              🚨 The cohort date is changed and postponed to June 28 • Applicants now get a free 10-day induction 🚨
+            </span>
+          ))}
+        </div>
+      </div>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_52%_30%,rgba(255,255,255,0.1),rgba(255,255,255,0)_42%)]" aria-hidden="true" />
       <div className="relative z-10 mx-auto flex w-full max-w-[1180px] flex-col items-center text-center">
         <p className="hero-badge pill-light mb-10">
           <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
-          0to1 by DevHub | Cohort 01 — Starts June 21, 2026
+          0to1 by DevHub | Cohort 01 — Starts June 28, 2026
         </p>
         <h1 className="hero-heading font-syne font-black uppercase text-center mx-auto text-[clamp(4.15rem,18vw,8rem)] leading-[0.9]">
           <span className="hero-word block">Build a real</span>
