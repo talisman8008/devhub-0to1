@@ -1,7 +1,7 @@
 'use client'
 
 import { FormEvent, useState } from 'react'
-import { supabase } from '@/lib/supabase'
+import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 import { ArrowRight, CheckCircle2, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -93,6 +93,12 @@ export function WaitlistForm() {
     if (clientError) {
       setState('error')
       setMessage(clientError)
+      return
+    }
+
+    if (!isSupabaseConfigured) {
+      setState('error')
+      setMessage('Waitlist is not configured yet. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.')
       return
     }
 

@@ -17,6 +17,7 @@ import {
   X,
   Briefcase
 } from 'lucide-react'
+import Link from 'next/link'
 import { AnimationBoot } from '@/components/animation-boot'
 import { HeroLiquidBackground, WaitlistGalaxyBackground } from '@/components/react-bits-backgrounds'
 import { SmoothScrollProvider } from '@/components/smooth-scroll-provider'
@@ -863,9 +864,10 @@ function Footer() {
           <a className="transition-colors hover:text-white" href="https://www.instagram.com/0to1.wtf/" rel="noreferrer" target="_blank">
             @0to1.wtf
           </a>
-          <div className="flex gap-4 text-xs uppercase tracking-[0.18em] text-zinc-700">
-            <a className="transition-colors hover:text-white" href="#top">Privacy Policy</a>
-            <a className="transition-colors hover:text-white" href="#top">Terms of Service</a>
+          <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs uppercase tracking-[0.18em] text-zinc-700">
+            <Link className="transition-colors hover:text-white" href="/privacy">Privacy Policy</Link>
+            <Link className="transition-colors hover:text-white" href="/terms">Terms of Service</Link>
+            <Link className="transition-colors hover:text-white" href="/contact">Contact &amp; Support</Link>
           </div>
         </div>
       </div>
