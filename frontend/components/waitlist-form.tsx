@@ -291,8 +291,8 @@ function validateValues(values: FormValues): string {
     return 'Please enter a valid email address.'
   }
 
-  if (!/^[+()\-\s0-9]{7,20}$/.test(values.contactNumber)) {
-    return 'Please enter a valid phone number.'
+  if (!/^(?:\+?91[\s-]?)?[6789]\d{2}[\s-]?\d{3}[\s-]?\d{4}$/.test(values.contactNumber)) {
+    return 'Please enter a valid Indian mobile number.'
   }
 
   if (values.whyJoin.length < 20) {

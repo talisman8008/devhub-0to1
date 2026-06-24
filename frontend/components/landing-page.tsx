@@ -116,8 +116,8 @@ export function LandingPage() {
         <Paradigm />
         <Journey />
         <Outcomes />
-        <Pricing />
         <DemoDay />
+        <Pricing />
         <Waitlist />
         <Footer />
       </main>
@@ -837,13 +837,13 @@ function Waitlist() {
             <div className="secure-form-shell">
               <WaitlistForm />
               <p className="mt-5 text-center text-xs font-bold uppercase tracking-[0.18em] text-zinc-600">
-                Early Access Membership &bull; Cohort 01 &bull;June 2026
+                10 Day Free Induction with Full Team Scholarship Chance <br /> &bull; Cohort 01 starts 28th June 2026
               </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </section >
   )
 }
 
@@ -859,7 +859,7 @@ function Footer() {
             A DevHub Accelerator Program helping the next generation of builders become founders.
           </p>
         </div>
-        
+
         <div className="flex flex-col gap-4">
           <h3 className="font-syne text-sm font-black text-white uppercase tracking-widest">Quick Links</h3>
           <a className="transition-colors hover:text-white" href="#about">About</a>
@@ -885,7 +885,7 @@ function Footer() {
           <Link className="transition-colors hover:text-white" href="/contact">Support</Link>
         </div>
       </div>
-      
+
       <div className="container-page mt-16 pt-8 border-t border-white/[0.04] flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-semibold text-zinc-600">
         <p>© 2026 0to1 by DevHub. All rights reserved.</p>
         <p>Built for builders.</p>

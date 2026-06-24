@@ -5,7 +5,7 @@ const plainTextField = (maxLength: number) => z.string().trim().min(2).max(maxLe
 export const waitlistBodySchema = z
   .object({
     fullName: plainTextField(120),
-    contactNumber: z.string().trim().min(7).max(20).regex(/^[+()\-\s0-9]+$/),
+    contactNumber: z.string().trim().regex(/^(?:\+?91[\s-]?)?[6789]\d{2}[\s-]?\d{3}[\s-]?\d{4}$/, 'Invalid Indian mobile number'),
     email: z.string().trim().toLowerCase().email().max(255),
     collegeName: plainTextField(160),
     city: plainTextField(80),
