@@ -1,0 +1,23 @@
+services:
+  - type: web
+    runtime: node
+    name: 0to1-devhub-api
+    plan: free
+    region: singapore
+    buildCommand: npm ci --include=dev && npm run build -w backend
+    startCommand: npm run start -w backend
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY
+        value: "1"
+      - key: FRONTEND_ORIGIN
+        value: https://dev-hub-0to1-frontend.vercel.app
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: IP_HASH_SALT
+        sync: false
