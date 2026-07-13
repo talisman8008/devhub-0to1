@@ -18,6 +18,7 @@ type FormValues = {
   whyJoin: string
   skillLevel: string
   soloOrTeam: string
+  paymentPlan: string
 }
 
 type ApiResponse = {
@@ -35,7 +36,8 @@ const initialValues: FormValues = {
   areaOfInterest: '',
   whyJoin: '',
   skillLevel: '',
-  soloOrTeam: ''
+  soloOrTeam: '',
+  paymentPlan: 'one_time'
 }
 
 // Fields rendered as <Input> (single-line)
@@ -70,7 +72,39 @@ const selectFields = [
       { value: 'open', label: 'Open — find me a team' },
     ]
   },
+  {
+    name: 'paymentPlan',
+    label: 'Payment Plan',
+    options: [
+      { value: 'one_time', label: '₹5,499 - One-time Payment' },
+      { value: 'monthly', label: '₹999/month for 6 months' },
+      { value: 'group_discount', label: 'Group Discount (to be negotiated)' },
+    ]
+  },
 ] as const
+
+// Helper to load Razorpay script
+function loadRazorpayScript() {
+  return new Promise((resolve) => {
+    if (window.Razorpay) {
+      resolve(true)
+      return
+    }
+    const script = document.createElement('script')
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js'
+    script.onload = () => resolve(true)
+    script.onerror = () => resolve(false)
+    document.body.appendChild(script)
+  })
+}
+
+// Ensure window.Razorpay is typed
+declare global {
+  interface Window {
+    Razorpay: any
+  }
+}
+
 
 export function WaitlistForm() {
   const [values, setValues] = useState<FormValues>(initialValues)
@@ -99,32 +133,92 @@ export function WaitlistForm() {
     setState('loading')
 
     try {
-      const { error } = await supabase.from('waitlist').insert([{
-        full_name: payload.fullName,
-        email: payload.email,
-        contact_number: payload.contactNumber,
-        college_name: payload.collegeName,
-        course_background: payload.courseBackground,
-        area_of_interest: payload.areaOfInterest,
-        why_join: payload.whyJoin,
-        skill_level: payload.skillLevel,
-        solo_or_team: payload.soloOrTeam,
-        city: 'N/A' // Default value for required column
-      }])
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000'
+      const createOrderRes = await fetch(`${apiUrl}/api/razorpay/create-order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
 
-      if (!error) {
+      const createOrderData = await createOrderRes.json()
+
+      if (!createOrderRes.ok) {
+        setState('error')
+        setMessage(createOrderData.message || 'Failed to create order.')
+        return
+      }
+
+      if (createOrderData.type === 'bypass') {
+        // Group discount bypass
         setState('success')
-        setMessage('Application received! We will be in touch soon.')
+        setMessage('Application received! We will be in touch soon regarding the group discount.')
         setValues(initialValues)
         return
       }
 
-      setState('error')
-      if (error.code === '23505') {
-        setMessage('This email is already on the waitlist.')
-      } else {
-        setMessage(error.message || 'Something went wrong. Please try again.')
+      const res = await loadRazorpayScript()
+      if (!res) {
+        setState('error')
+        setMessage('Razorpay SDK failed to load. Are you online?')
+        return
       }
+
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        amount: createOrderData.amount,
+        currency: createOrderData.currency,
+        name: '0to1 DevHub',
+        description: '0to1 Program Access',
+        order_id: createOrderData.order_id,
+        subscription_id: createOrderData.subscription_id,
+        handler: async function (response: any) {
+          try {
+            const verifyRes = await fetch(`${apiUrl}/api/razorpay/verify`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_subscription_id: response.razorpay_subscription_id,
+                razorpay_signature: response.razorpay_signature,
+                formData: payload
+              })
+            })
+
+            const verifyData = await verifyRes.json()
+
+            if (verifyRes.ok) {
+              setState('success')
+              setMessage('Payment successful! Application received.')
+              setValues(initialValues)
+            } else {
+              setState('error')
+              setMessage(verifyData.message || 'Payment verification failed.')
+            }
+          } catch (err: any) {
+            setState('error')
+            setMessage('Something went wrong during verification. Please contact support.')
+          }
+        },
+        prefill: {
+          name: payload.fullName,
+          email: payload.email,
+          contact: payload.contactNumber
+        },
+        theme: {
+          color: '#3399cc'
+        },
+        modal: {
+          ondismiss: function() {
+            setState('idle')
+            setMessage('Payment was cancelled.')
+          }
+        }
+      }
+
+      const paymentObject = new window.Razorpay(options)
+      paymentObject.open()
+
     } catch (err: any) {
       setState('error')
       setMessage(err.message || 'Something went wrong. Please try again.')
@@ -260,6 +354,7 @@ function normalizeValues(values: FormValues): FormValues {
     whyJoin: values.whyJoin.trim(),
     skillLevel: values.skillLevel.trim(),
     soloOrTeam: values.soloOrTeam.trim(),
+    paymentPlan: values.paymentPlan.trim(),
   }
 }
 

@@ -8,6 +8,8 @@ const envSchema = z.object({
   SUPABASE_URL: z.string().url().optional(),
   SUPABASE_SERVICE_ROLE_KEY: z.string().min(1).optional(),
   IP_HASH_SALT: z.string().min(16).optional(),
+  RAZORPAY_KEY_ID: z.string().optional(),
+  RAZORPAY_KEY_SECRET: z.string().optional(),
   FRONTEND_ORIGIN: z.string().url().default('http://localhost:3000'),
   TRUST_PROXY: z
     .string()
@@ -43,5 +45,19 @@ export function requireSupabaseConfig() {
     supabaseUrl: config.SUPABASE_URL as string,
     serviceRoleKey: config.SUPABASE_SERVICE_ROLE_KEY as string,
     ipHashSalt: config.IP_HASH_SALT as string
+  }
+}
+
+export function requireRazorpayConfig() {
+  const required = ['RAZORPAY_KEY_ID', 'RAZORPAY_KEY_SECRET'] as const
+  const missing = required.filter((key) => !config[key])
+
+  if (missing.length > 0) {
+    throw new Error(`Missing required Razorpay environment variables: ${missing.join(', ')}`)
+  }
+
+  return {
+    key_id: config.RAZORPAY_KEY_ID as string,
+    key_secret: config.RAZORPAY_KEY_SECRET as string
   }
 }

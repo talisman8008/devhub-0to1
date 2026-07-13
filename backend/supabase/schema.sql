@@ -14,7 +14,10 @@ CREATE TABLE IF NOT EXISTS public.waitlist (
   solo_or_team VARCHAR(50) NOT NULL DEFAULT '',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   source VARCHAR(100) DEFAULT 'landing_page',
-  ip_hash VARCHAR(64) NULL
+  ip_hash VARCHAR(64) NULL,
+  razorpay_payment_id VARCHAR(100) NULL,
+  razorpay_order_id VARCHAR(100) NULL,
+  payment_plan VARCHAR(50) NULL
 );
 
 ALTER TABLE public.waitlist
@@ -26,7 +29,10 @@ ALTER TABLE public.waitlist
   ADD COLUMN IF NOT EXISTS area_of_interest VARCHAR(120) NOT NULL DEFAULT '',
   ADD COLUMN IF NOT EXISTS why_join TEXT NOT NULL DEFAULT '',
   ADD COLUMN IF NOT EXISTS skill_level VARCHAR(50) NOT NULL DEFAULT '',
-  ADD COLUMN IF NOT EXISTS solo_or_team VARCHAR(50) NOT NULL DEFAULT '';
+  ADD COLUMN IF NOT EXISTS solo_or_team VARCHAR(50) NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS razorpay_payment_id VARCHAR(100) NULL,
+  ADD COLUMN IF NOT EXISTS razorpay_order_id VARCHAR(100) NULL,
+  ADD COLUMN IF NOT EXISTS payment_plan VARCHAR(50) NULL;
 
 CREATE INDEX IF NOT EXISTS idx_waitlist_email ON public.waitlist(email);
 CREATE INDEX IF NOT EXISTS idx_waitlist_created_at ON public.waitlist(created_at DESC);
