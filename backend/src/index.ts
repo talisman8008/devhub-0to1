@@ -5,7 +5,6 @@ import { config } from './config.js'
 import { ApiError, errorHandler } from './errors.js'
 import { rateLimit } from './rate-limit.js'
 import { waitlistRouter } from './routes/waitlist.js'
-import { razorpayRouter } from './routes/razorpay.js'
 
 const app = express()
 
@@ -37,7 +36,6 @@ app.get('/health', (_request, response) => {
 })
 
 app.use('/api/waitlist', waitlistRouter)
-app.use('/api/razorpay', razorpayRouter)
 
 app.use((_request, _response, next) => {
   next(new ApiError(404, 'NOT_FOUND', 'Not found.'))

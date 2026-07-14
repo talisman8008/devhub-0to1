@@ -22,7 +22,8 @@ import { HeroLiquidBackground, WaitlistGalaxyBackground } from '@/components/rea
 import { SmoothScrollProvider } from '@/components/smooth-scroll-provider'
 import dynamic from 'next/dynamic'
 
-const WaitlistForm = dynamic(() => import('@/components/waitlist-form').then(mod => mod.WaitlistForm), { ssr: false })
+import Link from 'next/link'
+
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -177,7 +178,7 @@ function Nav() {
 
         <div className="flex items-center gap-4">
           <Button asChild size="sm" className="nav-cta rounded-full px-5">
-            <a href="#waitlist">Apply Now</a>
+            <Link href="/payment">Apply Now</Link>
           </Button>
 
           {/* Mobile Menu Toggle */}
@@ -202,7 +203,7 @@ function Nav() {
           <a className="nav-link transition-colors text-lg font-medium text-zinc-300 hover:text-white" href="#waitlist" onClick={() => setIsMobileMenuOpen(false)}>Apply</a>
 
           <Button asChild size="lg" className="nav-cta rounded-full w-full mt-4">
-            <a href="#waitlist" onClick={() => setIsMobileMenuOpen(false)}>Apply Now</a>
+            <Link href="/payment" onClick={() => setIsMobileMenuOpen(false)}>Apply Now</Link>
           </Button>
         </div>
       )}
@@ -240,7 +241,7 @@ function Hero() {
         </div>
         <div className="hero-actions mt-8 flex flex-col items-center justify-center gap-7 sm:flex-row">
           <Button asChild size="lg" className="rounded-full bg-black px-7 text-white hover:bg-zinc-800">
-            <a href="#waitlist">Apply for Cohort 01</a>
+            <Link href="/payment">Apply for Cohort 01</Link>
           </Button>
           <Button asChild variant="secondary" size="lg" className="rounded-full border-zinc-300 bg-white/40 px-7 text-black hover:bg-white">
             <a href="#about">
@@ -659,9 +660,9 @@ function Pricing() {
               <li>✓ Team collaboration</li>
               <li>✓ Cancel anytime</li>
             </ul>
-            <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
+            <Link href="/payment" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
               Apply Now
-            </a>
+            </Link>
           </article>
           <article className="reveal compare-card lg:scale-105 relative z-10 shadow-2xl compare-card-hot">
             <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-beige">Best Value</p>
@@ -674,9 +675,9 @@ function Pricing() {
               <li>✓ Demo Day</li>
               <li className="text-beige">✓ Save ₹495</li>
             </ul>
-            <a href="#waitlist" className="mt-10 block w-full rounded-full bg-accent py-3 text-center text-sm font-black uppercase tracking-widest text-black transition hover:opacity-90">
+            <Link href="/payment" className="mt-10 block w-full rounded-full bg-accent py-3 text-center text-sm font-black uppercase tracking-widest text-black transition hover:opacity-90">
               Apply Now
-            </a>
+            </Link>
           </article>
           <article className="reveal compare-card">
             <p className="font-mono text-xs font-bold uppercase tracking-[0.28em] text-zinc-500">Group Plan</p>
@@ -688,9 +689,9 @@ function Pricing() {
               <li>✓ Built-in collaboration</li>
               <li>✓ All plan features</li>
             </ul>
-            <a href="#waitlist" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
+            <Link href="/payment" className="mt-10 block w-full rounded-full border border-white/20 py-3 text-center text-sm font-black uppercase tracking-widest text-white transition hover:border-accent hover:text-accent">
               Apply Now
-            </a>
+            </Link>
           </article>
 
         </div>
@@ -774,11 +775,11 @@ function DemoDay() {
               Only the best teams make it here. Start building now to earn your spot on stage.
             </p>
 
-            <a href="#waitlist"
+            <Link href="/payment"
               className="w-fit rounded-full bg-accent px-8 py-3 text-sm font-black uppercase tracking-widest text-black transition hover:opacity-90 hover:-translate-y-0.5"
             >
               Apply for Cohort 01
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -824,9 +825,12 @@ function Waitlist() {
                 </div>
               </div>
             </div>
-            <div className="secure-form-shell">
-              <WaitlistForm />
-              <p className="mt-5 text-center text-xs font-bold uppercase tracking-[0.18em] text-zinc-600">
+            <div className="secure-form-shell flex flex-col items-center justify-center p-12 bg-white/[0.02] border border-white/10 rounded-[32px]">
+              <h3 className="text-3xl font-syne font-black text-white mb-8">Ready to execute?</h3>
+              <Button asChild size="lg" className="w-full h-14 text-sm font-black uppercase tracking-widest rounded-full bg-accent text-black hover:opacity-90">
+                <Link href="/payment">Choose a Plan</Link>
+              </Button>
+              <p className="mt-8 text-center text-xs font-bold uppercase tracking-[0.18em] text-zinc-600">
                 Early Access Membership &bull; Cohort 01 &bull;June 2026
               </p>
             </div>
